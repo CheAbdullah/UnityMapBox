@@ -1,0 +1,11 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "oo3DGIS.data.unityweb",
+"asmCodeUrl": "oo3DGIS.asm.code.unityweb",
+"asmMemoryUrl": "oo3DGIS.asm.memory.unityweb",
+"asmFrameworkUrl": "oo3DGIS.asm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
