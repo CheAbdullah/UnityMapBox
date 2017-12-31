@@ -59,6 +59,20 @@ map.on('load', function() {
         }
     }, labelLayerId);
 });
+
+var circle = circle([44.63, 22.65], 600).addTo(map);
+
+    circle.on({
+          mousedown: function () {
+            map.on('mousemove', function (e) {
+              circle.setLatLng(e.latlng);
+            });
+          }
+       }); 
+       map.on('mouseup',function(e){
+         map.removeEventListener('mousemove');
+       })
+
 var circleMarker;
   var redIcon = mapbox.marker.icon({
     'marker-size': 'small',
