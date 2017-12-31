@@ -18,8 +18,8 @@
 //[43.1166662, -79.0666664],
 <div id='map'></div>
 <script>
-L.mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
-var map = L.mapboxgl.Map({
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+var map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/light-v9',
     center: [-74.0066, 40.7135],
     zoom: 15,
@@ -60,7 +60,7 @@ map.on('load', function() {
     }, labelLayerId);
 });
 var circleMarker;
-  var redIcon = L.mapbox.marker.icon({
+  var redIcon = mapbox.marker.icon({
     'marker-size': 'small',
     'marker-symbol': 'circle',
     'marker-color': '#f00'
@@ -68,7 +68,7 @@ var circleMarker;
   map.on('click', function(e) {
     $('#info').html("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
     circleMarker =
-      L.marker([e.latlng.lat, e.latlng.lng], {
+      marker([e.latlng.lat, e.latlng.lng], {
         icon: L.mapbox.marker.icon({
           'marker-size': 'small',
           'marker-symbol': 'circle',
