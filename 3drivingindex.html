@@ -59,11 +59,7 @@ map.on('load', function() {
         }
     }, labelLayerId);
 });
-</script>
-
-$(function() {
-
-  var circleMarker;
+var circleMarker;
   var redIcon = L.mapbox.marker.icon({
     'marker-size': 'small',
     'marker-symbol': 'circle',
@@ -95,6 +91,9 @@ $(function() {
       this.setIcon(redIcon);
     });
   });
+
+</script>
+
 
 </body>
 </html>
