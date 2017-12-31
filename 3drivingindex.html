@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html>
@@ -59,6 +60,41 @@ map.on('load', function() {
     }, labelLayerId);
 });
 </script>
+
+$(function() {
+
+  var circleMarker;
+  var redIcon = L.mapbox.marker.icon({
+    'marker-size': 'small',
+    'marker-symbol': 'circle',
+    'marker-color': '#f00'
+  });
+  map.on('click', function(e) {
+    $('#info').html("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
+    circleMarker =
+      L.marker([e.latlng.lat, e.latlng.lng], {
+        icon: L.mapbox.marker.icon({
+          'marker-size': 'small',
+          'marker-symbol': 'circle',
+          'marker-color': '#fa0'
+        }),
+        draggable: true
+      }).addTo(map);
+
+    var originLatLng;
+    circleMarker.on('dragstart', function(e) {
+      originLatLng = circleMarker.getLatLng();
+      console.log(originLatLng);
+    });
+    circleMarker.on('dragend', function(e) {
+      if (originLatLng.lat == circleMarker.getLatLng().lat) console.log('true');
+      else console.log('false');
+    });
+    circleMarker.on('click', function(e) {
+      console.log(e);
+      this.setIcon(redIcon);
+    });
+  });
 
 </body>
 </html>
