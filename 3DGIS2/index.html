@@ -1,48 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us">
-    <style>
-        div.container {
-            width: 100%;
-            border: 1px solid gray;
-        }
-        
-        header, footer {
-            padding: 1em;
-            color: white;
-            background-color: black;
-            clear: left;
-            text-align: center;
-        }
-        
-        nav {
-            float: left;
-            max-width: 170px;
-            margin: 0;
-            padding: 1em;
-        }
-        
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-           
-        nav ul a {
-            text-decoration: none;
-        }
-        
-        article {
-            margin-left: 170px;
-            border-left: 1px solid gray;
-            padding: 1em;
-            overflow: hidden;
-        }
-        </style>
-
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | HexGrid</title>
-    
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>  
@@ -52,56 +13,12 @@
     </script>
   </head>
   <body>
-      <div class="container">
-
-    <nav>
-        //https://cheabdullah.github.io/UnityMapBox/3drivingindex.html#16.42/43.08663/-79.06773/-17.6/45
-        <div id='map'></div>
-        <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
-        var map = new mapboxgl.Map({
-            style: 'mapbox://styles/mapbox/light-v9',
-            center: [43.08663, -79.06773],
-            zoom:16.42,
-            pitch: 45,
-            bearing: -17.6,
-            hash: true,
-            container: 'map'
-        });
-        
-        // The 'building' layer in the mapbox-streets vector source contains building-height
-        // data from OpenStreetMap.
-        map.on('load', function() {
-            // Insert the layer beneath any symbol layer.
-            var layers = map.getStyle().layers.reverse();
-            var labelLayerIdx = layers.findIndex(function (layer) {
-                return layer.type !== 'symbol';
-            });
-            var labelLayerId = labelLayerIdx !== -1 ? layers[labelLayerIdx].id : undefined;
-            map.addLayer({
-                'id': '3d-buildings',
-                'source': 'composite',
-                'source-layer': 'building',
-                'filter': ['==', 'extrude', 'true'],
-                'type': 'fill-extrusion',
-                'minzoom': 15,
-                'paint': {
-                    'fill-extrusion-color': '#aaa',
-                    'fill-extrusion-height': {
-                        'type': 'identity',
-                        'property': 'height'
-                    },
-                    'fill-extrusion-base': {
-                        'type': 'identity',
-                        'property': 'min_height'
-                    },
-                    'fill-extrusion-opacity': .6
-                }
-            }, labelLayerId);
-        });
-        </script>
-        
-    </nav>
+      <div style="position:absolute; left:77; top:77; width:377; height:377; clip:rect(0,381,381,0); background:#FFF;">
+          
+           <iframe src="https://cheabdullah.github.io/UnityMapBox/3drivingindex.html#15.19/43.0885/-79.0682/-10.6/45" width="377" height="377" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+           </iframe>
+          
+          </div>
     <div class="webgl-content">
       <div id="gameContainer" style="width: 400px; height: 240px"></div>
       <div class="footer">
