@@ -164,6 +164,11 @@
             hash: true,
         });
 
+        var map = new mapboxgl.Compare(beforeMap, afterMap, {
+    // Set this to enable comparing two maps by mouse movement:
+    // mousemove: true
+});
+
         beforeMap.addControl(new MapboxDirections({
             accessToken: mapboxgl.accessToken
         }), 'top-left');
@@ -406,10 +411,7 @@
         }));
 
 
-        var map = new mapboxgl.Compare(beforeMap, afterMap, {
-    // Set this to enable comparing two maps by mouse movement:
-    // mousemove: true
-});
+        
     </script>
 
 </body>
