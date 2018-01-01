@@ -11,7 +11,7 @@
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
         #menus {
-        position:absolute; left:300px;top:100px; width:50%; 
+        position:absolute; left:350px;top:100px; width:50%; 
         background: #fff;
         padding: 10px;
         font-family: 'Open Sans', sans-serif;}
@@ -41,7 +41,7 @@
         #info {
             display: block;
             position: relative;
-            margin-left: 300px;
+            margin-left: 350px;
             width: 50%;
             padding: 10px;
             border: none;
@@ -238,6 +238,25 @@ for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
+
+// When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
+    map.on('click', 'places', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(e.features[0].properties.description)
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'places', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'places', function () {
+        map.getCanvas().style.cursor = '';
+    });
 
 </script>
 
