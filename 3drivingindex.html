@@ -44,7 +44,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 var map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/light-v9',
-    center: [53.3459,-6.258],
+    center: [-6.258,53.3459],
     zoom: 15,
     pitch: 45,
     bearing: -17.6,
@@ -94,7 +94,7 @@ map.on('mousemove', function (e) {
         JSON.stringify(e.lngLat);
 });
 
-var circle = circle([-74.0066, 40.7135], 600).addTo(map);
+var circle = circle([-6.258,53.3459], 600).addTo(map);
 
     circle.on({
           mousedown: function () {
