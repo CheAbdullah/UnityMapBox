@@ -30,7 +30,7 @@
           background: #fff;
       }
   </style>
-  <div id='map'></div>
+
   <pre id='info'></pre>
 
 
@@ -85,7 +85,14 @@ map.on('load', function() {
     }, labelLayerId);
 });
 
-
+map.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+        // e.point is the x, y coordinates of the mousemove event relative
+        // to the top-left corner of the map
+        JSON.stringify(e.point) + '<br />' +
+        // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.lngLat);
+});
 
 var circle = circle([53.34716,-6.25914], 600).addTo(map);
 
@@ -98,7 +105,7 @@ var circle = circle([53.34716,-6.25914], 600).addTo(map);
        }); 
        map.on('mouseup',function(e){
          map.removeEventListener('mousemove');
-       })
+       });
 
 
 </script>
