@@ -31,28 +31,28 @@
         position: absolute;
         z-index: 1;
         top: 200px;
-        right: 10px;
+        left:200px;
         border-radius: 3px;
         width: 120px;
         border: 2px solid rgba(0,0,0,0.4);
         font-family: 'Open Sans', sans-serif;
     }
 
-    #menu a:last-child {
+    #menuv a:last-child {
         border: none;
     }
 
-    #menu a:hover {
+    #menuv a:hover {
         background-color: #f8f8f8;
         color: #404040;
     }
 
-    #menu a.active {
+    #menuv a.active {
         background-color: #3887be;
         color: #ffffff;
     }
 
-    #menu a.active:hover {
+    #menuv a.active:hover {
         background: #3074a4;
     }
         
@@ -318,33 +318,33 @@ var frameCount = 5;
     // }, firstSymbolId);
 
 
-    var toggleableLayerIds = [ 'contours', 'roadlabel' ];
+//     var toggleableLayerIds = [ 'contours', 'roadlabel' ];
 
-for (var i = 0; i < toggleableLayerIds.length; i++) {
-    var id = toggleableLayerIds[i];
+// for (var i = 0; i < toggleableLayerIds.length; i++) {
+//     var id = toggleableLayerIds[i];
 
-    var link = document.createElement('a');
-    link.href = '#';
-    link.className = 'active';
-    link.textContent = id;
+//     var link = document.createElement('a');
+//     link.href = '#';
+//     link.className = 'active';
+//     link.textContent = id;
 
-    link.onclick = function (e) {
-        var clickedLayer = this.textContent;
-        e.preventDefault();
-        e.stopPropagation();
+//     link.onclick = function (e) {
+//         var clickedLayer = this.textContent;
+//         e.preventDefault();
+//         e.stopPropagation();
 
-        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+//         var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
 
-        if (visibility === 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            this.className = '';
-        } else {
-            this.className = 'active';
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-        }
-        var layers = document.getElementById('menuv');
-    layers.appendChild(link);}
-    };
+//         if (visibility === 'visible') {
+//             map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+//             this.className = '';
+//         } else {
+//             this.className = 'active';
+//             map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+//         }
+//         var layers = document.getElementById('menuv');
+//     layers.appendChild(link);}
+//     };
 
 </script>
 
