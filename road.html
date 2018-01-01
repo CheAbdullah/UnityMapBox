@@ -11,7 +11,7 @@
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
         #menus {
-        position:absolute; left:350px;top:100px; width:50%; 
+        position:absolute; left:350px;top:10px; width:50%; 
         background: #fff;
         padding: 10px;
         font-family: 'Open Sans', sans-serif;}
@@ -41,6 +41,7 @@
         #info {
             display: block;
             position: relative;
+            margin-top: 100px;
             margin-left: 350px;
             width: 50%;
             padding: 10px;
@@ -297,7 +298,8 @@ for (var i = 0; i < inputs.length; i++) {
     map.on('mouseleave', 'places', function () {
         map.getCanvas().style.cursor = '';
     });
-
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
 </script>
 
 </body>
