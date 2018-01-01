@@ -52,7 +52,7 @@
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
 <div id='map'></div>
 
-<div id='menu'>
+<div id='menus'>
     <input id='cjaudgl840gn32rnrepcb9b9g' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g' checked='checked'>
     <label for='cjaudgl840gn32rnrepcb9b9g'>basic</label>
     <input id='streets-v9' type='radio' name='rtoggle' value='streets-v9'>
@@ -145,7 +145,32 @@ map.on('load', function() {
         "type": "raster-dem",
         "url": "mapbox://mapbox.terrain-rgb"
     });
-    
+    map.addLayer({
+        "id": "hillshading",
+        "source": "dem",
+        "type": "hillshade"
+    // insert below waterway-river-canal-shadow;
+    // where hillshading sits in the Mapbox Outdoors style
+    }, 'waterway-river-canal-shadow');
+    map.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    map.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    });
 });
 
 map.on('mousemove', function (e) {
@@ -157,18 +182,20 @@ map.on('mousemove', function (e) {
         JSON.stringify(e.lngLat);
 });
 
-var layerList = document.getElementById('menu');
+var layerList = document.getElementById('menus');
 var inputs = layerList.getElementsByTagName('input');
 
 function switchLayer(layer) {
  
     var layerId = layer.target.id;
     map.setStyle('mapbox://styles/mapbox/' + layerId);// + '-v9');
-
 }
+
 for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
+
+
 </script>
 
 </body>
