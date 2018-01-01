@@ -38,16 +38,16 @@
 <div id='menu'>
     <input id='cjaudgl840gn32rnrepcb9b9g' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g' checked='checked'>
     <label for='cjaudgl840gn32rnrepcb9b9g'>3D</label>
-    <input id='streets' type='radio' name='rtoggle' value='streets'>
-    <label for='streets'>streets</label>
-    <input id='bright' type='radio' name='rtoggle' value='bright'>
-    <label for='bright'>bright</label>
-    <input id='light' type='radio' name='rtoggle' value='light'>
-    <label for='light'>light</label>
-    <input id='dark' type='radio' name='rtoggle' value='dark'>
-    <label for='dark'>dark</label>
-    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
-    <label for='satellite'>satellite</label>
+    <input id='streets-v9' type='radio' name='rtoggle' value='streets-v9'>
+    <label for='streets-v9'>streets</label>
+    <input id='bright-v9' type='radio' name='rtoggle' value='bright-v9'>
+    <label for='bright-v9'>bright</label>
+    <input id='light-v9' type='radio' name='rtoggle' value='light-v9'>
+    <label for='light-v9'>light</label>
+    <input id='dark-v9' type='radio' name='rtoggle' value='dark-v9'>
+    <label for='dark-v9'>dark</label>
+    <input id='satellite-v9' type='radio' name='rtoggle' value='satellite-v9'>
+    <label for='satellite-v9'>satellite</label>
 </div>
 <pre id='info'></pre>
 <script>
@@ -135,7 +135,7 @@ var inputs = layerList.getElementsByTagName('input');
 
 function switchLayer(layer) {
     var layerId = layer.target.id;
-    map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+    map.setStyle('mapbox://styles/mapbox/' + layerId);// + '-v9');
 }
 
 for (var i = 0; i < inputs.length; i++) {
