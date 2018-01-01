@@ -114,12 +114,12 @@ var afterMap = new mapboxgl.Map({
     zoom: 0
 });
 
-var map = new mapboxgl.Compare(beforeMap, afterMap, {
-    // Set this to enable comparing two maps by mouse movement:
-    // mousemove: true
-});
+// var map = new mapboxgl.Compare(beforeMap, afterMap, {
+//     // Set this to enable comparing two maps by mouse movement:
+//     // mousemove: true
+// });
 
-var map = new mapboxgl.Map({
+var beforeMap = new mapboxgl.Map({
     //style: 'mapbox://styles/mapbox/basic-v9',
     //style: 'mapbox://styles/mapbox/dark-v9',
     //style: 'mapbox://styles/mapbox/streets-v9',
@@ -133,19 +133,25 @@ var map = new mapboxgl.Map({
     container: 'map'
 });
 
-map.addControl(new MapboxDirections({
+
+var map = new mapboxgl.Compare(beforeMap, afterMap, {
+    // Set this to enable comparing two maps by mouse movement:
+    // mousemove: true
+});
+
+beforeMap.addControl(new MapboxDirections({
     accessToken: mapboxgl.accessToken
 }), 'top-left');
 
 
-map.on('load', function() {
+beforeMap.on('load', function() {
     // Insert the layer beneath any symbol layer.
-    var layers = map.getStyle().layers.reverse();
+    var layers = beforeMap.getStyle().layers.reverse();
     var labelLayerIdx = layers.findIndex(function (layer) {
         return layer.type !== 'symbol';
     });
     var labelLayerId = labelLayerIdx !== -1 ? layers[labelLayerIdx].id : undefined;
-    map.addLayer({
+    beforeMap.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
         'source-layer': 'building',
@@ -166,7 +172,7 @@ map.on('load', function() {
         }
     }, labelLayerId); //
 
-    map.addLayer({
+    beforeMap.addLayer({
         'id': 'contours',
         'type': 'line',
         'source': 'contours',
@@ -182,22 +188,22 @@ map.on('load', function() {
         }
     });
 
-    map.addSource('dem', {
+    beforeMap.addSource('dem', {
         "type": "raster-dem",
         "url": "mapbox://mapbox.terrain-rgb"
     });
-    map.addLayer({
+    beforeMap.addLayer({
         "id": "hillshading",
         "source": "dem",
         "type": "hillshade"
     // insert below waterway-river-canal-shadow;
     // where hillshading sits in the Mapbox Outdoors style
     }, 'waterway-river-canal-shadow');
-    map.addSource('contours', {
+    beforeMap.addSource('contours', {
         type: 'vector',
         url: 'mapbox://mapbox.mapbox-terrain-v2'
     });
-    map.addLayer({
+    beforeMap.addLayer({
         'id': 'contours',
         'type': 'line',
         'source': 'contours',
@@ -212,7 +218,7 @@ map.on('load', function() {
             'line-width': 1
         }
     });   
-        map.addLayer({
+    beforeMap.addLayer({
         "id": "places",
         "type": "symbol",
         "source": {
@@ -297,7 +303,7 @@ map.on('load', function() {
     
 });
 
-map.on('mousemove', function (e) {
+beforeMap.on('mousemove', function (e) {
     document.getElementById('info').innerHTML =
         // e.point is the x, y coordinates of the mousemove event relative
         // to the top-left corner of the map
@@ -312,7 +318,7 @@ var inputs = layerList.getElementsByTagName('input');
 function switchLayer(layer) {
  
     var layerId = layer.target.id;
-    map.setStyle('mapbox://styles/mapbox/' + layerId);// + '-v9');
+    beforeMap.setStyle('mapbox://styles/mapbox/' + layerId);// + '-v9');
 }
 
 for (var i = 0; i < inputs.length; i++) {
@@ -322,21 +328,21 @@ for (var i = 0; i < inputs.length; i++) {
 
 // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
-    map.on('click', 'places', function (e) {
+    beforeMap.on('click', 'places', function (e) {
         new mapboxgl.Popup()
             .setLngLat(e.features[0].geometry.coordinates)
             .setHTML(e.features[0].properties.description)
-            .addTo(map);
+            .addTo(beforeMap);
     });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
-    map.on('mouseenter', 'places', function () {
-        map.getCanvas().style.cursor = 'pointer';
+    beforeMap.on('mouseenter', 'places', function () {
+        beforeMap.getCanvas().style.cursor = 'pointer';
     });
 
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'places', function () {
-        map.getCanvas().style.cursor = '';
+    beforeMap.on('mouseleave', 'places', function () {
+        beforeMap.getCanvas().style.cursor = '';
     });
 
 // Create a popup, but don't add it to the map yet.
@@ -345,28 +351,28 @@ var popup = new mapboxgl.Popup({
         closeOnClick: false
     });
 
-    map.on('mouseenter', 'places', function(e) {
+    beforeMap.on('mouseenter', 'places', function(e) {
         // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
+        beforeMap.getCanvas().style.cursor = 'pointer';
 
         // Populate the popup and set its coordinates
         // based on the feature found.
         popup.setLngLat(e.features[0].geometry.coordinates)
             .setHTML(e.features[0].properties.number)
-            .addTo(map);
+            .addTo(beforeMap);
     });
 
-    map.on('mouseleave', 'places', function() {
-        map.getCanvas().style.cursor = '';
+    beforeMap.on('mouseleave', 'places', function() {
+        beforeMap.getCanvas().style.cursor = '';
         popup.remove();
     });
 
 
 // Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
+beforeMap.addControl(new mapboxgl.NavigationControl());
 
 // mapbox-gl-geocoder 
-map.addControl(new MapboxGeocoder({
+beforeMap.addControl(new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
 }));
 </script>
