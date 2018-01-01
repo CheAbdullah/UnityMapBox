@@ -52,7 +52,7 @@
         color: #ffffff;
     }
 
-    #menuv a.active:hover {
+    #menu a.active:hover {
         background: #3074a4;
     }
         
@@ -61,6 +61,10 @@
     </style>
 </head>
 <body>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+    
 
 <style type='text/css'>
     #info {
@@ -318,33 +322,37 @@ var frameCount = 5;
     // }, firstSymbolId);
 
 
-//     var toggleableLayerIds = [ 'contours', 'roadlabel' ];
+    var toggleableLayerIds = [ 'contours', 'roadlabel' ];
 
-// for (var i = 0; i < toggleableLayerIds.length; i++) {
-//     var id = toggleableLayerIds[i];
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];
 
-//     var link = document.createElement('a');
-//     link.href = '#';
-//     link.className = 'active';
-//     link.textContent = id;
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
 
-//     link.onclick = function (e) {
-//         var clickedLayer = this.textContent;
-//         e.preventDefault();
-//         e.stopPropagation();
+    link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
 
-//         var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
 
-//         if (visibility === 'visible') {
-//             map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-//             this.className = '';
-//         } else {
-//             this.className = 'active';
-//             map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-//         }
-//         var layers = document.getElementById('menuv');
-//     layers.appendChild(link);}
-//     };
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+        var layers = document.getElementById('menuv');
+    layers.appendChild(link);}
+    };
+
+    map.addControl(new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+}), 'top-left');
 
 </script>
 
