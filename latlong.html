@@ -117,17 +117,17 @@ map.on('mousemove', function (e) {
         JSON.stringify(e.lngLat);
 });
 
-var circle = circle([-6.259222928309924,53.347411779052834], 600).addTo(map);
-    circle.on({
-          mousedown: function () {
-            map.on('mousemove', function (e) {
-              circle.setLatLng(e.latlng);
-            });
-          }
-       }); 
-       map.on('mouseup',function(e){
-         map.removeEventListener('mousemove');
-       });
+// var circle = circle([-6.259222928309924,53.347411779052834], 600).addTo(map);
+//     circle.on({
+//           mousedown: function () {
+//             map.on('mousemove', function (e) {
+//               circle.setLatLng(e.latlng);
+//             });
+//           }
+//        }); 
+//        map.on('mouseup',function(e){
+//          map.removeEventListener('mousemove');
+//        });
 
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
