@@ -306,7 +306,7 @@ var frameCount = 5;
     // }, firstSymbolId);
 
 
-    var toggleableLayerIds = [ 'contours', 'museums' ];
+    var toggleableLayerIds = [ 'contours', 'roadlabel' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
@@ -329,7 +329,7 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
         } else {
             this.className = 'active';
             map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-        }
+        }}
     };
 
 </script>
