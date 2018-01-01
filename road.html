@@ -11,12 +11,12 @@
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
         #menus {
-        position:absolute; left:350px;top:10px; width:50%; 
+        position:absolute; left:350px;top:10px; width:40%; 
         background: #fff;
         padding: 10px;
         font-family: 'Open Sans', sans-serif;}
         #menu a {
-        font-size: 13px;
+        font-size: 11px;
         color: #404040;
         display: block;
         margin: 0;
@@ -55,8 +55,15 @@
         
     </style>
 
+<!-- //path planning -->
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+
+<!-- //geocoder -->
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
+
+
 <div id='map'></div>
 
 <div id='menus'>
@@ -300,6 +307,11 @@ for (var i = 0; i < inputs.length; i++) {
     });
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
+
+// mapbox-gl-geocoder 
+map.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+}));
 </script>
 
 </body>
