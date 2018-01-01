@@ -141,7 +141,7 @@ function switchLayer(layer) {
     var labelLayerIdx = layers.findIndex(function (layer) {
         return layer.type !== 'symbol';
     });
-    var labelLayerId = labelLayerIdx !== -1 ? layers[labelLayerIdx].id : -2;
+    var labelLayerId = labelLayerIdx !== -1 ? layers[labelLayerIdx].id : 10;
     map.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
