@@ -79,7 +79,12 @@
         background: #fff;
     }
 </style>
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
 <div id='map'></div>
+
 <div id='menu'>
     <input id='cjaudgl840gn32rnrepcb9b9g' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g' checked='checked'>
     <label for='cjaudgl840gn32rnrepcb9b9g'>basic</label>
@@ -97,8 +102,8 @@
 <pre id='info'></pre>
 
 
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+<!-- <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' /> -->
 
 
 <script>
@@ -137,7 +142,7 @@ map.on('load', function() {
             'circle-radius': 8,
             'circle-color': 'rgba(55,148,179,1)'
         },
-        'source-layer': 'museum-roadlabel'
+        'source-layer': 'roadlabel'
     });
 
     map.addSource('contours', {
