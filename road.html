@@ -76,7 +76,7 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
         <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css'
             type='text/css' />
-            
+
 <body>
 
     <style type='text/css'>
@@ -85,7 +85,7 @@
             position: relative;
             margin-top: 100px;
             margin-left: 300px;
-            width: 30%;
+            width: 40%;
             padding: 10px;
             border: none;
             border-radius: 3px;
@@ -161,10 +161,7 @@
             hash: true,
         });
 
-        var map = new mapboxgl.Compare(beforeMap, afterMap, {
-    // Set this to enable comparing two maps by mouse movement:
-    // mousemove: true
-});
+        
 
         beforeMap.addControl(new MapboxDirections({
             accessToken: mapboxgl.accessToken
@@ -407,7 +404,10 @@
             accessToken: mapboxgl.accessToken
         }));
 
-
+        var map = new mapboxgl.Compare(beforeMap, afterMap, {
+        // Set this to enable comparing two maps by mouse movement:
+        // mousemove: true
+        });
         
     </script>
 
