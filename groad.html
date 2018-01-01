@@ -64,7 +64,7 @@
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
 
 
-<div id='map'></div>
+<!-- <div id='map'></div> -->
 
 <div id='menus'>
     <input id='cjaudgl840gn32rnrepcb9b9g' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g' checked='checked'>
@@ -82,6 +82,13 @@
 </div>
 <pre id='info'></pre>
 
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+
+<div id='before' class='map'></div>
+<div id='after' class='map'></div>
+
 <script>
 // mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ';
 // var map = new mapboxgl.Map({
@@ -92,6 +99,26 @@
 // });
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+
+var beforeMap = new mapboxgl.Map({
+    container: 'before',
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [0, 0],
+    zoom: 0
+});
+
+var afterMap = new mapboxgl.Map({
+    container: 'after',
+    style: 'mapbox://styles/mapbox/dark-v9',
+    center: [0, 0],
+    zoom: 0
+});
+
+var map = new mapboxgl.Compare(beforeMap, afterMap, {
+    // Set this to enable comparing two maps by mouse movement:
+    // mousemove: true
+});
+
 var map = new mapboxgl.Map({
     //style: 'mapbox://styles/mapbox/basic-v9',
     //style: 'mapbox://styles/mapbox/dark-v9',
