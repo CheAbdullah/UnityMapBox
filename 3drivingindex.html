@@ -62,8 +62,22 @@ map.on('load', function() {
 
 
 
-</script>
+var circle = circle([44.63, 22.65], 600).addTo(map);
 
+    circle.on({
+          mousedown: function () {
+            map.on('mousemove', function (e) {
+              circle.setLatLng(e.latlng);
+            });
+          }
+       }); 
+       map.on('mouseup',function(e){
+         map.removeEventListener('mousemove');
+       })
+
+
+</script>
+//https://cheabdullah.github.io/UnityMapBox/3drivingindex.html#15.19/53.3472/-6.2541/-10.6/45
 
 </body>
 </html>
