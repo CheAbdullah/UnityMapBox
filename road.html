@@ -27,6 +27,12 @@
         text-align: center;
     }
         #map { position:absolute; top:0; bottom:0; width:100%; }
+
+        .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
     </style>
 </head>
 <body>
@@ -170,7 +176,44 @@ map.on('load', function() {
             'line-color': '#877b59',
             'line-width': 1
         }
+    });   
+        map.addLayer({
+        "id": "places",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 1</strong><p>No Data Available 1</p>",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.259142,53.347268]
+                    }
+                }, {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 2</strong><p>No Data Available 2</p>",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.2591,53.3472]
+                    }
+                }
+                ]
+            }
+        },
+        "layout": {
+            "icon-image": "{icon}-15",
+            "icon-allow-overlap": true
+        }
     });
+    
 });
 
 map.on('mousemove', function (e) {
