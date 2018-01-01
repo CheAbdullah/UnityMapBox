@@ -137,6 +137,15 @@
         // });
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+        
+        mapboxgl.accessToken = '<your access token here>';
+// var beforeMap = new mapboxgl.Map({
+//     container: 'before',
+//     style: 'mapbox://styles/mapbox/light-v9',
+//     center: [0, 0],
+//     zoom: 0
+// });
+        
         var beforeMap  = new mapboxgl.Map({
             container: 'before',
             //style: 'mapbox://styles/mapbox/basic-v9',
@@ -151,17 +160,20 @@
             hash: true,
         });
 
-        var afterMap = new mapboxgl.Map({
-            container: 'after',
-            style: 'mapbox://styles/mapbox/dark-v9',
-            center: [-6.259142, 53.347268],
-            zoom: 16.96,
-            pitch: 53,
-            bearing: -143.2,
-            hash: true,
-        });
+        // var afterMap = new mapboxgl.Map({
+        //     container: 'after',
+        //     style: 'mapbox://styles/mapbox/dark-v9',
+        //     center: [-6.259142, 53.347268],
+        //     zoom: 16.96,
+        //     pitch: 53,
+        //     bearing: -143.2,
+        //     hash: true,
+        // });
 
-        
+        // var map = new mapboxgl.Compare(beforeMap, afterMap, {
+        // // Set this to enable comparing two maps by mouse movement:
+        // // mousemove: true
+        // });
 
         beforeMap.addControl(new MapboxDirections({
             accessToken: mapboxgl.accessToken
