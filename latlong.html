@@ -54,7 +54,8 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 var map = new mapboxgl.Map({
     //style: 'mapbox://styles/mapbox/basic-v9',
-    style: 'mapbox://styles/mapbox/dark-v9',
+    //style: 'mapbox://styles/mapbox/dark-v9',
+    style: 'mapbox://styles/mapbox/streets-v9',
     //style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g', // the outdoors-v10 style but without Hillshade layers
     //style: 'mapbox://styles/mapbox/light-v9',
     center: [-6.259142,53.347268],
@@ -172,6 +173,38 @@ var frameCount = 5;
         frame = (frame + 1) % frameCount;
         map.setPaintProperty('radar' + frame, 'raster-opacity', 1);
     }, 200);
+
+
+    var layers = map.getStyle().layers;
+    // Find the index of the first symbol layer in the map style
+    var firstSymbolId;
+    for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol') {
+            firstSymbolId = layers[i].id;
+            break;
+        }
+    }
+    map.addLayer({
+        'id': 'urban-areas-fill',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'
+        },
+        'layout': {},
+        'paint': {
+            'fill-color': '#f08',
+            'fill-opacity': 0.4
+        }
+    // This is the important part of this example: the addLayer
+    // method takes 2 arguments: the layer as an object, and a string
+    // representing another layer's name. if the other layer
+    // exists in the stylesheet already, the new layer will be positioned
+    // right before that layer in the stack, making it possible to put
+    // 'overlays' anywhere in the layer stack.
+    // Insert the layer beneath the first symbol layer.
+    }, firstSymbolId);
+
 
 </script>
 
