@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Get coordinates of the mouse pointer</title>
+    <title>3DGIS Driving</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.css' rel='stylesheet' />
@@ -32,12 +32,14 @@
 <pre id='info'></pre>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
-
 var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v9',
-    center: [-6.258,53.3459], // starting position
-    zoom: 9 // starting zoom
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [-6.258,53.3459],
+    zoom: 15,
+    pitch: 45,
+    bearing: -17.6,
+    hash: true,
+    container: 'map'
 });
 
 map.on('mousemove', function (e) {
