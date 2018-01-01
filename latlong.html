@@ -36,25 +36,25 @@
 </style>
 <div id='map'></div>
 <div id='menu'>
-        <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+        <input id='basic' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g' checked='checked'>
         <label for='basic'>basic</label>
-        <input id='streets' type='radio' name='rtoggle' value='streets'>
+        <input id='streets' type='radio' name='rtoggle' value='streets-v9'>
         <label for='streets'>streets</label>
-        <input id='bright' type='radio' name='rtoggle' value='bright'>
+        <input id='bright' type='radio' name='rtoggle' value='bright-v9'>
         <label for='bright'>bright</label>
-        <input id='light' type='radio' name='rtoggle' value='light'>
+        <input id='light' type='radio' name='rtoggle' value='light-v9'>
         <label for='light'>light</label>
-        <input id='dark' type='radio' name='rtoggle' value='dark'>
+        <input id='dark' type='radio' name='rtoggle' value='dark-v9'>
         <label for='dark'>dark</label>
-        <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+        <input id='satellite' type='radio' name='rtoggle' value='satellite-v9'>
         <label for='satellite'>satellite</label>
     </div>
 <pre id='info'></pre>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 var map = new mapboxgl.Map({
-    style: 'mapbox://styles/mapbox/basic-v9',
-    //style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g', // the outdoors-v10 style but without Hillshade layers
+    //style: 'mapbox://styles/mapbox/basic-v9',
+    style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g', // the outdoors-v10 style but without Hillshade layers
     //style: 'mapbox://styles/mapbox/light-v9',
     center: [-6.259142,53.347268],
     zoom: 16.96,
@@ -133,7 +133,7 @@ var inputs = layerList.getElementsByTagName('input');
 
 function switchLayer(layer) {
     var layerId = layer.target.id;
-    map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+    map.setStyle('mapbox://styles/mapbox/' + layerId);
 }
 
 for (var i = 0; i < inputs.length; i++) {
