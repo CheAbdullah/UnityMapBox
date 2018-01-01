@@ -74,7 +74,7 @@ map.on('load', function() {
     var labelLayerIdx = layers.findIndex(function (layer) {
         return layer.type !== 'symbol';
     });
-    //var labelLayerId = labelLayerIdx !== -1 ? layers[labelLayerIdx].id : undefined;
+    var labelLayerId = labelLayerIdx !== -1 ? layers[labelLayerIdx].id : undefined;
     map.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
@@ -94,7 +94,7 @@ map.on('load', function() {
             },
             'fill-extrusion-opacity': .6
         }
-    }, labelLayerId);
+    }, '3d-buildings'); //labelLayerId
 
     map.addSource('dem', {
         "type": "raster-dem",
