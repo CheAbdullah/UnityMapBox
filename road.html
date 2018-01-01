@@ -196,6 +196,7 @@ map.on('load', function() {
                     "type": "Feature",
                     "properties": {
                         "description": "<strong>Test Data 1</strong><p>No Data Available 1</p>",
+                        "number":"00000000000001",
                         "icon": "star"
                     },
                     "geometry": {
@@ -206,6 +207,7 @@ map.on('load', function() {
                     "type": "Feature",
                     "properties": {
                         "description": "<strong>Test Data 2</strong><p>No Data Available 2</p>",
+                        "number":"00000000000002",
                         "icon": "star"
                     },
                     "geometry": {
@@ -216,6 +218,7 @@ map.on('load', function() {
                     "type": "Feature",
                     "properties": {
                         "description": "<strong>Test Data 3</strong><p>No Data Available 3</p>",
+                        "number":"00000000000003",
                         "icon": "star"
                     },
                     "geometry": {
@@ -226,6 +229,7 @@ map.on('load', function() {
                     "type": "Feature",
                     "properties": {
                         "description": "<strong>Test Data 4</strong><p>No Data Available 4</p>",
+                        "number":"00000000000004",
                         "icon": "star"
                     },
                     "geometry": {
@@ -236,6 +240,7 @@ map.on('load', function() {
                     "type": "Feature",
                     "properties": {
                         "description": "<strong>Test Data 5</strong><p>No Data Available 5</p>",
+                        "number":"00000000000005",
                         "icon": "star"
                     },
                     "geometry": {
@@ -246,6 +251,7 @@ map.on('load', function() {
                     "type": "Feature",
                     "properties": {
                         "description": "<strong>Test Data 6</strong><p>No Data Available 6</p>",
+                        "number":"00000000000006",
                         "icon": "star"
                     },
                     "geometry": {
@@ -305,6 +311,30 @@ for (var i = 0; i < inputs.length; i++) {
     map.on('mouseleave', 'places', function () {
         map.getCanvas().style.cursor = '';
     });
+
+// Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+    map.on('mouseenter', 'places', function(e) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = 'pointer';
+
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        popup.setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(e.features[0].properties.number)
+            .addTo(map);
+    });
+
+    map.on('mouseleave', 'places', function() {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+
+
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
