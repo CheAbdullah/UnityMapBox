@@ -60,51 +60,7 @@ map.on('load', function() {
     }, labelLayerId);
 });
 
-var circle = circle([40.7077,-73.9854], 600).addTo(map);
 
-    circle.on({
-          mousedown: function () {
-            map.on('mousemove', function (e) {
-              circle.setLatLng(e.latlng);
-            });
-          }
-       }); 
-       map.on('mouseup',function(e){
-         map.removeEventListener('mousemove');
-       })
-
-var circleMarker;
-  var redIcon = mapbox.marker.icon({
-    'marker-size': 'small',
-    'marker-symbol': 'circle',
-    'marker-color': '#f00'
-  });
-  map.on('click', function(e) {
-    $('#info').html("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
-    circleMarker =
-      marker([e.latlng.lat, e.latlng.lng], {
-        icon: L.mapbox.marker.icon({
-          'marker-size': 'small',
-          'marker-symbol': 'circle',
-          'marker-color': '#fa0'
-        }),
-        draggable: true
-      }).addTo(map);
-
-    var originLatLng;
-    circleMarker.on('dragstart', function(e) {
-      originLatLng = circleMarker.getLatLng();
-      console.log(originLatLng);
-    });
-    circleMarker.on('dragend', function(e) {
-      if (originLatLng.lat == circleMarker.getLatLng().lat) console.log('true');
-      else console.log('false');
-    });
-    circleMarker.on('click', function(e) {
-      console.log(e);
-      this.setIcon(redIcon);
-    });
-  });
 
 </script>
 
