@@ -140,6 +140,38 @@ for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
+var frameCount = 5;
+    for (var i = 0; i < frameCount; i++) {
+
+        map.addLayer({
+            id: 'radar' + i,
+            source: {
+                type: 'image',
+                url: '/mapbox-gl-js/assets/radar' + i + '.gif',
+                coordinates: [
+                    [-6.259142,53.347268],
+                    [-12.259142,53.347268],
+                    [-12.259142,50.347268],
+                    [-6.259142,50.347268]
+                ]
+            },
+            type: 'raster',
+            paint: {
+                'raster-opacity': 0,
+                'raster-opacity-transition': {
+                    duration: 0
+                }
+            }
+        });
+    }
+
+    var frame = frameCount - 1;
+    setInterval(function() {
+        map.setPaintProperty('radar' + frame, 'raster-opacity', 0);
+        frame = (frame + 1) % frameCount;
+        map.setPaintProperty('radar' + frame, 'raster-opacity', 1);
+    }, 200);
+
 </script>
 
 </body>
