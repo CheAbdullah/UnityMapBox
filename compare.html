@@ -76,8 +76,8 @@
 
     <!-- //geocoder -->
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css'
-        type='text/css' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
+    <div id='map'></div>
 
 
 
@@ -337,7 +337,7 @@
 
         beforeMap.addControl(new MapboxGeocoder({
             accessToken: mapboxgl.accessToken
-        }));
+        }), 'top-right');
         beforeMap.addControl(new MapboxDirections({
             accessToken: mapboxgl.accessToken
         }), 'top-left');
