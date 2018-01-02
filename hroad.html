@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <!-- Powered by data from <a href="http://www.beoir.org/">Beoir</a>, maps copyright -->
     <meta charset='utf-8' />
     <title>Display driving directions</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
@@ -152,7 +153,7 @@ var map = new mapboxgl.Map({
     //style: 'mapbox://styles/mapbox/basic-v9',
     //style: 'mapbox://styles/mapbox/dark-v9',
     //style: 'mapbox://styles/mapbox/streets-v9',
-    style: 'mapbox://styles/mapbox/light-v9',
+    //style: 'mapbox://styles/mapbox/light-v9',
     //style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g', // the outdoors-v10 style but without Hillshade layers
     //style: 'mapbox://styles/mapbox/light-v9',
     center: [-6.259142,53.347268],
@@ -160,7 +161,25 @@ var map = new mapboxgl.Map({
     pitch: 53,
     bearing: -143.2,
     hash: true,
-    container: 'map'
+    container: 'map',
+
+    style: {
+        "version": 8,
+        "sources": {
+            "raster-tiles": {
+                "type": "raster",
+                "url": "mapbox://" + tileset,
+                "tileSize": 256
+            }
+        },
+        "layers": [{
+            "id": "simple-tiles",
+            "type": "raster",
+            "source": "raster-tiles",
+            "minzoom": 0,
+            "maxzoom": 22
+        }]
+    }
 });
 
 map.addControl(new MapboxDirections({
@@ -382,6 +401,8 @@ map.on('load', function() {
         }
     }, 'waterway-label');
 });
+
+
 
 map.on('mousemove', function (e) {
     document.getElementById('info').innerHTML =
