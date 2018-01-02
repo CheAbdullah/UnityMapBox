@@ -157,6 +157,11 @@ beforeMap.on('mousemove', function (e) {
         // e.lngLat is the longitude, latitude geographical position of the event
         JSON.stringify(e.lngLat);
 });
+
+map.addControl(new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+}), 'top-left');
+
 </script>
 
 </body>
