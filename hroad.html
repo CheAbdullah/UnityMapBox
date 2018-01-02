@@ -87,6 +87,9 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js"></script>
+<script src="voronoi_map.js"></script>
 
 <div id='map'></div>
 
@@ -462,6 +465,10 @@ map.on('zoom', function() {
         countyLegendEl.style.display = 'none';
     }
 });
+
+url = 'brewery2.csv';
+	initialSelection = d3.set(['beer', 'cider']);
+    voronoiMap(map, url, initialSelection);
 </script>
 
 </body>
