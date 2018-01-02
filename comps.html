@@ -127,6 +127,38 @@ beforeMap.on('load', function() {
         }
     }
 
+    beforeMap.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    beforeMap.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    }); 
+
+    beforeMap.addSource('dem', {
+        "type": "raster-dem",
+        "url": "mapbox://mapbox.terrain-rgb"
+    });
+    beforeMap.addLayer({
+        "id": "hillshading",
+        "source": "dem",
+        "type": "hillshade"
+    // insert below waterway-river-canal-shadow;
+    // where hillshading sits in the Mapbox Outdoors style
+    }, 'waterway-river-canal-shadow');
+
 
     beforeMap.addLayer({
         "id": "places",
@@ -211,25 +243,7 @@ beforeMap.on('load', function() {
         }
     });
 
-    beforeMap.addSource('contours', {
-        type: 'vector',
-        url: 'mapbox://mapbox.mapbox-terrain-v2'
-    });
-    beforeMap.addLayer({
-        'id': 'contours',
-        'type': 'line',
-        'source': 'contours',
-        'source-layer': 'contour',
-        'layout': {
-            'visibility': 'visible',
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color': '#877b59',
-            'line-width': 1
-        }
-    }); 
+    
 
     beforeMap.addLayer({
         'id': '3d-buildings',
@@ -297,41 +311,31 @@ beforeMap.addControl(new mapboxgl.NavigationControl());
         beforeMap.getCanvas().style.cursor = '';
     });
 
-    beforeMap.addSource('dem', {
-        "type": "raster-dem",
-        "url": "mapbox://mapbox.terrain-rgb"
-    });
-    beforeMap.addLayer({
-        "id": "hillshading",
-        "source": "dem",
-        "type": "hillshade"
-    // insert below waterway-river-canal-shadow;
-    // where hillshading sits in the Mapbox Outdoors style
-    }, 'waterway-river-canal-shadow');
+    
       
     
 
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
-        closeButton: false,
-        closeOnClick: false
-    });
+    closeButton: false,
+    closeOnClick: false
+});
 
-    beforeMap.on('mouseenter', 'places', function(e) {
-        // Change the cursor style as a UI indicator.
-        beforeMap.getCanvas().style.cursor = 'pointer';
+beforeMap.on('mouseenter', 'places', function(e) {
+    // Change the cursor style as a UI indicator.
+    beforeMap.getCanvas().style.cursor = 'pointer';
 
-        // Populate the popup and set its coordinates
-        // based on the feature found.
-        popup.setLngLat(e.features[0].geometry.coordinates)
-            .setHTML(e.features[0].properties.number)
-            .addTo(beforeMap);
-    });
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    popup.setLngLat(e.features[0].geometry.coordinates)
+        .setHTML(e.features[0].properties.description)
+        .addTo(beforeMap);
+});
 
-    beforeMap.on('mouseleave', 'places', function() {
-        beforeMap.getCanvas().style.cursor = '';
-        popup.remove();
-    });
+beforeMap.on('mouseleave', 'places', function() {
+    beforeMap.getCanvas().style.cursor = '';
+    popup.remove();
+});
 
 </script>
 
