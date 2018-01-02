@@ -10,30 +10,33 @@
   <script src="TemplateData/UnityProgress.js"></script>
   <script src="Build/UnityLoader.js"></script>
   <script>
-    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/3DGIS2.json", { onProgress: UnityProgress });
+    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/oo3DGIS.json", { onProgress: UnityProgress });
   </script>
-  
 </head>
 
 <body>
-    <FRAMESET rows="400, 10">
-        <FRAME src="https://cheabdullah.github.io/UnityMapBox/comps.html#15.9/53.347778/-6.257794/-143.2/53">
-        <FRAME src="line.gif">
-    </FRAMESET>
-    <div>
-      <!-- <iframe src="https://cheabdullah.github.io/UnityMapBox/comps.html#15.9/53.347778/-6.257794/-143.2/53" width="640" height="480"
-        marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
-      </iframe> -->
+  <div class="webgl-content">
+    <div id="gameContainer" style="width: 960px; height: 600px"></div>
+    <div class="footer">
+      <div class="webgl-logo"></div>
+      <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+      <div class="title">HexGrid</div>
+      <div></div>
+      <div><iframe src="demo_iframe.htm" height="300" width="500"></iframe></div>
+      <div><p><a href="https://niagaraopendata.ca/dataset/city-of-niagara-falls-tourism-district" target="iframe_a">NiagaFalls</a></p>
+        </div>
+    </div>
+  </div>
 
-    </div>
-    <div class="webgl-content" align="bottom">
-      <div id="gameContainer" style="border: 1px solid; height: 240px; width:400px;position:relative;" id="1"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
-        <div class="title">HexGrid</div>
-      </div>
-    </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+    $(window).on('load', function () {
+      window.focus();
+    })
+    document.onmousedown = function () { window.focus(); };
+
+  </script>
+
 </body>
 
 </html>
