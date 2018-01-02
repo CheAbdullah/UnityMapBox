@@ -136,7 +136,7 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
 
 var credits = L.control.attribution({
   prefix: '<a href="http://openflights.org/data.html">Flight data from Open Flights, under the ODbL license</a>'
-}).addTo(map);
+}).addTo(beforeMap);
 
 // The 'building' layer in the mapbox-streets vector source contains building-height
 // data from OpenStreetMap.
