@@ -335,12 +335,12 @@
             popup.remove();
         });
 
-        beforeMap.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken
-        }), 'top-right');
-        // beforeMap.addControl(new MapboxDirections({
+        // beforeMap.addControl(new MapboxGeocoder({
         //     accessToken: mapboxgl.accessToken
-        // }), 'top-left');
+        // }), 'top-right');
+        beforeMap.addControl(new MapboxDirections({
+            accessToken: mapboxgl.accessToken
+        }), 'top-left');
     </script>
 
 </body>
