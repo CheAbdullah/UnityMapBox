@@ -259,9 +259,7 @@
                 JSON.stringify(e.lngLat);
         });
 
-        beforeMap.addControl(new MapboxDirections({
-            accessToken: mapboxgl.accessToken
-        }), 'top-left');
+        
 
 
         // When a click event occurs on a feature in the places layer, open a popup at the
@@ -340,6 +338,9 @@
         beforeMap.addControl(new MapboxGeocoder({
             accessToken: mapboxgl.accessToken
         }));
+        beforeMap.addControl(new MapboxDirections({
+            accessToken: mapboxgl.accessToken
+        }), 'top-left');
     </script>
 
 </body>
