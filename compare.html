@@ -110,9 +110,9 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
 
 // The 'building' layer in the mapbox-streets vector source contains building-height
 // data from OpenStreetMap.
-map.on('load', function() {
+beforeMap.on('load', function() {
     // Insert the layer beneath any symbol layer.
-    var layers = map.getStyle().layers;
+    var layers = beforeMap.getStyle().layers;
 
     var labelLayerId;
     for (var i = 0; i < layers.length; i++) {
@@ -122,7 +122,7 @@ map.on('load', function() {
         }
     }
 
-    map.addLayer({
+    beforeMap.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
         'source-layer': 'building',
