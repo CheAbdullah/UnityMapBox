@@ -158,7 +158,7 @@ beforeMap.on('mousemove', function (e) {
         JSON.stringify(e.lngLat);
 });
 
-map.addControl(new MapboxDirections({
+beforeMap.addControl(new MapboxDirections({
     accessToken: mapboxgl.accessToken
 }), 'top-left');
 
