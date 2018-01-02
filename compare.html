@@ -62,8 +62,11 @@ var beforeMap = new mapboxgl.Map({
 var afterMap = new mapboxgl.Map({
     container: 'after',
     style: 'mapbox://styles/mapbox/dark-v9',
-    center: [0, 0],
-    zoom: 0
+    center: [-6.259142,53.347268],
+    zoom: 16.96,
+    pitch: 53,
+    bearing: -143.2,
+    hash: true,
 });
 
 var map = new mapboxgl.Compare(beforeMap, afterMap, {
