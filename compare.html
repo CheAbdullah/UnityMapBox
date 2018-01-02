@@ -80,6 +80,8 @@
         type='text/css' />
 
 
+
+
     <pre id='info'></pre>
     <div id='before' class='map'></div>
     <div id='after' class='map'></div>
@@ -201,8 +203,8 @@
                         "geometry": {
                             "type": "Point",
                             "coordinates": [-6.258, 53.3471]
-                        }                    
-}
+                        }
+                    }
                         , {
                         "type": "Feature",
                         "properties": {
@@ -225,8 +227,8 @@
                         "geometry": {
                             "type": "Point",
                             "coordinates": [-6.256, 53.3469]
-                        }                    
-}
+                        }
+                    }
                         , {
                         "type": "Feature",
                         "properties": {
@@ -335,6 +337,9 @@
             popup.remove();
         });
 
+        beforeMap.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken
+        }));
     </script>
 
 </body>
