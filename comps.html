@@ -56,7 +56,18 @@ body * {
     width: 100%;
 }
 
-
+/*
+ * The path-start class is added to each line
+ * to manage its animation - this interpolates
+ * between the starting and ending values for the
+ * stroke-dashoffset css property
+ */
+ .path-start {
+  -webkit-transition:stroke-dashoffset 5s ease-in;
+     -moz-transition:stroke-dashoffset 5s ease-in;
+       -o-transition:stroke-dashoffset 5s ease-in;
+          transition:stroke-dashoffset 5s ease-in;
+  }
 
 
 </style>
@@ -72,12 +83,21 @@ body * {
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
 
+<!-- We use arc.js to make our paths curved. -->
+<script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+<!-- This is our data file - it's an array of [[lat,lng],[lat,lng]] pairs
+     that define starting and ending locations of flight paths -->
+<script src='/mapbox.js/assets/data/flights.js'></script>
+
+
 
 <pre id='info'></pre>
 <div id='before' class='map'></div>
 <div id='after' class='map'></div>
 
 <script>
+
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ';
 // var beforeMap = new mapboxgl.Map({
 //     container: 'before',
@@ -112,6 +132,11 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // Set this to enable comparing two maps by mouse movement:
     // mousemove: true
 });
+
+
+var credits = L.control.attribution({
+  prefix: '<a href="http://openflights.org/data.html">Flight data from Open Flights, under the ODbL license</a>'
+}).addTo(map);
 
 // The 'building' layer in the mapbox-streets vector source contains building-height
 // data from OpenStreetMap.
@@ -336,6 +361,48 @@ beforeMap.on('mouseleave', 'places', function() {
     beforeMap.getCanvas().style.cursor = '';
     popup.remove();
 });
+
+
+// Transform the short [lat,lng] format in our
+// data into the {x, y} expected by arc.js.
+function obj(ll) { return { y: ll[0], x: ll[1] }; }
+
+for (var i = 0; i < pairs.length; i++) {
+    // Transform each pair of coordinates into a pretty
+    // great circle using the Arc.js plugin, as included above.
+    var generator = new arc.GreatCircle(
+            obj(pairs[i][0]),
+            obj(pairs[i][1]));
+    var line = generator.Arc(100, { offset: 10 });
+    // Leaflet expects [lat,lng] arrays, but a lot of
+    // software does the opposite, including arc.js, so
+    // we flip here.
+    var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
+        return c.reverse();
+    }), {
+        color: '#fff',
+        weight: 1,
+        opacity: 0.5
+    })
+    .addTo(afterMap);
+    var totalLength = newLine._path.getTotalLength();
+    newLine._path.classList.add('path-start');
+    // This pair of CSS properties hides the line initially
+    // See http://css-tricks.com/svg-line-animation-works/
+    // for details on this trick.
+    newLine._path.style.strokeDashoffset = totalLength;
+    newLine._path.style.strokeDasharray = totalLength;
+    // Offset the timeout here: setTimeout makes a function
+    // run after a certain number of milliseconds - in this
+    // case we want each flight path to be staggered a bit.
+    setTimeout((function(path) {
+        return function() {
+            // setting the strokeDashoffset to 0 triggers
+            // the animation.
+            path.style.strokeDashoffset = 0;
+        };
+    })(newLine._path), i * 100);
+}
 
 </script>
 
