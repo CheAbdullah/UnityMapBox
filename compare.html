@@ -187,6 +187,119 @@ beforeMap.addControl(new MapboxDirections({
         beforeMap.getCanvas().style.cursor = '';
     });
 
+    beforeMap.addSource('dem', {
+        "type": "raster-dem",
+        "url": "mapbox://mapbox.terrain-rgb"
+    });
+    beforeMap.addLayer({
+        "id": "hillshading",
+        "source": "dem",
+        "type": "hillshade"
+    // insert below waterway-river-canal-shadow;
+    // where hillshading sits in the Mapbox Outdoors style
+    }, 'waterway-river-canal-shadow');
+    beforeMap.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    beforeMap.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    });   
+    beforeMap.addLayer({
+        "id": "places",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 1</strong><p>No Data Available 1</p>",
+                        "number":"00000000000001",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.259142,53.347268]
+                    }
+                }, {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 2</strong><p>No Data Available 2</p>",
+                        "number":"00000000000002",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.2591,53.3472]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 3</strong><p>No Data Available 3</p>",
+                        "number":"00000000000003",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.258,53.3471]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 4</strong><p>No Data Available 4</p>",
+                        "number":"00000000000004",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.257,53.3470]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 5</strong><p>No Data Available 5</p>",
+                        "number":"00000000000005",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.256,53.3469]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 6</strong><p>No Data Available 6</p>",
+                        "number":"00000000000006",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.255,53.3468]
+                    }
+                }
+                ]
+            }
+        },
+        "layout": {
+            "icon-image": "{icon}-15",
+            "icon-allow-overlap": true
+        }
+    });
+
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
         closeButton: false,
