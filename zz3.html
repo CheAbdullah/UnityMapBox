@@ -56,12 +56,6 @@ body * {
     width: 100%;
 }
 
-/*
- * The path-start class is added to each line
- * to manage its animation - this interpolates
- * between the starting and ending values for the
- * stroke-dashoffset css property
- */
  .path-start {
   -webkit-transition:stroke-dashoffset 5s ease-in;
      -moz-transition:stroke-dashoffset 5s ease-in;
@@ -71,25 +65,14 @@ body * {
 
 
 </style>
-<!-- compare -->
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
 
-<!-- //path planning -->
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
 
-<!-- //geocoder -->
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
-
-<!-- We use arc.js to make our paths curved.
-<script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
- This is our data file - it's an array of [[lat,lng],[lat,lng]] pairs
-     that define starting and ending locations of flight paths
- <script src='/mapbox.js/assets/data/flights.js'></script> -->
-
-
 
 <pre id='info'></pre>
 <div id='before' class='map'></div>
@@ -102,7 +85,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd
 
 var beforeMap = new mapboxgl.Map({
     container: 'before',
-    style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g', // the outdoors-v10 style but without Hillshade layers
+    style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
     center: [3.81224,103.35369],
     zoom: 16.96,
     pitch: 53,
@@ -122,19 +105,9 @@ var afterMap = new mapboxgl.Map({
 });
 
 var map = new mapboxgl.Compare(beforeMap, afterMap, {
-    // Set this to enable comparing two maps by mouse movement:
-    // mousemove: true
 });
 
-
-// var credits = L.control.attribution({
-//   prefix: '<a href="http://openflights.org/data.html">Flight data from Open Flights, under the ODbL license</a>'
-// }).addTo(beforeMap);
-
-// The 'building' layer in the mapbox-streets vector source contains building-height
-// data from OpenStreetMap.
 beforeMap.on('load', function() {
-    // Insert the layer beneath any symbol layer.
     var layers = beforeMap.getStyle().layers;
 
     var labelLayerId;
@@ -173,8 +146,6 @@ beforeMap.on('load', function() {
         "id": "hillshading",
         "source": "dem",
         "type": "hillshade"
-    // insert below waterway-river-canal-shadow;
-    // where hillshading sits in the Mapbox Outdoors style
     }, 'waterway-river-canal-shadow');
 
 
@@ -272,9 +243,6 @@ beforeMap.on('load', function() {
         'minzoom': 15,
         'paint': {
             'fill-extrusion-color': '#aaa',
-
-            // use an 'interpolate' expression to add a smooth transition effect to the
-            // buildings as the user zooms in
             'fill-extrusion-height': [
                 "interpolate", ["linear"], ["zoom"],
                 15, 0,
@@ -294,10 +262,7 @@ beforeMap.on('load', function() {
 
 beforeMap.on('mousemove', function (e) {
     document.getElementById('info').innerHTML =
-        // e.point is the x, y coordinates of the mousemove event relative
-        // to the top-left corner of the map
         JSON.stringify(e.point) + '<br />' +
-        // e.lngLat is the longitude, latitude geographical position of the event
         JSON.stringify(e.lngLat);
 });
 
@@ -307,11 +272,8 @@ beforeMap.addControl(new MapboxDirections({
 beforeMap.addControl(new MapboxGeocoder({
             accessToken: mapboxgl.accessToken
 }), 'top-right');
-// Add zoom and rotation controls to the map.
 beforeMap.addControl(new mapboxgl.NavigationControl());
 
-// When a click event occurs on a feature in the places layer, open a popup at the
-    // location of the feature, with description HTML from its properties.
     beforeMap.on('click', 'places', function (e) {
         new mapboxgl.Popup()
             .setLngLat(e.features[0].geometry.coordinates)
@@ -319,32 +281,21 @@ beforeMap.addControl(new mapboxgl.NavigationControl());
             .addTo(beforeMap);
     });
 
-    // Change the cursor to a pointer when the mouse is over the places layer.
     beforeMap.on('mouseenter', 'places', function () {
         beforeMap.getCanvas().style.cursor = 'pointer';
     });
 
-    // Change it back to a pointer when it leaves.
     beforeMap.on('mouseleave', 'places', function () {
         beforeMap.getCanvas().style.cursor = '';
     });
 
-    
-      
-    
-
-// Create a popup, but don't add it to the map yet.
-var popup = new mapboxgl.Popup({
+    var popup = new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false
 });
 
 beforeMap.on('mouseenter', 'places', function(e) {
-    // Change the cursor style as a UI indicator.
     beforeMap.getCanvas().style.cursor = 'pointer';
-
-    // Populate the popup and set its coordinates
-    // based on the feature found.
     popup.setLngLat(e.features[0].geometry.coordinates)
         .setHTML(e.features[0].properties.description)
         .addTo(beforeMap);
@@ -355,49 +306,6 @@ beforeMap.on('mouseleave', 'places', function() {
     popup.remove();
 });
 
-
-// // Transform the short [lat,lng] format in our
-// // data into the {x, y} expected by arc.js.
-// function obj(ll) { return { y: ll[0], x: ll[1] }; }
-
-// for (var i = 0; i < pairs.length; i++) {
-//     // Transform each pair of coordinates into a pretty
-//     // great circle using the Arc.js plugin, as included above.
-//     var generator = new arc.GreatCircle(
-//             obj(pairs[i][0]),
-//             obj(pairs[i][1]));
-//     var line = generator.Arc(100, { offset: 10 });
-//     // Leaflet expects [lat,lng] arrays, but a lot of
-//     // software does the opposite, including arc.js, so
-//     // we flip here.
-//     var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
-//         return c.reverse();
-//     }), {
-//         color: '#fff',
-//         weight: 1,
-//         opacity: 0.5
-//     })
-//     .addTo(afterMap);
-//     var totalLength = newLine._path.getTotalLength();
-//     newLine._path.classList.add('path-start');
-//     // This pair of CSS properties hides the line initially
-//     // See http://css-tricks.com/svg-line-animation-works/
-//     // for details on this trick.
-//     newLine._path.style.strokeDashoffset = totalLength;
-//     newLine._path.style.strokeDasharray = totalLength;
-//     // Offset the timeout here: setTimeout makes a function
-//     // run after a certain number of milliseconds - in this
-//     // case we want each flight path to be staggered a bit.
-//     setTimeout((function(path) {
-//         return function() {
-//             // setting the strokeDashoffset to 0 triggers
-//             // the animation.
-//             path.style.strokeDashoffset = 0;
-//         };
-//     })(newLine._path), i * 100);
-//}
-
 </script>
-
 </body>
 </html>
