@@ -142,7 +142,7 @@ var beforeMap = new mapboxgl.Map({
 
 var afterMap = new mapboxgl.Map({
     container: 'after',
-    style: 'mapbox://styles/mapbox/satellite-v8',
+    style: 'mapbox://styles/mapbox/dark-v9',
     center: [-6.259142,53.347268],
     zoom: 16.96,
     pitch: 53,
@@ -317,18 +317,6 @@ beforeMap.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
-
-    afterMap.addSource('dem', {
-        "type": "raster-dem",
-        "url": "mapbox://mapbox.terrain-rgb"
-    });
-    afterMap.addLayer({
-        "id": "hillshading",
-        "source": "dem",
-        "type": "hillshade"
-    // insert below waterway-river-canal-shadow;
-    // where hillshading sits in the Mapbox Outdoors style
-    }, 'waterway-river-canal-shadow');
 });
 
 
