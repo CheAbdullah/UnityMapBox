@@ -24,7 +24,7 @@ var map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
-var runLayer = omnivore.kml('/mapbox.js/assets/data/line.kml')
+var runLayer = omnivore.kml('UnityMapBox/GOOGLE_SOUTHEAST_ASIA_FLOOD_POTENTIAL.kml')//('/mapbox.js/assets/data/line.kml')
     .on('ready', function() {
         map.fitBounds(runLayer.getBounds());
 
