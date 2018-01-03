@@ -18,7 +18,12 @@
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ';
-var map = L.mapbox.map('map', 'mapbox.streets');
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+    center: [-74.50, 40], // starting position [lng, lat]
+    zoom: 9 // starting zoom
+});
 
 // omnivore will AJAX-request this file behind the scenes and parse it:
 // note that there are considerations:
