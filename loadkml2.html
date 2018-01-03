@@ -25,20 +25,20 @@ var map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
-map.addKmlOverlay({
-  'url': "https://cheabdullah.github.io/UnityMapBox/feature-networklink.kml"
-}, function(kmlOverlay) {
-  kmlOverlay.on(plugin.google.maps.event.OVERLAY_CLICK, function(overlay) {
-    if (overlay.type === "Polygon") {
-      overlay.setFillColor("red");
-    }
-    if (overlay.type === "Polyline") {
-      overlay.setColor("blue");
-    }
-    if (overlay.type === "Marker") {
-      overlay.showInfoWindow();
-    }
-  });
+// map.addKmlOverlay({
+//   'url': "https://cheabdullah.github.io/UnityMapBox/feature-networklink.kml"
+// }, function(kmlOverlay) {
+//   kmlOverlay.on(plugin.google.maps.event.OVERLAY_CLICK, function(overlay) {
+//     if (overlay.type === "Polygon") {
+//       overlay.setFillColor("red");
+//     }
+//     if (overlay.type === "Polyline") {
+//       overlay.setColor("blue");
+//     }
+//     if (overlay.type === "Marker") {
+//       overlay.showInfoWindow();
+//     }
+//   });
 });
 </script>
 
