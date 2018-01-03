@@ -26,7 +26,7 @@
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     
-    var runLayer = omnivore.kml('test.kml').addTo(map).on('ready', function () {
+    var runLayer = omnivore.kml('GOOGLE_SOUTHEAST_ASIA_rain_accumulation_24hr.kml').addTo(map).on('ready', function () {
       map.fitBounds(runLayer.getBounds());
       console.log(runLayer.toGeoJSON());
       
