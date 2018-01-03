@@ -17,7 +17,7 @@
 
 <div id='map'></div>
 <script>
-mapboxgl.accessToken = 'undefined';
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ';
 var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
@@ -25,20 +25,20 @@ var map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
-// map.addKmlOverlay({
-//   'url': "https://cheabdullah.github.io/UnityMapBox/feature-networklink.kml"
-// }, function(kmlOverlay) {
-//   kmlOverlay.on(plugin.google.maps.event.OVERLAY_CLICK, function(overlay) {
-//     if (overlay.type === "Polygon") {
-//       overlay.setFillColor("red");
-//     }
-//     if (overlay.type === "Polyline") {
-//       overlay.setColor("blue");
-//     }
-//     if (overlay.type === "Marker") {
-//       overlay.showInfoWindow();
-//     }
-//   });
+map.addKmlOverlay({
+  'url': "https://cheabdullah.github.io/UnityMapBox/feature-networklink.kml"
+}, function(kmlOverlay) {
+  kmlOverlay.on(plugin.google.maps.event.OVERLAY_CLICK, function(overlay) {
+    if (overlay.type === "Polygon") {
+      overlay.setFillColor("red");
+    }
+    if (overlay.type === "Polyline") {
+      overlay.setColor("blue");
+    }
+    if (overlay.type === "Marker") {
+      overlay.showInfoWindow();
+    }
+  });
 });
 </script>
 
