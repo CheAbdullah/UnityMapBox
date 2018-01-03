@@ -317,6 +317,18 @@ beforeMap.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
+
+    afterMap.addSource('dem', {
+        "type": "raster-dem",
+        "url": "mapbox://mapbox.terrain-rgb"
+    });
+    afterMap.addLayer({
+        "id": "hillshading",
+        "source": "dem",
+        "type": "hillshade"
+    // insert below waterway-river-canal-shadow;
+    // where hillshading sits in the Mapbox Outdoors style
+    }, 'waterway-river-canal-shadow');
 });
 
 
