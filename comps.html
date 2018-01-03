@@ -83,13 +83,11 @@ body * {
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
 
-<!-- // <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script> -->
-<!-- // <script src='/mapbox.js/assets/data/flights.js'></script> -->
-<!-- We use arc.js to make our paths curved.-->
-<!--<script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>-->
-<!-- This is our data file - it's an array of [[lat,lng],[lat,lng]] pairs-->
-  <!--   that define starting and ending locations of flight paths -->
-<!-- <script src='/mapbox.js/assets/data/flights.js'></script> -->
+<!-- We use arc.js to make our paths curved.
+<script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+<!-- This is our data file - it's an array of [[lat,lng],[lat,lng]] pairs
+     that define starting and ending locations of flight paths -->
+<!-- <script src='/mapbox.js/assets/data/flights.js'></script> --> -->
 
 
 
@@ -99,28 +97,6 @@ body * {
 
 <script>
 
-// MIT-licensed code by Benjamin Becquet
-// https://github.com/bbecquet/Leaflet.PolylineDecorator
-L.RotatedMarker = L.Marker.extend({
-  options: { angle: 0 },
-  _setPos: function(pos) {
-    L.Marker.prototype._setPos.call(this, pos);
-    if (L.DomUtil.TRANSFORM) {
-      // use the CSS transform rule if available
-      this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.angle + 'deg)';
-    } else if (L.Browser.ie) {
-      // fallback for IE6, IE7, IE8
-      var rad = this.options.angle * L.LatLng.DEG_TO_RAD,
-      costheta = Math.cos(rad),
-      sintheta = Math.sin(rad);
-      this._icon.style.filter += ' progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'auto expand\', M11=' +
-        costheta + ', M12=' + (-sintheta) + ', M21=' + sintheta + ', M22=' + costheta + ')';
-    }
-  }
-});
-L.rotatedMarker = function(pos, options) {
-    return new L.RotatedMarker(pos, options);
-};
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ';
 // var beforeMap = new mapboxgl.Map({
