@@ -212,7 +212,7 @@ var beforeMap = new mapboxgl.Map({
 
 var afterMap = new mapboxgl.Map({
     container: 'after',
-    style: 'mapbox://styles/mapbox/dark-v9',
+    style: 'mapbox://styles/mapbox/streets-v10',
     center: [103.34994,3.8109],
     zoom: 14.67,
     pitch: 60,
@@ -529,21 +529,7 @@ mapbox.auto('beforeMap', 'lxbarth.map-n8gsdqn4', function(beforeMap) {
 });
 
 
-var map1 = new mapboxgl.Map({
-    container: 'map1',
-    style: 'mapbox://styles/mapbox/streets-v10',
-    center: [153.021072, -27.470125],
-    zoom: 15
-});
-
-var map2 = new mapboxgl.Map({
-    container: 'map2',
-    style: 'mapbox://styles/mapbox/streets-v10',
-    center: [153.021072, -27.470125],
-    zoom: 15
-});
-
-map1.on('load', function() {
+afterMap.on('load', function() {
     map1.addLayer({
         "id": "dynamic-demo",
         "type": "raster",
@@ -557,19 +543,7 @@ map1.on('load', function() {
     });
 });
 
-map2.on('load', function() {
-    map2.addLayer({
-        "id": "cache-demo",
-        "type": "raster",
-        "minzoom": 0,
-        "maxzoom": 22,
-        "source": {
-            "type": "raster",
-            "tiles": ['https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
-            "tileSize": 256
-        }
-    });
-});
+
 </script>
 
 </body>
