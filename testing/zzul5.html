@@ -235,6 +235,24 @@ afterMap.on('load', function() {
     //maxzoom: 22,
     //'z-index':'103',
     //});
+    //'% Forest Cover 2010': L.tileLayer('http://earthengine.google.org/static/hansen_2013/tree_alpha/{z}/{x}/{y}.png').addTo(map),
+    //'Loss/Extent/Gain (Red/Green/Blue)': L.tileLayer('http://earthengine.google.org/static/hansen_2013/loss_forest_gain/{z}/{x}/{y}.png'),
+    //'Loss': L.tileLayer('http://earthengine.google.org/static/hansen_2013/loss/{z}/{x}/{y}.png'),
+    //'Gain': L.tileLayer('http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png')
+
+    // add source to map
+    afterMap.addSource('earthengine', {
+    type: 'raster',
+    tiles: [`http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png`],
+    });
+    
+    afterMap.addLayer({
+    id: 'earthengine',
+    source: 'earthengine',
+    type: 'raster',
+    minzoom: 0,
+    maxzoom: 22,
+    });
 
 });
 
