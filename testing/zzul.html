@@ -72,9 +72,36 @@ body * {
 <!-- 16.96/53.347268/-6.259142/-143.2/53 -->
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
-var beforeMap = new mapboxgl.Map({
+/* var beforeMap = new mapboxgl.Map({
     container: 'before',
     style: 'mapbox://styles/mapbox/satellite-v9',
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
+    hash: true,
+}); */
+
+var tileset = 'mapbox.streets';
+var beforeMap = new mapboxgl.Map({
+    container: 'map', // container id
+    style: {
+        "version": 8,
+        "sources": {
+            "raster-tiles": {
+                "type": "raster",
+                "url": "mapbox://" + tileset,
+                "tileSize": 256
+            }
+        },
+        "layers": [{
+            "id": "simple-tiles",
+            "type": "raster",
+            "source": "raster-tiles",
+            "minzoom": 0,
+            "maxzoom": 22
+        }]
+    },
     center: [103.34994,3.8109],
     zoom: 14.67,
     pitch: 60,
