@@ -53,6 +53,14 @@
         border-color:#3887BE;
         color:#FFF;
         }
+        #marker {
+    background-image: url('/mapbox-gl-js/assets/washington-monument.jpg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
     </style>
 </head>
@@ -508,6 +516,20 @@ for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
+// create the popup
+var monument = [103.34994,3.8109];
+var popup = new mapboxgl.Popup()
+    .setText('Construction on the Washington Monument began in 1848.');
+
+// create DOM element for the marker
+var el = document.createElement('div');
+el.id = 'marker';
+
+// create the marker
+new mapboxgl.Marker(el)
+    .setLngLat(monument)
+    .setPopup(popup) // sets a popup on this marker
+    .addTo(afterMap);
 
 </script>
 
