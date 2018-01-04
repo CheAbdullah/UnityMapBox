@@ -165,7 +165,7 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // mousemove: true
 });
 
-var mindate = new Date("12/01/2017").getTime()
+var mindate = new Date("10/01/2017").getTime()
 var maxdate = new Date("01/04/2018").getTime()
 afterMap.on('load', function() {
 
@@ -224,8 +224,8 @@ afterMap.on('load', function() {
     // add source to map
     afterMap.addSource('weatherSource', {
     type: 'raster',
-    'z-index':'103',
-    tiles: [`http://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png??appid=54ec60f02ad844c6d76b8b64b62819e3`],
+    
+    tiles: [`http://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png?appid=54ec60f02ad844c6d76b8b64b62819e3`],
     });
     
     afterMap.addLayer({
@@ -234,6 +234,7 @@ afterMap.on('load', function() {
     type: 'raster',
     minzoom: 0,
     maxzoom: 22,
+    'z-index':'103',
     });
 
 });
