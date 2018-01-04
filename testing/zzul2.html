@@ -19,7 +19,7 @@
         font-family: 'Open Sans', sans-serif;}
         #map-ui {
     position:absolute;
-    top:150px;left:5px;
+    top:200px;left:5px;
     z-index:100;
     }
     #map-ui ul {
@@ -451,14 +451,14 @@ mapbox.wms = function(template, name) {
 // This WMS layer type only supports layers that provide the Spherical
 // Mercator projection, referred to by EPSG:900913 and EPSG:3857
 // Add a WMS layer by adding the {BBOX} token to a GetTile request URL
-mapbox.auto('beforeMap', 'lxbarth.map-n8gsdqn4', function(map) {
+mapbox.auto('beforeMap', 'lxbarth.map-n8gsdqn4', function(beforeMap) {
     // map.zoom(5).center({ lat: 45, lon: -80 });
     var clouds = mapbox.wms('http://wms.openweathermap.org/service?LAYERS=clouds&FORMAT=image%2Fpng&SRS=EPSG%3A900913&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Clouds');
     beforeMap.addLayer(clouds);
     var precip = mapbox.wms('http://wms.openweathermap.org/service?LAYERS=precipitation&FORMAT=image%2Fpng&SRS=EPSG%3A900913&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Precipitation');
     beforeMap.addLayer(precip);
     var radar = mapbox.wms('http://tile.openweathermap.org/wms?LAYERS=RADAR.12KM&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&TRANSPARENT=true&FORMAT=image%2Fpng&STYLES=&SRS=EPSG%3A900913&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Radar');
-    mbeforeMapap.addLayer(radar);
+    beforeMap.addLayer(radar);
     // Layer switcher
     document.getElementById('clouds').onclick = function() {
         (!clouds.enabled) ? clouds.enable() : clouds.disable();
