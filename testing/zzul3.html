@@ -188,7 +188,7 @@ var source = new mapboxgl.Source({
     url: 'http://earthengine.google.org/static/hansen_2013/loss_forest_gain/{z}/{x}/{y}.png',
     tileSize: 256
 });
-map.addSource('source1', source);
+afterMap.addSource('source1', source);
 
 /* var tileset = 'mapbox.streets';
 var beforeMap = new mapboxgl.Map({
@@ -227,7 +227,7 @@ var afterMap = new mapboxgl.Map({
     hash: true,
 });
 
-var map = new mapboxgl.Compare(beforeMap, source, {
+var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // Set this to enable comparing two maps by mouse movement:
     // mousemove: true
 });
