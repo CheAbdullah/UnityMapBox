@@ -175,7 +175,7 @@ body * {
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 var beforeMap = new mapboxgl.Map({
     container: 'before',
-    style: 'mapbox://styles/mapbox/streets-v10',
+    style: 'landplanner.map-0wnm9063',
     center: [103.34994,3.8109],
     zoom: 14.67,
     pitch: 60,
@@ -183,12 +183,27 @@ var beforeMap = new mapboxgl.Map({
     hash: true,
 });
 
+var map = new ol.Map({
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.XYZ({
+          url: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=<your access token here>'
+        })
+      })
+    ],
+    target: 'map',
+    view: new ol.View({
+      center: [0, 0],
+      zoom: 2
+    })
+  });
+
 var source = new mapboxgl.Source({
     type: 'raster',
     url: 'http://earthengine.google.org/static/hansen_2013/loss_forest_gain/{z}/{x}/{y}.png',
     tileSize: 256
 });
-afterMap.addSource('source1', source);
+map.addSource('source1', source);
 
 /* var tileset = 'mapbox.streets';
 var beforeMap = new mapboxgl.Map({
