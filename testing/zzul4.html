@@ -164,8 +164,8 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // Set this to enable comparing two maps by mouse movement:
     // mousemove: true
 });
-var mindate = new Date("01/01/2016").getTime()
-var maxdate = new Date("06/22/2016").getTime()
+var mindate = new Date("01/01/2018").getTime()
+var maxdate = new Date("01/04/2018").getTime()
 beforeMap.on('load', function() {
     // Insert the layer beneath any symbol layer.
     var layers = beforeMap.getStyle().layers;
@@ -217,6 +217,9 @@ beforeMap.on('load', function() {
         'type': 'line',
         'source': 'mapillary',
         'source-layer': 'mapillary-sequences',
+        'filter': ['all',
+                   ['>=', 'captured_at', mindate],
+                   ['<=', 'captured_at', maxdate]],
         'layout': {
             'line-cap': 'round',
             'line-join': 'round'
@@ -227,6 +230,30 @@ beforeMap.on('load', function() {
             'line-width':   2
         }
     });
+
+    beforeMap.addSource("quakes", {
+        "type": "geojson",
+        "data": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+    });
+ 
+    // Once you have a datasource defined, you need to add a layer from that data source to the map.
+    // We could, for example, add only earthquakes magnitude 4.0+. Here we just tell it
+    // to take all of the data and style it as a circle.
+    var mags = [0,1,2,3,4,5,6,7,8,9,10];
+    for(var i=0; i < mags.length; i++) {
+      var mag = mags[i];
+      beforeMap.addLayer({
+        "id": "quakes-"+mag,
+        "type": "circle",
+        "source": "quakes",
+        "filter": ["all", [">=", "mag", mag], ["<", "mag", mag+1]],
+        "paint": {
+            "circle-radius": Math.pow(mag,2)/1.5,
+            "circle-color": "#ff0000",
+            "circle-opacity": 0.5
+        }
+      });
+    }
 
     // add source to map
     beforeMap.addSource('weatherSource', {
