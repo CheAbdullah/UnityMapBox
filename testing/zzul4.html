@@ -217,6 +217,7 @@ beforeMap.on('load', function() {
         'type': 'line',
         'source': 'mapillary',
         'source-layer': 'mapillary-sequences',
+        'z-index':'100',
         'filter': ['all',
                    ['>=', 'captured_at', mindate],
                    ['<=', 'captured_at', maxdate]],
@@ -228,7 +229,7 @@ beforeMap.on('load', function() {
             'line-opacity': 0.6,
             'line-color':   'rgb(53, 175, 109)',
             'line-width':   2
-        }
+        },
     });
 
     beforeMap.addSource("quakes", {
