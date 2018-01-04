@@ -76,6 +76,8 @@ function mouseDown(e) {
     map.on('mousemove', onMove);
     map.once('mouseup', onUp);
     var coords = e.lngLat;
+    coordinates.style.display = 'block';
+    coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
     geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
     map.getSource('point').setData(geojson);
 }
