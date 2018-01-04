@@ -13,21 +13,7 @@
 </head>
 <body>
 
-    <style type='text/css'>
-        #info {
-            display: block;
-            position: relative;
-            margin: 0px auto;
-            width: 50%;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            font-size: 12px;
-            text-align: center;
-            color: #222;
-            background: #fff;
-        }
-    </style>
+    
 
 <style>
 body {
@@ -56,10 +42,26 @@ body * {
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
 
+<style type='text/css'>
+    #info {
+        display: block;
+        position: relative;
+        margin: 0px auto;
+        width: 50%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #222;
+        background: #00f;
+    }
+</style>
 
-<pre id='info'></pre>
+
 <div id='before' class='map'></div>
 <div id='after' class='map'></div>
+<pre id='info'></pre>
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
