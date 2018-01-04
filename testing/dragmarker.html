@@ -76,6 +76,7 @@ function mouseDown(e) {
     map.on('mousemove', onMove);
     map.once('mouseup', onUp);
     var coords = e.lngLat;
+    
     coordinates.style.display = 'block';
     coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
     geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
@@ -91,8 +92,8 @@ function onMove(e) {
 
     // Update the Point feature in `geojson` coordinates
     // and call setData to the source layer `point` on it.
-    geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
-    map.getSource('point').setData(geojson);
+    //geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
+    //map.getSource('point').setData(geojson);
 }
 
 function onUp(e) {
@@ -101,8 +102,8 @@ function onUp(e) {
 
     // Print the coordinates of where the point had
     // finished being dragged to on the map.
-    coordinates.style.display = 'block';
-    coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
+    //coordinates.style.display = 'block';
+    //coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
     canvas.style.cursor = '';
     isDragging = false;
 
