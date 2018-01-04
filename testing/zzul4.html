@@ -53,39 +53,7 @@
         border-color:#3887BE;
         color:#FFF;
         }
-        #map1 {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 49%;
-    }
 
-    #map2 {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 51%;
-        width: 49%;
-    }
-
-    #map1_label,
-    #map2_label {
-        padding: 0.5em;
-        position: absolute;
-        z-index: 1;
-        top: 10;
-        color: #FFF;
-        font-size: 1.2em;
-        background-color: rgba(0, 0, 0, 0.8)
-    }
-
-    #map1_label {
-        left: 10;
-    }
-
-    #map2_label {
-        left: 51%;
-    }
     </style>
 </head>
 <body>
@@ -164,8 +132,6 @@ body * {
     <input id='satellite-v9' type='radio' name='rtoggle' value='satellite-v9'>
     <label for='satellite-v9'>satellite</label>
 </div>
-<div id="map1_label">Dynamic Map Service</div>
-<div id="map2_label">Cached Map Service</div>
 <div id='map1'></div>
 <div id='map2'></div>
 
@@ -496,62 +462,6 @@ function switchLayer(layer) {
 for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
-
-
-mapbox.wms = function(template, name) {
-    function _wms_provider(template) {
-        MM.MapProvider.call(this, function(coordinate) {
-            var coord = this.sourceCoordinate(coordinate);
-            if (!coord) return null;
-            var center = Math.pow(2, coord.zoom - 1),
-                incr = Math.pow(2, -coord.zoom) * 20037508.34 * 2,
-                w = (coord.column - center) * incr,
-                s = (center - coord.row - 1) * incr;
-            return template.replace('{BBOX}', [w,
-                s,
-                w + incr,
-                s + incr].join(','));
-        });
-    };
-    _wms_provider.prototype = {
-        getTile: function(coord) {
-            return this.getTileUrl(coord);
-        }
-    };
-    MM.extend(_wms_provider, MM.MapProvider);
-    return new MM.Layer(new _wms_provider(template), null, name);
-};
-// This WMS layer type only supports layers that provide the Spherical
-// Mercator projection, referred to by EPSG:900913 and EPSG:3857
-// Add a WMS layer by adding the {BBOX} token to a GetTile request URL
-mapbox.auto('beforeMap', 'lxbarth.map-n8gsdqn4', function(beforeMap) {
-    // map.zoom(5).center({ lat: 45, lon: -80 });
-    var clouds = mapbox.wms('http://wms.openweathermap.org/service?LAYERS=clouds&FORMAT=image%2Fpng&SRS=EPSG%3A900913&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Clouds');
-    beforeMap.addLayer(clouds);
-    var precip = mapbox.wms('http://wms.openweathermap.org/service?LAYERS=precipitation&FORMAT=image%2Fpng&SRS=EPSG%3A900913&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Precipitation');
-    beforeMap.addLayer(precip);
-    var radar = mapbox.wms('http://tile.openweathermap.org/wms?LAYERS=RADAR.12KM&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&TRANSPARENT=true&FORMAT=image%2Fpng&STYLES=&SRS=EPSG%3A900913&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Radar');
-    beforeMap.addLayer(radar);
-    // Layer switcher
-    document.getElementById('clouds').onclick = function() {
-        (!clouds.enabled) ? clouds.enable() : clouds.disable();
-        this.className = clouds.enabled ? 'active' : '';
-        return false;
-    }
-    document.getElementById('precip').onclick = function() {
-        (!precip.enabled) ? precip.enable() : precip.disable();
-        this.className = precip.enabled ? 'active' : '';
-        return false;
-    }
-    document.getElementById('radar').onclick = function() {
-        (!radar.enabled) ? radar.enable() : radar.disable();
-        this.className = radar.enabled ? 'active' : '';
-        return false;
-    }
-});
-
-
-
 
 
 </script>
