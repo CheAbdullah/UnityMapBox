@@ -149,54 +149,6 @@ var beforeMap = new mapboxgl.Map({
     hash: true,
 });
 
-var map = new ol.Map({
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.XYZ({
-          url: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=<your access token here>'
-        })
-      })
-    ],
-    target: 'map',
-    view: new ol.View({
-      center: [0, 0],
-      zoom: 2
-    })
-  });
-
-var source = new mapboxgl.Source({
-    type: 'raster',
-    url: 'http://earthengine.google.org/static/hansen_2013/loss_forest_gain/{z}/{x}/{y}.png',
-    tileSize: 256
-});
-map.addSource('source1', source);
-
-/* var tileset = 'mapbox.streets';
-var beforeMap = new mapboxgl.Map({
-    container: 'beforeMap', // container id
-    style: {
-        "version": 8,
-        "sources": {
-            "raster-tiles": {
-                "type": "raster",
-                "url": "mapbox://" + tileset,
-                "tileSize": 256
-            }
-        },
-        "layers": [{
-            "id": "simple-tiles",
-            "type": "raster",
-            "source": "raster-tiles",
-            "minzoom": 0,
-            "maxzoom": 22
-        }]
-    },
-    center: [103.34994,3.8109],
-    zoom: 14.67,
-    pitch: 60,
-    bearing: 0,
-    hash: true,
-}); */
 
 var afterMap = new mapboxgl.Map({
     container: 'after',
