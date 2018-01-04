@@ -64,7 +64,7 @@ var geojson = {
     }]
 };
 
-function mouseDown() {
+function mouseDown(e) {
     if (!isCursorOverPoint) return;
 
     isDragging = true;
@@ -75,6 +75,9 @@ function mouseDown() {
     // Mouse events
     map.on('mousemove', onMove);
     map.once('mouseup', onUp);
+    var coords = e.lngLat;
+    geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
+    map.getSource('point').setData(geojson);
 }
 
 function onMove(e) {
