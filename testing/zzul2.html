@@ -200,6 +200,20 @@ beforeMap.on('load', function() {
         }
     }
 
+    // add source to map
+    this.map.addSource('weatherSource', {
+    type: 'raster',
+    tiles: [`http://tile.openweathermap.org/map/snow_new/0/0/0.png?appid=54ec60f02ad844c6d76b8b64b62819e3`],
+    });
+    
+    this.map.addLayer({
+    id: 'weatherSource',
+    source: 'weatherSource',
+    type: 'raster',
+    minzoom: 0,
+    maxzoom: 22,
+    });
+
     beforeMap.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
