@@ -36,7 +36,24 @@ var mapillarySource = {
 };
 map.addSource('mapillary', mapillarySource);
 
+map.on('load', function() {
+    map.addLayer({
+    'id': 'mapillary',
+    'type': 'line',
+    'source': 'mapillary',
+    'source-layer': 'mapillary-sequences',
+    'layout': {
+        'line-cap': 'round',
+        'line-join': 'round'
+    },
+    'paint': {
+        'line-opacity': 0.6,
+        'line-color': 'rgb(53, 175, 109)',
+        'line-width': 2
+    }
+});
 
+});
 </script>
 
 </body>
