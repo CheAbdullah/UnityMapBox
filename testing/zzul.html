@@ -66,7 +66,7 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
 });
 
 
-map.addControl(new MapboxGeocoder({
+beforeMap.addControl(new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
 }));
 
