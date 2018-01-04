@@ -221,7 +221,19 @@ afterMap.on('load', function() {
         }
       });
     }
-
+    // add source to map
+    afterMap.addSource('weatherSource', {
+    type: 'raster',
+    tiles: [`http://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png??appid=54ec60f02ad844c6d76b8b64b62819e3`],
+    });
+    
+    afterMap.addLayer({
+    id: 'weatherSource',
+    source: 'weatherSource',
+    type: 'raster',
+    minzoom: 0,
+    maxzoom: 22,
+    });
 
 });
 
