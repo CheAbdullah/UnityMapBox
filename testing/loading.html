@@ -22,20 +22,20 @@ Initialize a map in an HTML element with Mapbox GL JS.
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 
-
-var map = new ol.Map({
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.XYZ({
-        url: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=<pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ>'
-      })
-    })
-  ],
-  target: 'map',
-  view: new ol.View({
-    center: [0, 0],
-    zoom: 2
-  })
+var myLayer = new OpenLayers.Layer.XYZ(
+  'My Map Layer',
+  ['https://a.tiles.mapbox.com/v4/mapbox.streets/${z}/${x}/${y}.png?access_token=<pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ>'],
+  {
+    sphericalMercator: true,
+    tileSize: new OpenLayers.Size([512, 512]),
+    wrapDateLine: true
+  }
+);
+var map = new OpenLayers.Map({
+  div: 'map',
+  layers: [myLayer],
+  center: [0, 0],
+  zoom: 1
 });
 
 </script>
