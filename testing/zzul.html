@@ -27,7 +27,7 @@
             border-radius: 3px;
             font-size: 12px;
             text-align: center;
-            color: #222;
+            color: #00f;
             background: #fff;
         }
         
@@ -68,26 +68,27 @@ body * {
 <div id='before' class='map'></div>
 <div id='after' class='map'></div>
 
-
+<!-- 14.67/3.8109/103.34994/0/60 -->
+<!-- 16.96/53.347268/-6.259142/-143.2/53 -->
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 var beforeMap = new mapboxgl.Map({
     container: 'before',
     style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
-    center: [-6.259142,53.347268],
-    zoom: 16.96,
-    pitch: 53,
-    bearing: -143.2,
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
     hash: true,
 });
 
 var afterMap = new mapboxgl.Map({
     container: 'after',
     style: 'mapbox://styles/mapbox/dark-v9',
-    center: [-6.259142,53.347268],
-    zoom: 16.96,
-    pitch: 53,
-    bearing: -143.2,
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
     hash: true,
 });
 
