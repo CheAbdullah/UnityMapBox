@@ -165,19 +165,10 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // mousemove: true
 });
 
-var mindate = new Date("01/01/2018").getTime()
+var mindate = new Date("12/01/2017").getTime()
 var maxdate = new Date("01/04/2018").getTime()
 afterMap.on('load', function() {
-    // Insert the layer beneath any symbol layer.
-    var layers = afterMap.getStyle().layers;
 
-    var labelLayerId;
-    for (var i = 0; i < layers.length; i++) {
-        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-            labelLayerId = layers[i].id;
-            break;
-        }
-    }
     var mapillarySource = {
         type: 'vector',
         tiles: ['http://d25uarhxywzl1j.cloudfront.net/v0.1/{z}/{x}/{y}.mvt'],
@@ -230,6 +221,19 @@ afterMap.on('load', function() {
         }
       });
     }
+    // add source to map
+    afterMap.addSource('weatherSource', {
+    type: 'raster',
+    tiles: [`http://tile.openweathermap.org/map/snow_new/0/0/0.png?appid=54ec60f02ad844c6d76b8b64b62819e3`],
+    });
+    
+    afterMap.addLayer({
+    id: 'weatherSource',
+    source: 'weatherSource',
+    type: 'raster',
+    minzoom: 0,
+    maxzoom: 22,
+    });
 
 });
 
@@ -270,23 +274,6 @@ beforeMap.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
-
-    
-
-    // add source to map
-    beforeMap.addSource('weatherSource', {
-    type: 'raster',
-    tiles: [`http://tile.openweathermap.org/map/snow_new/0/0/0.png?appid=54ec60f02ad844c6d76b8b64b62819e3`],
-    });
-    
-    beforeMap.addLayer({
-    id: 'weatherSource',
-    source: 'weatherSource',
-    type: 'raster',
-    minzoom: 0,
-    maxzoom: 22,
-    });
-
     
 
     beforeMap.addSource('contours', {
