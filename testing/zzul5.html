@@ -182,7 +182,7 @@ afterMap.on('load', function() {
         'type': 'line',
         'source': 'mapillary',
         'source-layer': 'mapillary-sequences',
-        'z-index':'100',
+        'z-index':'102',
         'filter': ['all',
                    ['>=', 'captured_at', mindate],
                    ['<=', 'captured_at', maxdate]],
@@ -224,6 +224,7 @@ afterMap.on('load', function() {
     // add source to map
     afterMap.addSource('weatherSource', {
     type: 'raster',
+    'z-index':'103',
     tiles: [`http://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png??appid=54ec60f02ad844c6d76b8b64b62819e3`],
     });
     
