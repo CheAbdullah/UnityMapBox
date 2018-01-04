@@ -177,20 +177,6 @@ beforeMap.on('load', function() {
         }
     }
 
-    // add source to map
-    this.map.addSource('weatherSource', {
-    type: 'raster',
-    tiles: [`http://tile.openweathermap.org/map/snow_new/0/0/0.png?appid=54ec60f02ad844c6d76b8b64b62819e3`],
-    });
-    
-    this.map.addLayer({
-    id: 'weatherSource',
-    source: 'weatherSource',
-    type: 'raster',
-    minzoom: 0,
-    maxzoom: 22,
-    });
-
     beforeMap.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
@@ -216,6 +202,45 @@ beforeMap.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
+
+    var mapillarySource = {
+        type: 'vector',
+        tiles: ['http://d25uarhxywzl1j.cloudfront.net/v0.1/{z}/{x}/{y}.mvt'],
+        minzoom: 0,
+        maxzoom: 14
+    };
+    beforeMap.addSource('mapillary', mapillarySource);
+    beforeMap.addLayer({
+        'id': 'mapillary',
+        'type': 'line',
+        'source': 'mapillary',
+        'source-layer': 'mapillary-sequences',
+        'layout': {
+            'line-cap': 'round',
+            'line-join': 'round'
+        },
+        'paint': {
+            'line-opacity': 0.6,
+            'line-color':   'rgb(53, 175, 109)',
+            'line-width':   2
+        }
+    });
+
+    // add source to map
+    beforeMap.addSource('weatherSource', {
+    type: 'raster',
+    tiles: [`http://tile.openweathermap.org/map/snow_new/0/0/0.png?appid=54ec60f02ad844c6d76b8b64b62819e3`],
+    });
+    
+    beforeMap.addLayer({
+    id: 'weatherSource',
+    source: 'weatherSource',
+    type: 'raster',
+    minzoom: 0,
+    maxzoom: 22,
+    });
+
+    
 
     beforeMap.addSource('contours', {
         type: 'vector',
