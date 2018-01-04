@@ -28,32 +28,7 @@ var map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
-var mapillarySource = {
-    type: 'vector',
-    tiles: ['https://d25uarhxywzl1j.cloudfront.net/v0.1/{z}/{x}/{y}.mvt'],
-    minzoom: 0,
-    maxzoom: 14
-};
-map.addSource('mapillary', mapillarySource);
 
-map.on('load', function() {
-    map.addLayer({
-    'id': 'mapillary',
-    'type': 'line',
-    'source': 'mapillary',
-    'source-layer': 'mapillary-sequences',
-    'layout': {
-        'line-cap': 'round',
-        'line-join': 'round'
-    },
-    'paint': {
-        'line-opacity': 1,
-        'line-color': 'rgb(255, 0, 0)',
-        'line-width': 5
-    }
-});
-
-});
 </script>
 
 </body>
