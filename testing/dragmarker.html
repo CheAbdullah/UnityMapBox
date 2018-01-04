@@ -34,7 +34,7 @@
 <pre id='coordinates' class='coordinates'></pre>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+mapboxgl.accessToken = 'undefined';
 // Holds mousedown state for events. if this
 // flag is active, we move the point on `mousemove`.
 var isDragging;
@@ -64,7 +64,6 @@ var geojson = {
     }]
 };
 
-
 map.on('load', function() {
 
     // Add a single point to the map
@@ -82,26 +81,16 @@ map.on('load', function() {
             "circle-color": "#3887be"
         }
     });
-
-    map.on('mousemove', function (e) {
-    document.getElementById('info').innerHTML =
-        // e.point is the x, y coordinates of the mousemove event relative
-        // to the top-left corner of the map
-        JSON.stringify(e.point) + '<br />' +
-        // e.lngLat is the longitude, latitude geographical position of the event
-        JSON.stringify(e.lngLat);
-        var coords = e.lngLat;
-    
-        coordinates.style.display = 'block';
-        coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
-        geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
-        map.getSource('point').setData(geojson);
 });
 
-
-
-
+map.on('mousemove', function (e) {
+    var coords = e.lngLat;
+    coordinates.style.display = 'block';
+    coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
+    geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
+    map.getSource('point').setData(geojson);
 });
+
 </script>
 
 </body>

@@ -548,69 +548,6 @@ for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
-var canvas = map.getCanvasContainer();
-var geojson = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [0, 0]
-        }
-    }]
-};
-
-// create the popup
-var monument = [103.34994,3.8109];
-var popup = new mapboxgl.Popup()
-    .setText('Construction on the Washington Monument began in 1848.');
-
-// create DOM element for the marker
-var el = document.createElement('div');
-el.id = 'marker';
-
-// create the marker
-new mapboxgl.Marker(el)
-    .setLngLat(monument)
-    .setPopup(popup) // sets a popup on this marker
-    .addTo(afterMap);
-
-    function mouseDown() {
-        if (!isCursorOverPoint) return;
-    
-        isDragging = true;
-    
-        // Set a cursor indicator
-        canvas.style.cursor = 'grab';
-    
-        // Mouse events
-        map.once('mouseup', onUp);
-    }
-
-
-    function onUp(e) {
-        if (!isDragging) return;
-        var coords = e.lngLat;
-    
-        // Print the coordinates of where the point had
-        // finished being dragged to on the map.
-        coordinates.style.display = 'block';
-        coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
-        canvas.style.cursor = '';
-        isDragging = false;
-    
-        // Unbind mouse events
-        map.off('mousemove',  pointOnCircle(e));
-    }
-
-    function pointOnCircle(e) {
-        var coords = e.lngLat;
-        map.getSource('point').setData(coords.lng, coords.lat);
-        return {
-            "type": "Point",
-            "coordinates": [coords.lng, coords.lat]
-        };
-    }
 
 
 </script>
