@@ -247,6 +247,7 @@ beforeMap.on('load', function() {
         "id": "quakes-"+mag,
         "type": "circle",
         "source": "quakes",
+        'z-index':'101',
         "filter": ["all", [">=", "mag", mag], ["<", "mag", mag+1]],
         "paint": {
             "circle-radius": Math.pow(mag,2)/1.5,
