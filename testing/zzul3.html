@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Swipe between maps</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;}
+        #menu {
+        position: absolute;
+        background: #fff;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;}
+        #map-ui {
+    position:absolute;
+    top:200px;left:5px;
+    z-index:100;
+    }
+    #map-ui ul {
+      list-style:none;
+      margin:0;padding:0;
+      }
+      #map-ui a {
+        font-size:13px;
+        background:#FFF;
+        color:#3C4E5A;
+        display:block;
+        margin:0;padding:0;
+        border:1px solid #BBB;
+        border-bottom-width:0;
+        min-width:138px;
+        padding:10px;
+        text-decoration:none;
+        }
+      #map-ui a:hover { background:#ECF5FA; }
+      #map-ui li:last-child a {
+        border-bottom-width:1px;
+        -webkit-border-radius:0 0 3px 3px;
+                border-radius:0 0 3px 3px;
+        }
+      #map-ui li:first-child a {
+        -webkit-border-radius:3px 3px 0 0;
+                border-radius:3px 3px 0 0;
+              }
+      #map-ui a.active {
+        background:#3887BE;
+        border-color:#3887BE;
+        color:#FFF;
+        }
+        #map1 {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 49%;
+    }
+
+    #map2 {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 51%;
+        width: 49%;
+    }
+
+    #map1_label,
+    #map2_label {
+        padding: 0.5em;
+        position: absolute;
+        z-index: 1;
+        top: 10;
+        color: #FFF;
+        font-size: 1.2em;
+        background-color: rgba(0, 0, 0, 0.8)
+    }
+
+    #map1_label {
+        left: 10;
+    }
+
+    #map2_label {
+        left: 51%;
+    }
+    </style>
+</head>
+<body>
+    <style type='text/css'>
+        #info {
+            display: block;
+            position: relative;
+            margin-top: 100px;
+            margin-left: 350px;
+            width: 30%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            font-size: 12px;
+            text-align: center;
+            color: #00f;
+            background: #fff;
+            z-index:101;
+        }
+        
+    </style>
+    
+
+<style>
+body {
+    overflow: hidden;
+}
+
+body * {
+   -webkit-touch-callout: none;
+     -webkit-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+}
+
+.map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
+
+
+<pre id='info'></pre>
+<div id='before' class='map'>
+    <div id='map-ui'>
+        <ul>
+          <li><a href='#' class='active' id='radar'>Radar</a></li>
+          <li><a href='#' class='active' id='clouds'>Clouds</a></li>
+          <li><a href='#' class='active' id='precip'>Precipitation</a></li>
+        </ul>
+      </div>
+</div>
+<div id='after' class='map'></div>
+<div id='menu'>
+    <input id='cjaudgl840gn32rnrepcb9b9g' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g'' checked='checked'>
+    <label for='cjaudgl840gn32rnrepcb9b9g'>basic</label>
+    <input id='streets-v9' type='radio' name='rtoggle' value='streets-v9'>
+    <label for='streets-v9'>streets</label>
+    <input id='bright-v9' type='radio' name='rtoggle' value='bright-v9'>
+    <label for='bright-v9'>bright</label>
+    <input id='light-v9' type='radio' name='rtoggle' value='light-v9'>
+    <label for='light-v9'>light</label>
+    <input id='dark-v9' type='radio' name='rtoggle' value='dark-v9'>
+    <label for='dark-v9'>dark</label>
+    <input id='satellite-v9' type='radio' name='rtoggle' value='satellite-v9'>
+    <label for='satellite-v9'>satellite</label>
+</div>
+<div id="map1_label">Dynamic Map Service</div>
+<div id="map2_label">Cached Map Service</div>
+<div id='map1'></div>
+<div id='map2'></div>
+
+<!-- 14.67/3.8109/103.34994/0/60 -->
+<!-- 16.96/53.347268/-6.259142/-143.2/53 -->
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+var beforeMap = new mapboxgl.Map({
+    container: 'before',
+    style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
+    hash: true,
+});
+
+/* var tileset = 'mapbox.streets';
+var beforeMap = new mapboxgl.Map({
+    container: 'beforeMap', // container id
+    style: {
+        "version": 8,
+        "sources": {
+            "raster-tiles": {
+                "type": "raster",
+                "url": "mapbox://" + tileset,
+                "tileSize": 256
+            }
+        },
+        "layers": [{
+            "id": "simple-tiles",
+            "type": "raster",
+            "source": "raster-tiles",
+            "minzoom": 0,
+            "maxzoom": 22
+        }]
+    },
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
+    hash: true,
+}); */
+
+var afterMap = new mapboxgl.Map({
+    container: 'after',
+    style: 'mapbox://styles/mapbox/dark-v9',
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
+    hash: true,
+});
+
+var map = new mapboxgl.Compare(beforeMap, afterMap, {
+    // Set this to enable comparing two maps by mouse movement:
+    // mousemove: true
+});
+
+beforeMap.on('load', function() {
+    // Insert the layer beneath any symbol layer.
+    var layers = beforeMap.getStyle().layers;
+
+    var labelLayerId;
+    for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+            labelLayerId = layers[i].id;
+            break;
+        }
+    }
+
+    // add source to map
+    this.map.addSource('weatherSource', {
+    type: 'raster',
+    tiles: [`http://tile.openweathermap.org/map/snow_new/0/0/0.png?appid=54ec60f02ad844c6d76b8b64b62819e3`],
+    });
+    
+    this.map.addLayer({
+    id: 'weatherSource',
+    source: 'weatherSource',
+    type: 'raster',
+    minzoom: 0,
+    maxzoom: 22,
+    });
+
+    beforeMap.addLayer({
+        'id': '3d-buildings',
+        'source': 'composite',
+        'source-layer': 'building',
+        'filter': ['==', 'extrude', 'true'],
+        'type': 'fill-extrusion',
+        'minzoom': 15,
+        'paint': {
+            'fill-extrusion-color': '#aaa',
+
+            // use an 'interpolate' expression to add a smooth transition effect to the
+            // buildings as the user zooms in
+            'fill-extrusion-height': [
+                "interpolate", ["linear"], ["zoom"],
+                15, 0,
+                15.05, ["get", "height"]
+            ],
+            'fill-extrusion-base': [
+                "interpolate", ["linear"], ["zoom"],
+                15, 0,
+                15.05, ["get", "min_height"]
+            ],
+            'fill-extrusion-opacity': .6
+        }
+    }, labelLayerId);
+
+    beforeMap.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    beforeMap.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    }); 
+
+    beforeMap.addSource('dem', {
+        "type": "raster-dem",
+        "url": "mapbox://mapbox.terrain-rgb"
+    });
+    beforeMap.addLayer({
+        "id": "hillshading",
+        "source": "dem",
+        "type": "hillshade"
+    // insert below waterway-river-canal-shadow;
+    // where hillshading sits in the Mapbox Outdoors style
+    }, 'waterway-river-canal-shadow');
+
+
+    beforeMap.addLayer({
+        "id": "places",
+        "type": "symbol",
+        "source": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 1</strong><p>No Data Available 1</p>",
+                        "number":"00000000000001",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.259142,53.347268]
+                    }
+                }, {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 2</strong><p>No Data Available 2</p>",
+                        "number":"00000000000002",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.2591,53.3472]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 3</strong><p>No Data Available 3</p>",
+                        "number":"00000000000003",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.258,53.3471]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 4</strong><p>No Data Available 4</p>",
+                        "number":"00000000000004",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.257,53.3470]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 5</strong><p>No Data Available 5</p>",
+                        "number":"00000000000005",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.256,53.3469]
+                    }}
+                    , {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Test Data 6</strong><p>No Data Available 6</p>",
+                        "number":"00000000000006",
+                        "icon": "star"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-6.255,53.3468]
+                    }
+                }
+                ]
+            }
+        },
+        "layout": {
+            "icon-image": "{icon}-15",
+            "icon-allow-overlap": true
+        }
+    });
+
+    
+
+    
+});
+
+
+
+beforeMap.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+        // e.point is the x, y coordinates of the mousemove event relative
+        // to the top-left corner of the map
+        JSON.stringify(e.point) + '<br />' +
+        // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.lngLat);
+});
+
+beforeMap.addControl(new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+}), 'top-left');
+beforeMap.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken
+}), 'top-right');
+// Add zoom and rotation controls to the map.
+beforeMap.addControl(new mapboxgl.NavigationControl());
+
+// When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
+    beforeMap.on('click', 'places', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(e.features[0].properties.description)
+            .addTo(beforeMap);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    beforeMap.on('mouseenter', 'places', function () {
+        beforeMap.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    beforeMap.on('mouseleave', 'places', function () {
+        beforeMap.getCanvas().style.cursor = '';
+    });
+
+    
+      
+    
+
+// Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+});
+
+beforeMap.on('mouseenter', 'places', function(e) {
+    // Change the cursor style as a UI indicator.
+    beforeMap.getCanvas().style.cursor = 'pointer';
+
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    popup.setLngLat(e.features[0].geometry.coordinates)
+        .setHTML(e.features[0].properties.description)
+        .addTo(beforeMap);
+});
+
+beforeMap.on('mouseleave', 'places', function() {
+    beforeMap.getCanvas().style.cursor = '';
+    popup.remove();
+});
+
+var layerList = document.getElementById('menu');
+var inputs = layerList.getElementsByTagName('input');
+
+function switchLayer(layer) {
+    var layerId = layer.target.id;
+    beforeMap.setStyle('mapbox://styles/mapbox/' + layerId);
+}
+
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+}
+
+
+mapbox.wms = function(template, name) {
+    function _wms_provider(template) {
+        MM.MapProvider.call(this, function(coordinate) {
+            var coord = this.sourceCoordinate(coordinate);
+            if (!coord) return null;
+            var center = Math.pow(2, coord.zoom - 1),
+                incr = Math.pow(2, -coord.zoom) * 20037508.34 * 2,
+                w = (coord.column - center) * incr,
+                s = (center - coord.row - 1) * incr;
+            return template.replace('{BBOX}', [w,
+                s,
+                w + incr,
+                s + incr].join(','));
+        });
+    };
+    _wms_provider.prototype = {
+        getTile: function(coord) {
+            return this.getTileUrl(coord);
+        }
+    };
+    MM.extend(_wms_provider, MM.MapProvider);
+    return new MM.Layer(new _wms_provider(template), null, name);
+};
+// This WMS layer type only supports layers that provide the Spherical
+// Mercator projection, referred to by EPSG:900913 and EPSG:3857
+// Add a WMS layer by adding the {BBOX} token to a GetTile request URL
+mapbox.auto('beforeMap', 'lxbarth.map-n8gsdqn4', function(beforeMap) {
+    // map.zoom(5).center({ lat: 45, lon: -80 });
+    var clouds = mapbox.wms('http://wms.openweathermap.org/service?LAYERS=clouds&FORMAT=image%2Fpng&SRS=EPSG%3A900913&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Clouds');
+    beforeMap.addLayer(clouds);
+    var precip = mapbox.wms('http://wms.openweathermap.org/service?LAYERS=precipitation&FORMAT=image%2Fpng&SRS=EPSG%3A900913&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Precipitation');
+    beforeMap.addLayer(precip);
+    var radar = mapbox.wms('http://tile.openweathermap.org/wms?LAYERS=RADAR.12KM&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&TRANSPARENT=true&FORMAT=image%2Fpng&STYLES=&SRS=EPSG%3A900913&BBOX={BBOX}&WIDTH=512&HEIGHT=512', 'Radar');
+    beforeMap.addLayer(radar);
+    // Layer switcher
+    document.getElementById('clouds').onclick = function() {
+        (!clouds.enabled) ? clouds.enable() : clouds.disable();
+        this.className = clouds.enabled ? 'active' : '';
+        return false;
+    }
+    document.getElementById('precip').onclick = function() {
+        (!precip.enabled) ? precip.enable() : precip.disable();
+        this.className = precip.enabled ? 'active' : '';
+        return false;
+    }
+    document.getElementById('radar').onclick = function() {
+        (!radar.enabled) ? radar.enable() : radar.disable();
+        this.className = radar.enabled ? 'active' : '';
+        return false;
+    }
+});
+
+
+var map1 = new mapboxgl.Map({
+    container: 'map1',
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [153.021072, -27.470125],
+    zoom: 15
+});
+
+var map2 = new mapboxgl.Map({
+    container: 'map2',
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [153.021072, -27.470125],
+    zoom: 15
+});
+
+map1.on('load', function() {
+    map1.addLayer({
+        "id": "dynamic-demo",
+        "type": "raster",
+        "minzoom": 0,
+        "maxzoom": 22,
+        "source": {
+            "type": "raster",
+            "tiles": ['https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/export?dpi=96&transparent=true&format=png32&layers=show%3A0&bbox={bbox-epsg-3857}&bboxSR=EPSG:3857&imageSR=EPSG:3857&size=256,256&f=image'],
+            "tileSize": 256
+        }
+    });
+});
+
+map2.on('load', function() {
+    map2.addLayer({
+        "id": "cache-demo",
+        "type": "raster",
+        "minzoom": 0,
+        "maxzoom": 22,
+        "source": {
+            "type": "raster",
+            "tiles": ['https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+            "tileSize": 256
+        }
+    });
+});
+</script>
+
+</body>
+</html>
