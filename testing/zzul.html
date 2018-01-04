@@ -12,6 +12,11 @@
         .mapboxgl-popup {
         max-width: 400px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;}
+        #menu {
+        position: absolute;
+        background: #fff;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;}
     </style>
 </head>
 <body>
@@ -67,12 +72,26 @@ body * {
 <pre id='info'></pre>
 <div id='before' class='map'></div>
 <div id='after' class='map'></div>
+<div id='menu'>
+    <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+    <label for='basic'>basic</label>
+    <input id='streets' type='radio' name='rtoggle' value='streets'>
+    <label for='streets'>streets</label>
+    <input id='bright' type='radio' name='rtoggle' value='bright'>
+    <label for='bright'>bright</label>
+    <input id='light' type='radio' name='rtoggle' value='light'>
+    <label for='light'>light</label>
+    <input id='dark' type='radio' name='rtoggle' value='dark'>
+    <label for='dark'>dark</label>
+    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+    <label for='satellite'>satellite</label>
+</div>
 
 <!-- 14.67/3.8109/103.34994/0/60 -->
 <!-- 16.96/53.347268/-6.259142/-143.2/53 -->
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
-/* var beforeMap = new mapboxgl.Map({
+var beforeMap = new mapboxgl.Map({
     container: 'before',
     style: 'mapbox://styles/mapbox/satellite-v9',
     center: [103.34994,3.8109],
@@ -80,9 +99,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd
     pitch: 60,
     bearing: 0,
     hash: true,
-}); */
+});
 
-var tileset = 'mapbox.streets';
+/* var tileset = 'mapbox.streets';
 var beforeMap = new mapboxgl.Map({
     container: 'beforeMap', // container id
     style: {
@@ -107,7 +126,7 @@ var beforeMap = new mapboxgl.Map({
     pitch: 60,
     bearing: 0,
     hash: true,
-});
+}); */
 
 var afterMap = new mapboxgl.Map({
     container: 'after',
@@ -345,6 +364,18 @@ beforeMap.on('mouseleave', 'places', function() {
     beforeMap.getCanvas().style.cursor = '';
     popup.remove();
 });
+
+var layerList = document.getElementById('menu');
+var inputs = layerList.getElementsByTagName('input');
+
+function switchLayer(layer) {
+    var layerId = layer.target.id;
+    beforeMap.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+}
+
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+}
 </script>
 
 </body>
