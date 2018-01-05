@@ -52,14 +52,14 @@ var afterMap = new mapboxgl.Map({
     zoom: 0
 });
 
+var Draw = mapboxgl.Draw();
+map.addControl(Draw);
 
 var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // Set this to enable comparing two maps by mouse movement:
     // mousemove: true
 });
 
-var Draw = mapboxgl.Draw();
-map.addControl(Draw);
 
 
 
