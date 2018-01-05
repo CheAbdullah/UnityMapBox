@@ -277,7 +277,21 @@ var afterMap = new mapboxgl.Map({
             }
         },
         "sprite": "mapbox://sprites/danswick/ciljv8aim00459dm3hht07ite",
-        "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf"},
+        "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+        "layers": [
+        {
+            "id": "simple-tiles",
+            "type": "raster",
+            "source": "simple-tiles",
+            "minzoom": 0,
+            "maxzoom": 22
+        },
+        ],"created": "2016-03-08T20:24:55.187Z",
+        "id": "ciljv8aim00459dm3hht07ite",
+        "modified": "2016-03-08T20:24:55.187Z",
+        "owner": "danswick",
+        "draft": false
+    },
     center: [103.34994,3.8109],
     zoom: 14.67,
     pitch: 60,
