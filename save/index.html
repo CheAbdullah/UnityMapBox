@@ -58,7 +58,7 @@ var map = new mapboxgl.Map({
 var geoJsonFeatures;
 var Draw = mapboxgl.Draw();
 
-var datasetId = "cirqs92m00hu8fgm8piqgihok";
+var datasetId = "cirqs92m00hu8fgm8piqgihom";
 
 var source = new mapboxgl.GeoJSONSource({
     data: {
@@ -136,13 +136,13 @@ map.on('load', function(){
         uploadFeatures();
     }
 
-    //getData(datasetId);
+    getData(datasetId);
 
 
 });
 
 function setFeatureId(){
-    //return getData(datasetId);
+    return getData(datasetId);
 }
 
 function getData(datasetId) {
