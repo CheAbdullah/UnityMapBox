@@ -11,22 +11,166 @@
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
+
+        <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;}
+        #menu {
+        position: absolute;
+        background: #fff;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;}
+        #map-ui {
+    position:absolute;
+    top:200px;left:5px;
+    z-index:100;
+    }
+    #map-ui ul {
+      list-style:none;
+      margin:0;padding:0;
+      }
+      #map-ui a {
+        font-size:13px;
+        background:#FFF;
+        color:#3C4E5A;
+        display:block;
+        margin:0;padding:0;
+        border:1px solid #BBB;
+        border-bottom-width:0;
+        min-width:138px;
+        padding:10px;
+        text-decoration:none;
+        }
+      #map-ui a:hover { background:#ECF5FA; }
+      #map-ui li:last-child a {
+        border-bottom-width:1px;
+        -webkit-border-radius:0 0 3px 3px;
+                border-radius:0 0 3px 3px;
+        }
+      #map-ui li:first-child a {
+        -webkit-border-radius:3px 3px 0 0;
+                border-radius:3px 3px 0 0;
+              }
+      #map-ui a.active {
+        background:#3887BE;
+        border-color:#3887BE;
+        color:#FFF;
+        }
+        .calculation-box {
+        height: 75px;
+        width: 150px;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, .9);
+        padding: 15px;
+        text-align: center;
+    }
+
+    p {
+        font-family: 'Open Sans';
+        margin: 0;
+        font-size: 13px;
+    }
     </style>
+
 </head>
 <body>
 
-<div id='map'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
-var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
-    center: [9.10349459743145,39.20711996956351], // starting position
-    zoom: 10.5 // starting zoom
+    <style type='text/css'>
+        #info {
+            display: block;
+            position: relative;
+            margin-top: 100px;
+            margin-left: 350px;
+            width: 30%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            font-size: 12px;
+            text-align: center;
+            color: #00f;
+            background: #fff;
+            z-index:101;
+        }
+    </style>
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+
+
+
+<pre id='info'></pre>
+<div id='before' class='map'>
+    <!-- //<div id='map-ui'>
+        //<ul>
+          //<li><a href='#' class='active' id='radar'>Radar</a></li>
+          //<li><a href='#' class='active' id='clouds'>Clouds</a></li>
+          //<li><a href='#' class='active' id='precip'>Precipitation</a></li>
+        //</ul>
+      //</div> -->
+</div>
+<div id='after' class='map'></div>
+<div id='menu'>
+    <input id='cjaudgl840gn32rnrepcb9b9g' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g'' checked='checked'>
+    <label for='cjaudgl840gn32rnrepcb9b9g'>basic</label>
+    <input id='streets-v9' type='radio' name='rtoggle' value='streets-v9'>
+    <label for='streets-v9'>streets</label>
+    <input id='bright-v9' type='radio' name='rtoggle' value='bright-v9'>
+    <label for='bright-v9'>bright</label>
+    <input id='light-v9' type='radio' name='rtoggle' value='light-v9'>
+    <label for='light-v9'>light</label>
+    <input id='dark-v9' type='radio' name='rtoggle' value='dark-v9'>
+    <label for='dark-v9'>dark</label>
+    <input id='satellite-v9' type='radio' name='rtoggle' value='satellite-v9'>
+    <label for='satellite-v9'>satellite</label>
+</div>
+
+var beforeMap = new mapboxgl.Map({
+    container: 'before',
+    style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
+    hash: true,
 });
 
+
+var afterMap = new mapboxgl.Map({
+    container: 'after',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [103.34994,3.8109],
+    zoom: 14.67,
+    pitch: 60,
+    bearing: 0,
+    hash: true,
+});
+
+var map = new mapboxgl.Compare(beforeMap, afterMap, {
+    // Set this to enable comparing two maps by mouse movement:
+    // mousemove: true
+});
+
+<!-- 14.67/3.8109/103.34994/0/60 -->
+<!-- 16.96/53.347268/-6.259142/-143.2/53 -->
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+
 var Draw = mapboxgl.Draw();
-map.addControl(Draw);
+beforeMap.addControl(Draw);
 
 </script>
 
