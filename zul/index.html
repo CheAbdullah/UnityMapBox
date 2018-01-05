@@ -48,10 +48,13 @@ var beforeMap = new mapboxgl.Map({
 
 var afterMap = new mapboxgl.Map({
     container: 'after',
-    style: 'mapbox://styles/mapbox/dark-v9',
+    style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
     center: [0, 0],
     zoom: 0
 });
+
+var Draw = mapboxgl.Draw();
+beforeMap.addControl(Draw);
 
 var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // Set this to enable comparing two maps by mouse movement:
@@ -60,8 +63,7 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
 
 
 
-var Draw = mapboxgl.Draw();
-beforeMap.addControl(Draw);
+
 
 </script>
 
