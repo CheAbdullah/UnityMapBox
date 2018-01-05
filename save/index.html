@@ -39,11 +39,19 @@
             background-position: -4324px -3px;
             top: 180px;
         }
+        .mapboxgl-marker { 
+            width: 2em;
+            height: 2em;
+            background-image: url('cat-grumpy-icon.png');
+            background-position: center center;
+            background-size: contain;
+        }
     </style>
 </head>
 <body>
 
 <div id='map'></div>
+<div id="markerEl">omfg</div>
 <a href='#' id='export'></a>
 <a href="#" id='updateDataset'></a>
 
@@ -230,7 +238,37 @@ window.setInterval(function() {
     run();
 }, 1000);
 
+var markerEl = document.getElementById('markerEl');
 
+function addRandomMarker() {
+    var bounds = map.getBounds();
+    var s = bounds.getSouth();
+    var n = bounds.getNorth();
+    var w = bounds.getWest();
+    var e = bounds.getEast();
+    var lng = w + (e - w) * Math.random();
+    var lat = s + (n - s) * Math.random();
+    var marker = new mapboxgl.Marker()
+        .setLngLat([lng, lat])
+        .addTo(map);
+
+    var markers = document.getElementsByClassName('mapboxgl-marker');
+
+    markers[i].addEventListener("click", function(e) {
+        var popup = new mapboxgl.Popup({
+            closeButton: false
+        });
+        var coordinates = map.unproject([e.x, e.y]);
+        popup.setLngLat(coordinates)
+          .setText('Meow')
+          .addTo(map);
+
+        e.stopPropagation();
+    });
+
+}
+for (var i = 0; i < 100; i++) addRandomMarker();
+map.addControl(new mapboxgl.Navigation());
 </script>
 
 </body>
