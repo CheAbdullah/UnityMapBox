@@ -86,6 +86,13 @@
         #remover:hover {
             background-color: salmon;
         }
+        .mapboxgl-marker { 
+            width: 2em;
+            height: 2em;
+            background-image: url('cat-grumpy-icon.png');
+            background-position: center center;
+            background-size: contain;
+        }
     </style>
 </head>
 <body>
@@ -682,6 +689,38 @@ LotsOfPointsMode.toDisplayFeatures = function(state, geojson, display) {
   display(geojson);
 };
 
+
+
+var markerEl = document.getElementById('markerEl');
+
+function addRandomMarker() {
+    var bounds = afterMap.getBounds();
+    var s = bounds.getSouth();
+    var n = bounds.getNorth();
+    var w = bounds.getWest();
+    var e = bounds.getEast();
+    var lng = w + (e - w) * Math.random();
+    var lat = s + (n - s) * Math.random();
+    var marker = new mapboxgl.Marker()
+        .setLngLat([lng, lat])
+        .addTo(afterMap);
+
+    var markers = document.getElementsByClassName('mapboxgl-marker');
+
+    markers[i].addEventListener("click", function(e) {
+        var popup = new mapboxgl.Popup({
+            closeButton: false
+        });
+        var coordinates = map.unproject([e.x, e.y]);
+        popup.setLngLat(coordinates)
+          .setText('Meow')
+          .addTo(afterMap);
+
+        e.stopPropagation();
+    });
+
+}
+for (var i = 0; i < 100; i++) addRandomMarker();
 </script>
 
 </body>
