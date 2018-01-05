@@ -193,18 +193,18 @@ var maxdate = new Date("01/04/2018").getTime()
 afterMap.on('load', function() {
 
     // add source to map
-    afterMap.addSource('earthengine', {
-    type: 'raster',
-    tiles: [`http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png`],
-    });
+    //afterMap.addSource('earthengine', {
+    //type: 'raster',
+    //tiles: [`http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png`],
+    //});
     
-    afterMap.addLayer({
-    id: 'earthengine',
-    source: 'earthengine',
-    type: 'raster',
-    minzoom: 0,
-    maxzoom: 22,
-    });
+    //afterMap.addLayer({
+    //id: 'earthengine',
+    //source: 'earthengine',
+    //type: 'raster',
+    //minzoom: 0,
+    //maxzoom: 22,
+    //});
     
     var mapillarySource = {
         type: 'vector',
