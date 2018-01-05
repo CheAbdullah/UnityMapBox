@@ -367,24 +367,24 @@ beforeMap.on('load', function() {
     }
 
     // add placeholder sources
-    map.addSource("startPoint", {
+    beforeMap.addSource("startPoint", {
         "type": "geojson",
         "data": blankFeature
     });
-    map.addSource("destPoint", {
+    beforeMap.addSource("destPoint", {
         "type": "geojson",
         "data": blankFeature
     });
-    map.addSource("route-normal", {
+    beforeMap.addSource("route-normal", {
         "type": "geojson",
         "data": blankFeature
     });
-    map.addSource("route-traffic", {
+    beforeMap.addSource("route-traffic", {
         "type": "geojson",
         "data": blankFeature
     });
     // add layers for the route and sample points 
-    map.addLayer({
+    beforeMap.addLayer({
         "id": "route-normal",
         "type": "line",
         "source": "route-normal",
@@ -398,7 +398,7 @@ beforeMap.on('load', function() {
             "line-opacity": 0.7
         }
     });
-    map.addLayer({
+    beforeMap.addLayer({
         "id": "route-traffic",
         "type": "line",
         "source": "route-traffic",
@@ -412,7 +412,7 @@ beforeMap.on('load', function() {
             "line-opacity": 0.7
         }
     });
-    map.addLayer({
+    beforeMap.addLayer({
         "id": "startPoint-shadow",
         "type": "circle",
         "source": "startPoint",
@@ -424,7 +424,7 @@ beforeMap.on('load', function() {
           "circle-blur": 0.8
         }
     });
-    map.addLayer({
+    beforeMap.addLayer({
         "id": "destPoint-shadow",
         "type": "circle",
         "source": "destPoint",
@@ -436,7 +436,7 @@ beforeMap.on('load', function() {
           "circle-blur": 0.8
         }
     });
-    map.addLayer({
+    beforeMap.addLayer({
         "id": "startPoint",
         "type": "circle",
         "source": "startPoint",
@@ -446,7 +446,7 @@ beforeMap.on('load', function() {
           "circle-color": "#54bc72"
         }
     });
-    map.addLayer({
+    beforeMap.addLayer({
         "id": "destPoint",
         "type": "circle",
         "source": "destPoint",
@@ -755,7 +755,7 @@ LotsOfPointsMode.toDisplayFeatures = function(state, geojson, display) {
   display(geojson);
 };
 
-map.on('click', function(e){
+beforeMap.on('click', function(e){
     var startPoint;
     var destinationPoint;
     if (start == undefined || start == null) {
@@ -769,10 +769,10 @@ map.on('click', function(e){
     } else {
         startPoint = undefined;
         destinationPoint = undefined;
-        map.getSource('destPoint').setData(blankFeature);
-        map.getSource('startPoint').setData(blankFeature);
-        map.getSource('route-normal').setData(blankFeature);
-        map.getSource('route-traffic').setData(blankFeature);
+        beforeMap.getSource('destPoint').setData(blankFeature);
+        beforeMap.getSource('startPoint').setData(blankFeature);
+        beforeMap.getSource('route-normal').setData(blankFeature);
+        beforeMap.getSource('route-traffic').setData(blankFeature);
     }
     start = startPoint;
     destination = destinationPoint;
@@ -780,11 +780,11 @@ map.on('click', function(e){
 });
 function plotStart(coords) {
   var coordPair = [coords.lng, coords.lat];
-  map.getSource('startPoint').setData(turf.featureCollection([turf.point(coordPair)]));
+  beforeMap.getSource('startPoint').setData(turf.featureCollection([turf.point(coordPair)]));
 }
 function plotDestination(coords) {
   var coordPair = [coords.lng, coords.lat];
-  map.getSource('destPoint').setData(turf.featureCollection([turf.point(coordPair)]));
+  beforeMap.getSource('destPoint').setData(turf.featureCollection([turf.point(coordPair)]));
 }
 function plotRoute(startCoords, destCoords) {
     client.getDirections([
@@ -797,7 +797,7 @@ function plotRoute(startCoords, destCoords) {
       geometries: 'geojson'
     }, function(err, results) {
       var routeGeo = turf.featureCollection([turf.feature(results.routes[0].geometry)])
-      map.getSource('route-normal').setData(routeGeo);
+      beforeMap.getSource('route-normal').setData(routeGeo);
     });
     client.getDirections([
       { latitude: startCoords.lat, longitude: startCoords.lng },
@@ -809,7 +809,7 @@ function plotRoute(startCoords, destCoords) {
       geometries: 'geojson'
     }, function(err, results) {
       var routeGeo = turf.featureCollection([turf.feature(results.routes[0].geometry)])
-      map.getSource('route-traffic').setData(routeGeo);
+      beforeMap.getSource('route-traffic').setData(routeGeo);
     });
 }
 
