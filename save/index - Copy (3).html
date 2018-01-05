@@ -194,43 +194,6 @@ function uploadFeatures(){
     }
 }
 
-// Build a marker from a simple GeoJSON object:
-var marker2 = L.mapbox.featureLayer({
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [-77.03231961893081,38.90446065122157]
-    },
-    properties: {
-        title: 'Hello world!',
-        'marker-color': '#f86767'
-    }
-})
-
-.on('ready', run)
-.addTo(map);
-
-// Iterate over the featureLayer we've called "marker"
-// and open its popup and update the popup content
-function run() {
-    marker2.eachLayer(function(l) {
-      l.openPopup();
-      var d = new Date(),
-            h = ("0" + d.getHours()).slice(-2),
-            m = ("0" + d.getMinutes()).slice(-2),
-            s = ("0" + d.getSeconds()).slice(-2);
-
-      var currentTime = "The current time is: </br><strong>" + h + ":" + m + ":" + s + "</strong>";
-      l.setPopupContent(currentTime);
-    });
-}
-
-// update the popup every second with the new time
-window.setInterval(function() {
-    run();
-}, 1000);
-
-
 </script>
 
 </body>
