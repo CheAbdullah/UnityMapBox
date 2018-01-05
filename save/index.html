@@ -162,7 +162,7 @@ function setFeatureId(){
 
 function getData(datasetId) {
     $.ajax({
-      url : 'https://evening-sierra-80988.herokuapp.com/dataset?datasetId=' + datasetId,
+      url : 'https://zuluportion.herokuapp.com?datasetId=' + datasetId,
       type : 'GET',
       dataType: 'json'
     })
@@ -178,7 +178,7 @@ function uploadFeatures(){
     for(i = 0; i < drawnData.features.length; i++){
 
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-        xmlhttp.open("POST", 'https://evening-sierra-80988.herokuapp.com/dataset');
+        xmlhttp.open("POST", 'https://zuluportion.herokuapp.com');
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({"feature":drawnData.features[i], "datasetId": "cirqs92m00hu8fgm8piqgihok"}));
 
@@ -206,7 +206,7 @@ var marker2 = L.mapbox.featureLayer({
         'marker-color': '#f86767'
     }
 })
-
+//
 .on('ready', run)
 .addTo(map);
 
