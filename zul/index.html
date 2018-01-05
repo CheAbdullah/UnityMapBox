@@ -128,6 +128,13 @@
     <label for='satellite-v9'>satellite</label>
 </div>
 
+
+
+<!-- 14.67/3.8109/103.34994/0/60 -->
+<!-- 16.96/53.347268/-6.259142/-143.2/53 -->
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+
 var beforeMap = new mapboxgl.Map({
     container: 'before',
     style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
@@ -154,10 +161,6 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // mousemove: true
 });
 
-<!-- 14.67/3.8109/103.34994/0/60 -->
-<!-- 16.96/53.347268/-6.259142/-143.2/53 -->
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 
 var Draw = mapboxgl.Draw();
 beforeMap.addControl(Draw);
