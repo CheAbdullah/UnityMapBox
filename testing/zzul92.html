@@ -6,8 +6,12 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.css' rel='stylesheet' />
+    
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
     <script src="mapbox-gl-draw.js"></script>
     <link href='mapbox-gl-draw.css' rel='stylesheet' />
+    
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -215,10 +219,7 @@ body * {
 </div>
 <div id='map1'></div>
 <div id='map2'></div>
-<div class='calculation-box'>
-    <p>Draw a polygon using the draw tools.</p>
-    <div id='calculated-area'></div>
-</div>
+
 <!-- 14.67/3.8109/103.34994/0/60 -->
 <!-- 16.96/53.347268/-6.259142/-143.2/53 -->
 <script>
@@ -584,19 +585,7 @@ for (var i = 0; i < inputs.length; i++) {
 var Draw = mapboxgl.Draw();
 beforeMap.addControl(Draw);
 
-function updateArea(e) {
-    var data = draw.getAll();
-    var answer = document.getElementById('calculated-area');
-    if (data.features.length > 0) {
-        var area = turf.area(data);
-        // restrict to area to 2 decimal points
-        var rounded_area = Math.round(area*100)/100;
-        answer.innerHTML = '<p><strong>' + rounded_area + '</strong></p><p>square meters</p>';
-    } else {
-        answer.innerHTML = '';
-        if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
-    }
-}
+
 
 var LotsOfPointsMode = {};
 
