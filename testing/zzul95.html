@@ -241,7 +241,7 @@ body * {
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
 var beforeMap = new mapboxgl.Map({
     container: 'before',
-    style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
+    style: 'mapbox://styles/danswick/cilnegnzr00439gkf7urxz0xk',
     center: [103.34994,3.8109],
     zoom: 14.67,
     pitch: 60,
@@ -357,7 +357,7 @@ afterMap.on('load', function() {
     
 
 });
-var switchy = document.getElementById('remover');
+
 beforeMap.on('load', function() {
     // Insert the layer beneath any symbol layer.
     var layers = beforeMap.getStyle().layers;
@@ -370,7 +370,7 @@ beforeMap.on('load', function() {
         }
     }
     
-    
+    var switchy = document.getElementById('remover');
     switchy.addEventListener("click", function(){
         switchy = document.getElementById('remover');
         if (switchy.className === 'on') {
