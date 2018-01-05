@@ -41,6 +41,7 @@ map.on('load', function() {
             break;
         }
     }
+    var Draw = mapboxgl.Draw();
 
     map.addLayer({
         'id': '3d-buildings',
@@ -67,9 +68,10 @@ map.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
+    map.addControl(Draw);
 });
-var Draw = mapboxgl.Draw();
-map.addControl(Draw);
+
+
 
 </script>
 
