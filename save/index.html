@@ -52,7 +52,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY
 var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g', //stylesheet location
-    center: [9.096173491685818,39.233140189548976], // starting position
+    center: [-77.03231961893081,38.90446065122157], // starting position
     zoom: 11 // starting zoom
 });
 var geoJsonFeatures;
@@ -69,6 +69,21 @@ var source = new mapboxgl.GeoJSONSource({
 
 map.on('load', function(){
     map.addControl(Draw);
+
+    map.addSource('raster-tiles', {
+        type: "raster",
+        tiles: [
+            "https://api.mapbox.com/v4/examples.bike-locations/{z}/{x}/{y}@2x.png?access_token=" + mapboxgl.accessToken
+        ],
+        tileSize: 256
+    });
+
+    map.addLayer({
+        'id': 'bike-locations',
+        'type': 'raster',
+        'source': 'raster-tiles'
+    // The ID of an existing layer to insert the new layer before. If this argument is omitted, the layer will be inserted before every existing layer.
+    }, 'place-neighbourhood')
 
     map.addSource('my-dataset', source);
     map.addLayer({
