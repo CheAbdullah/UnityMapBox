@@ -588,8 +588,14 @@ var draw = new MapboxDraw({
 beforeMap.addControl(draw);
 
 beforeMap.on('draw.create', updateArea);
+beforeMap.on('draw_line_string.create', updateArea);
+beforeMap.on('draw_polygon.create', updateArea);
+beforeMap.on('draw_point.create', updateArea);
 beforeMap.on('draw.delete', updateArea);
 beforeMap.on('draw.update', updateArea);
+
+var Draw = mapboxgl.Draw();
+beforeMap.addControl(Draw);
 
 function updateArea(e) {
     var data = draw.getAll();
