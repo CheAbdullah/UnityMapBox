@@ -106,6 +106,10 @@ body * {
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
 
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
+
 
 <pre id='info'></pre>
 <div id='before' class='map'>
@@ -134,7 +138,10 @@ body * {
 </div>
 <div id='map1'></div>
 <div id='map2'></div>
-
+<div class='calculation-box'>
+    <p>Draw a polygon using the draw tools.</p>
+    <div id='calculated-area'></div>
+</div>
 <!-- 14.67/3.8109/103.34994/0/60 -->
 <!-- 16.96/53.347268/-6.259142/-143.2/53 -->
 <script>
@@ -495,6 +502,25 @@ for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
+map.addControl(draw);
+
+map.on('draw.create', updateArea);
+map.on('draw.delete', updateArea);
+map.on('draw.update', updateArea);
+
+function updateArea(e) {
+    var data = draw.getAll();
+    var answer = document.getElementById('calculated-area');
+    if (data.features.length > 0) {
+        var area = turf.area(data);
+        // restrict to area to 2 decimal points
+        var rounded_area = Math.round(area*100)/100;
+        answer.innerHTML = '<p><strong>' + rounded_area + '</strong></p><p>square meters</p>';
+    } else {
+        answer.innerHTML = '';
+        if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
+    }
+}
 
 </script>
 
