@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.css' rel='stylesheet' />
+    <script type="text/javascript" src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+    <script type="text/javascript" src="mapbox-sdk.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/danswick/ciyc9zp4n004s2qmkkdpykukw', //stylesheet location
+    center: [-122.15699024976558,37.591657816085004], // starting position
+    zoom: 8.4 // starting zoom
+});
+map.addControl(new mapboxgl.NavigationControl());
+
+var client = new MapboxClient(mapboxgl.accessToken);
+
+var start,
+    destination;
+var route = [];
+var blankFeature = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-0.3515625,-5.266007882805485]}}]};
+
+map.on('load', function() {
+    // add placeholder sources
+    map.addSource("startPoint", {
+        "type": "geojson",
+        "data": blankFeature
+    });
+    map.addSource("destPoint", {
+        "type": "geojson",
+        "data": blankFeature
+    });
+    map.addSource("route-normal", {
+        "type": "geojson",
+        "data": blankFeature
+    });
+    map.addSource("route-traffic", {
+        "type": "geojson",
+        "data": blankFeature
+    });
+
+    // add layers for the route and sample points 
+    map.addLayer({
+        "id": "route-normal",
+        "type": "line",
+        "source": "route-normal",
+        "layout": {
+            "line-join": "round",
+            "line-cap": "round"
+        },
+        "paint": {
+            "line-color": "#FD490A",
+            "line-width": 6,
+            "line-opacity": 0.7
+        }
+    });
+    map.addLayer({
+        "id": "route-traffic",
+        "type": "line",
+        "source": "route-traffic",
+        "layout": {
+            "line-join": "round",
+            "line-cap": "round"
+        },
+        "paint": {
+            "line-color": "#0286C7",
+            "line-width": 6,
+            "line-opacity": 0.7
+        }
+    });
+    map.addLayer({
+        "id": "startPoint-shadow",
+        "type": "circle",
+        "source": "startPoint",
+        "layout": {},
+        "paint": {
+          "circle-radius": 15,
+          "circle-color": "rgba(0,0,0,0.5)",
+          "circle-opacity": 0.7,
+          "circle-blur": 0.8
+        }
+
+    });
+    map.addLayer({
+        "id": "destPoint-shadow",
+        "type": "circle",
+        "source": "destPoint",
+        "layout": {},
+        "paint": {
+          "circle-radius": 15,
+          "circle-color": "rgba(0,0,0,0.5)",
+          "circle-opacity": 0.7,
+          "circle-blur": 0.8
+        }
+    });
+    map.addLayer({
+        "id": "startPoint",
+        "type": "circle",
+        "source": "startPoint",
+        "layout": {},
+        "paint": {
+          "circle-radius": 10,
+          "circle-color": "#54bc72"
+        }
+
+    });
+    map.addLayer({
+        "id": "destPoint",
+        "type": "circle",
+        "source": "destPoint",
+        "layout": {},
+        "paint": {
+          "circle-radius": 10,
+          "circle-color": "#5aafe8"
+        }
+    });
+});
+
+
+map.on('click', function(e){
+    var startPoint;
+    var destinationPoint;
+
+    if (start == undefined || start == null) {
+        startPoint = e.lngLat;
+        plotStart(startPoint);
+    } else if (start !== null && (destination == undefined || destination == null) ) {
+        startPoint = start;
+        destinationPoint = e.lngLat;
+        plotDestination(destinationPoint);
+        plotRoute(startPoint, destinationPoint);
+    } else {
+        startPoint = undefined;
+        destinationPoint = undefined;
+        map.getSource('destPoint').setData(blankFeature);
+        map.getSource('startPoint').setData(blankFeature);
+        map.getSource('route-normal').setData(blankFeature);
+        map.getSource('route-traffic').setData(blankFeature);
+    }
+
+    start = startPoint;
+    destination = destinationPoint;
+    console.log(startPoint + ", " + destinationPoint);
+});
+
+
+
+function plotStart(coords) {
+  var coordPair = [coords.lng, coords.lat];
+  map.getSource('startPoint').setData(turf.featureCollection([turf.point(coordPair)]));
+}
+function plotDestination(coords) {
+  var coordPair = [coords.lng, coords.lat];
+  map.getSource('destPoint').setData(turf.featureCollection([turf.point(coordPair)]));
+}
+function plotRoute(startCoords, destCoords) {
+    client.getDirections([
+      { latitude: startCoords.lat, longitude: startCoords.lng },
+      { latitude: destCoords.lat, longitude: destCoords.lng }
+    ], {
+      profile: 'driving',
+      instructions: 'html',
+      alternatives: false,
+      geometries: 'geojson'
+    }, function(err, results) {
+      var routeGeo = turf.featureCollection([turf.feature(results.routes[0].geometry)])
+      map.getSource('route-normal').setData(routeGeo);
+    });
+
+    client.getDirections([
+      { latitude: startCoords.lat, longitude: startCoords.lng },
+      { latitude: destCoords.lat, longitude: destCoords.lng }
+    ], {
+      profile: 'driving-traffic',
+      instructions: 'html',
+      alternatives: false,
+      geometries: 'geojson'
+    }, function(err, results) {
+      var routeGeo = turf.featureCollection([turf.feature(results.routes[0].geometry)])
+      map.getSource('route-traffic').setData(routeGeo);
+    });
+
+}
+
+</script>
+
+</body>
+</html>
