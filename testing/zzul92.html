@@ -4,8 +4,8 @@
     <meta charset='utf-8' />
     <title>Swipe between maps</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.css' rel='stylesheet' />
     <script src="mapbox-gl-draw.js"></script>
     <link href='mapbox-gl-draw.css' rel='stylesheet' />
     <style>
@@ -222,8 +222,8 @@ body * {
 <!-- 14.67/3.8109/103.34994/0/60 -->
 <!-- 16.96/53.347268/-6.259142/-143.2/53 -->
 <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og';
-    var beforeMap = new mapboxgl.Map({
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlenVsa2hhaXJpIiwiYSI6ImNqYXlob25nMjEzZHkyd3Noam1jc3EwMm4ifQ.RijbHD5-xQYubqDS9dOjyQ'; // [-74.0066, 40.7135],
+var beforeMap = new mapboxgl.Map({
     container: 'before',
     style: 'mapbox://styles/mapbox/cjaudgl840gn32rnrepcb9b9g',
     center: [103.34994,3.8109],
