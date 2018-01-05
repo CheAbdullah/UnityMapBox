@@ -175,7 +175,7 @@ var beforeMap = new mapboxgl.Map({
 
 var afterMap = new mapboxgl.Map({
     container: 'after',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/streets-v10',
     center: [103.34994,3.8109],
     zoom: 14.67,
     pitch: 60,
@@ -525,11 +525,11 @@ var draw = new MapboxDraw({
         trash: true
     }
 });
-map.addControl(draw);
+beforeMap.addControl(draw);
 
-map.on('draw.create', updateArea);
-map.on('draw.delete', updateArea);
-map.on('draw.update', updateArea);
+beforeMap.on('draw.create', updateArea);
+beforeMap.on('draw.delete', updateArea);
+beforeMap.on('draw.update', updateArea);
 
 function updateArea(e) {
     var data = draw.getAll();
