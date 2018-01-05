@@ -92,6 +92,7 @@
             background-image: url('cat-grumpy-icon.png');
             background-position: center center;
             background-size: contain;
+            z-index:105;
         }
     </style>
 </head>
@@ -316,6 +317,18 @@ afterMap.on('load', function() {
             'line-width':   2
         },
     });
+
+    afterMap.addSource('dem', {
+        "type": "raster-dem",
+        "url": "mapbox://mapbox.terrain-rgb"
+    });
+    afterMap.addLayer({
+        "id": "hillshading",
+        "source": "dem",
+        "type": "hillshade"
+    // insert below waterway-river-canal-shadow;
+    // where hillshading sits in the Mapbox Outdoors style
+    }, 'waterway-river-canal-shadow');
 
     //afterMap.addSource("quakes", {
     //    "type": "geojson",
