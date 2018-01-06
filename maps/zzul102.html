@@ -1113,9 +1113,9 @@ function addLayer(name, id) {
 // Add zoom and rotation controls to the map.
 beforeMap.addControl(new mapboxgl.Navigation());
 
-beforeMap.on('load', function() {
+afterMap.on('load', function() {
     // Insert the layer beneath any symbol layer.
-    var layers = beforeMap.getStyle().layers;
+    var layers = afterMap.getStyle().layers;
 
     var labelLayerId;
     for (var i = 0; i < layers.length; i++) {
@@ -1125,7 +1125,7 @@ beforeMap.on('load', function() {
         }
     }
 
-    beforeMap.addLayer({
+    afterMap.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
         'source-layer': 'building',
