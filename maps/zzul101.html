@@ -12,6 +12,7 @@
 <body>
 
 <style>
+    
     #menu {
         background: #fff;
         position: absolute;
@@ -48,6 +49,25 @@
     #menu a.active:hover {
         background: #3074a4;
     }
+
+    body {
+    overflow: hidden;
+    }
+
+    body * {
+    -webkit-touch-callout: none;
+     -webkit-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+}
+
+    .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+
 </style>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
