@@ -1451,6 +1451,25 @@ beforeMap.on('load', function() {
         }
     });
 
+    beforeMap.addLayer({
+        "id": "terrain-data",
+        "type": "fill-extrusion",
+        "source": {
+            type: 'vector',
+            url: 'mapbox://mapbox.mapbox-terrain-v2'
+        },
+        "source-layer": "contour",
+        'minzoom': 8,
+        'paint': {
+            'fill-extrusion-color': '#eee',
+            'fill-extrusion-height': {
+                'type': 'identity',
+                'property': 'ele'
+            },
+            'fill-extrusion-opacity':.6
+        }
+    });
+
 
     var switchy = document.getElementById('remover');
     switchy.addEventListener("click", function(){
