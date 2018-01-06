@@ -17,6 +17,45 @@
         background: #fff;
         padding: 10px;
         font-family: 'Open Sans', sans-serif;}
+
+        #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+    }
+    #menu a:last-child {
+        border: none;
+    }
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+    #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+    }
+    #menu a.active:hover {
+        background: #3074a4;
+    }
+
+
         #map-ui {
     position:absolute;
     top:200px;left:5px;
@@ -54,10 +93,10 @@
         color:#FFF;
         }
         .calculation-box {
-        height: 75px;
+        height: 125px;
         width: 150px;
         position: absolute;
-        bottom: 40px;
+        bottom: 150px;
         left: 10px;
         background-color: rgba(255, 255, 255, .9);
         padding: 15px;
@@ -367,6 +406,12 @@ body * {
                 <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
             </path>
         </svg>
+    </div>
+    <div id='menu'>
+        <input id='sarahmlevine/cihs248is00aa95lylu5a7x1d' type='radio' name='rtoggle' value='satellite' checked='checked'>
+        <label for='satellite'>satellite layer</label>
+        <input id='sarahmlevine/cihvjue4p00h095lyyyyv2347' type='radio' name='rtoggle' value='basic'>
+        <label for='basic'>streets</label>
     </div>
 </div>
 <div>--</div>
@@ -1289,8 +1334,85 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
     // mousemove: true
 });
 
+
+
 var mindate = new Date("10/01/2017").getTime()
 var maxdate = new Date("01/04/2018").getTime()
+
+var layerList = document.getElementById('menu');
+var inputs = layerList.getElementsByTagName('input');
+function switchLayer(layer) {
+    var layerId = layer.target.id;
+    afterMap.setStyle('mapbox://styles/' + layerId);
+}
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+}
+afterMap.on('style.load', function () {
+    afterMap.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    afterMap.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    });
+    afterMap.addSource('hillshade', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    afterMap.addLayer({
+        'id': 'hillshade',
+        'type': 'line',
+        'source': 'hillshade',
+        'source-layer': 'hillshade',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color:': '#877b59',
+            'line-width': 1,
+            'line-opacity': 0.6,
+        }
+    });
+});
+addLayer('Contours', 'contours');
+addLayer('Hillshade', 'hillshade');
+function addLayer(name, id) {
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = name;
+    link.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var visibility = map.getLayoutProperty(id, 'visibility');
+        if (visibility === 'visible') {
+            afterMap.setLayoutProperty(id, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            afterMap.setLayoutProperty(id, 'visibility', 'visible');
+        }
+    };
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+}
+// Add zoom and rotation controls to the map.
+afterMap.addControl(new mapboxgl.Navigation());
+
+
 afterMap.on('load', function() {
 
     // add source to map
