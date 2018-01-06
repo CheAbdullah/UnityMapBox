@@ -12,13 +12,13 @@
         .mapboxgl-popup {
         max-width: 400px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;}
-        #menu {
+        #menus {
         padding: 10px;
         background: #fff;
         position: absolute;
         z-index: 1;
-        top: 150px;
-        right: 10px;
+        top: 250px;
+        right: 50px;
         height:250px;
         border-radius: 3px;
         width: 120px;
@@ -26,7 +26,7 @@
         font-family: 'Open Sans', sans-serif;
         }
 
-        #menus {
+        #menu {
         background: #fff;
         position: absolute;
         z-index: 1;
@@ -38,7 +38,7 @@
         border: 1px solid rgba(0,0,0,0.4);
         font-family: 'Open Sans', sans-serif;
     }
-        #menus a {
+        #menu a {
         font-size: 13px;
         color: #404040;
         display: block;
@@ -49,18 +49,18 @@
         border-bottom: 1px solid rgba(0,0,0,0.25);
         text-align: center;
     }
-    #menus a:last-child {
+    #menu a:last-child {
         border: none;
     }
-    #menus a:hover {
+    #menu a:hover {
         background-color: #f8f8f8;
         color: #404040;
     }
-    #menus a.active {
+    #menu a.active {
         background-color: #3887be;
         color: #ffffff;
     }
-    #menus a.active:hover {
+    #menu a.active:hover {
         background: #3074a4;
     }
         #map-ui {
@@ -1290,6 +1290,40 @@ afterMap.on('load', function() {
         }
     });
 
+    afterMap.addLayer({
+        'id': 'contourst',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    });
+    afterMap.addSource('hillshade', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    afterMap.addLayer({
+        'id': 'hillshadet',
+        'type': 'line',
+        'source': 'hillshade',
+        'source-layer': 'hillshade',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color:': '#877b59',
+            'line-width': 1,
+            'line-opacity': 0.6,
+        }
+    });
+
 
     afterMap.addSource('counties', {
         'type': 'geojson',
@@ -1363,8 +1397,8 @@ afterMap.on('load', function() {
     
 
 });
-addLayer('Contours', 'contours');
-addLayer('Hillshade', 'hillshade');
+addLayer('Contours', 'contourst');
+addLayer('Hillshade', 'hillshadet');
 function addLayer(name, id) {
     var link = document.createElement('a');
     link.href = '#';
@@ -1431,39 +1465,7 @@ beforeMap.on('load', function() {
         type: 'vector',
         url: 'mapbox://mapbox.mapbox-terrain-v2'
     });
-    beforeMap.addLayer({
-        'id': 'contours',
-        'type': 'line',
-        'source': 'contours',
-        'source-layer': 'contour',
-        'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color': '#877b59',
-            'line-width': 1
-        }
-    });
-    beforeMap.addSource('hillshade', {
-        type: 'vector',
-        url: 'mapbox://mapbox.mapbox-terrain-v2'
-    });
-    beforeMap.addLayer({
-        'id': 'hillshade',
-        'type': 'line',
-        'source': 'hillshade',
-        'source-layer': 'hillshade',
-        'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color:': '#877b59',
-            'line-width': 1,
-            'line-opacity': 0.6,
-        }
-    });
+    
 
     beforeMap.addLayer({
         "id": "terrain-data",
