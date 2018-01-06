@@ -1,6 +1,6 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og';
-var map = new mapboxgl.Map({
-    container: 'map', // container id
+var afterMap = new mapboxgl.Map({
+    container: 'after', // container id
     style: 'mapbox://styles/mapbox/light-v9', //stylesheet location
     center: [-122.3096,37.7894], // starting position
     zoom: 11 // starting zoom
@@ -8,9 +8,9 @@ var map = new mapboxgl.Map({
 
 
 
-map.on('load', function(){
+afterMap.on('load', function(){
 
-    map.addSource('trafficSource', {
+    afterMap.addSource('trafficSource', {
         type: 'vector',
         url: 'mapbox://mapbox.mapbox-traffic-v1'
     });
@@ -29,6 +29,6 @@ function addTraffic(){
     });
 
     for(var i = 0; i < trafficLayers.length; i++) {
-        map.addLayer(trafficLayers[i], firstPOILabel[0].id);
+        afterMap.addLayer(trafficLayers[i], firstPOILabel[0].id);
     }
 }
