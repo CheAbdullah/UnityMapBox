@@ -299,7 +299,7 @@ body * {
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og'; // [-74.0066, 40.7135],
 var beforeMap = new mapboxgl.Map({
     container: 'before',
-    style: 'mapbox://styles/danswick/cilnegnzr00439gkf7urxz0xk',
+    style: 'mapbox://mapbox.mapbox-streets-v7',
     center: [103.34994,3.8109],
     zoom: 14.67,
     pitch: 60,
@@ -315,7 +315,7 @@ var afterMap = new mapboxgl.Map({
         "name": "Basic",
         "sources": {
             "mapbox": {
-                "url": "mapbox://mapbox.mapbox-streets-v7",
+                "url": "mapbox://styles/danswick/cilnegnzr00439gkf7urxz0xk",
                 "type": "vector"
             }, 
             "simple-tiles": {
@@ -1244,7 +1244,7 @@ afterMap.on('load', function() {
                 15, 0,
                 15.05, ["get", "min_height"]
             ],
-            'fill-extrusion-opacity': .6
+            'fill-extrusion-opacity': .8
         }
     }, labelLayerId);
 
@@ -1395,6 +1395,20 @@ afterMap.on('load', function() {
     //'Loss': L.tileLayer('http://earthengine.google.org/static/hansen_2013/loss/{z}/{x}/{y}.png'),
     //'Gain': L.tileLayer('http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png')
 
+    var switchy = document.getElementById('remover');
+    switchy.addEventListener("click", function(){
+        switchy = document.getElementById('remover');
+        if (switchy.className === 'on') {
+            switchy.setAttribute('class', 'off');
+            afterMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'none');
+            switchy.innerHTML = 'Add satellite';
+        } else {
+            switchy.setAttribute('class', 'on');
+            afterMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'visible');
+            switchy.innerHTML = 'Remove satellite';
+        }
+    });
+
     
 
 });
@@ -1520,22 +1534,6 @@ beforeMap.on('load', function() {
         }
     });
 
-
-    var switchy = document.getElementById('remover');
-    switchy.addEventListener("click", function(){
-        switchy = document.getElementById('remover');
-        if (switchy.className === 'on') {
-            switchy.setAttribute('class', 'off');
-            beforeMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'none');
-            switchy.innerHTML = 'Add satellite';
-        } else {
-            switchy.setAttribute('class', 'on');
-            beforeMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'visible');
-            switchy.innerHTML = 'Remove satellite';
-        }
-    });
-
-    
 
     beforeMap.addSource('contours', {
         type: 'vector',
