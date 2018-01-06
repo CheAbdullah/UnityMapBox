@@ -1404,9 +1404,9 @@ afterMap.on('load', function() {
 
 });
 
-addLayer('Contours', 'contours');
-addLayer('Hillshade', 'hillshade');
-function addLayer(name, id) {
+addLayers('Contours', 'contours');
+addLayers('Hillshade', 'hillshade');
+function addLayers(name, id) {
     var link = document.createElement('a');
     link.href = '#';
     link.className = 'active';
@@ -1426,8 +1426,7 @@ function addLayer(name, id) {
     var layers = document.getElementById('menus');
     layers.appendChild(link);
 }
-// Add zoom and rotation controls to the map.
-afterMap.addControl(new mapboxgl.Navigation());
+
 
 beforeMap.on('load', function() {
     // Insert the layer beneath any symbol layer.
