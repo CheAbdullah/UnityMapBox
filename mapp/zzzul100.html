@@ -1291,44 +1291,6 @@ afterMap.on('load', function() {
         }
       });
 
-      afterMap.addSource('contours', {
-        type: 'vector',
-        url: 'mapbox://mapbox.mapbox-terrain-v2'
-    });
-    afterMap.addLayer({
-        'id': 'contours',
-        'type': 'line',
-        'source': 'contours',
-        'source-layer': 'contour',
-        'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color': '#877b59',
-            'line-width': 1
-        }
-    });
-    afterMap.addSource('hillshade', {
-        type: 'vector',
-        url: 'mapbox://mapbox.mapbox-terrain-v2'
-    });
-    afterMap.addLayer({
-        'id': 'hillshade',
-        'type': 'line',
-        'source': 'hillshade',
-        'source-layer': 'hillshade',
-        'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color:': '#877b59',
-            'line-width': 1,
-            'line-opacity': 0.6,
-        }
-    });
-
     //afterMap.addSource("quakes", {
     //    "type": "geojson",
     //    "data": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
@@ -1413,20 +1375,6 @@ beforeMap.on('load', function() {
         }
     }
     
-    var switchy = document.getElementById('remover');
-    switchy.addEventListener("click", function(){
-        switchy = document.getElementById('remover');
-        if (switchy.className === 'on') {
-            switchy.setAttribute('class', 'off');
-            beforeMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'none');
-            switchy.innerHTML = 'Add satellite';
-        } else {
-            switchy.setAttribute('class', 'on');
-            beforeMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'visible');
-            switchy.innerHTML = 'Remove satellite';
-        }
-    });
-
     beforeMap.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
@@ -1452,6 +1400,60 @@ beforeMap.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
+
+    beforeMap.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    beforeMap.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    });
+    beforeMap.addSource('hillshade', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    beforeMap.addLayer({
+        'id': 'hillshade',
+        'type': 'line',
+        'source': 'hillshade',
+        'source-layer': 'hillshade',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color:': '#877b59',
+            'line-width': 1,
+            'line-opacity': 0.6,
+        }
+    });
+
+
+    var switchy = document.getElementById('remover');
+    switchy.addEventListener("click", function(){
+        switchy = document.getElementById('remover');
+        if (switchy.className === 'on') {
+            switchy.setAttribute('class', 'off');
+            beforeMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'none');
+            switchy.innerHTML = 'Add satellite';
+        } else {
+            switchy.setAttribute('class', 'on');
+            beforeMap.setLayoutProperty('mapbox-mapbox-satellite', 'visibility', 'visible');
+            switchy.innerHTML = 'Remove satellite';
+        }
+    });
+
     
 
     beforeMap.addSource('contours', {
@@ -1646,7 +1648,6 @@ var inputs = layerList.getElementsByTagName('input');
 function switchLayer(layer) {
     var layerId = layer.target.id;
     beforeMap.setStyle('mapbox://styles/mapbox/' + layerId);
-    afterMap.setStyle('mapbox://styles/mapbox/' + layerId);
 }
 
 for (var i = 0; i < inputs.length; i++) {
