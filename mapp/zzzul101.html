@@ -17,7 +17,19 @@
         background: #fff;
         padding: 10px;
         font-family: 'Open Sans', sans-serif;}
-        #menu a {
+
+        #menus {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 100px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+        #menus a {
         font-size: 13px;
         color: #404040;
         display: block;
@@ -28,18 +40,18 @@
         border-bottom: 1px solid rgba(0,0,0,0.25);
         text-align: center;
     }
-    #menu a:last-child {
+    #menus a:last-child {
         border: none;
     }
-    #menu a:hover {
+    #menus a:hover {
         background-color: #f8f8f8;
         color: #404040;
     }
-    #menu a.active {
+    #menus a.active {
         background-color: #3887be;
         color: #ffffff;
     }
-    #menu a.active:hover {
+    #menus a.active:hover {
         background: #3074a4;
     }
         #map-ui {
