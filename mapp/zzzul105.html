@@ -31,7 +31,8 @@
         position: absolute;
         z-index: 1;
         top: 100px;
-        right: 10px;
+        right: 50px;
+        height:250px;
         border-radius: 3px;
         width: 120px;
         border: 1px solid rgba(0,0,0,0.4);
@@ -267,7 +268,7 @@ body * {
       //</div> -->
 </div>
 <div id='after' class='map'></div>
-<div id='menu'>
+<div id='menus'>
     <input id='cjaudgl840gn32rnrepcb9b9g' type='radio' name='rtoggle' value='cjaudgl840gn32rnrepcb9b9g'' checked='checked'>
     <label for='cjaudgl840gn32rnrepcb9b9g'>basic</label>
     <input id='streets-v9' type='radio' name='rtoggle' value='streets-v9'>
@@ -280,15 +281,16 @@ body * {
     <label for='dark-v9'>dark</label>
     <input id='satellite-v9' type='radio' name='rtoggle' value='satellite-v9'>
     <label for='satellite-v9'>satellite</label>
-    <div>
+</div>
+<div id='menu'>
     <input id='sarahmlevine/cihs248is00aa95lylu5a7x1d' type='radio' name='rtoggle' value='satellite' checked='checked'>
     <label for='satellite'>satellite layer</label>
+    <div>
     <input id='sarahmlevine/cihvjue4p00h095lyyyyv2347' type='radio' name='rtoggle' value='basic'>
     <label for='basic'>streets</label>
+    </div>
 </div>
-</div>
-<div id='map1'></div>
-<div id='map2'></div>
+
 <div class='calculation-box'>
     <p>Draw a polygon using the draw tools.</p>
     <div id='calculated-area'></div>
@@ -1685,7 +1687,7 @@ beforeMap.on('mouseleave', 'places', function() {
     popup.remove();
 });
 
-var layerList = document.getElementById('menu');
+var layerList = document.getElementById('menus');
 var inputs = layerList.getElementsByTagName('input');
 
 function switchLayer(layer) {
