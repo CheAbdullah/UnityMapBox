@@ -1209,9 +1209,30 @@ afterMap.on('load', function() {
         "id": "hillshading",
         "source": "dem",
         "type": "hillshade"
+
+    
+        
     // insert below waterway-river-canal-shadow;
     // where hillshading sits in the Mapbox Outdoors style
     }, 'waterway-river-canal-shadow');
+
+    afterMap.addLayer({
+        "id": "terrain-data",
+        "type": "line",
+        "source": {
+            type: 'vector',
+            url: 'mapbox://mapbox.mapbox-terrain-v2'
+        },
+        "source-layer": "contour",
+        "layout": {
+            "line-join": "round",
+            "line-cap": "round"
+        },
+        "paint": {
+            "line-color": "#ff69b4",
+            "line-width": 1
+        }
+    });
 
     //afterMap.addSource("quakes", {
     //    "type": "geojson",
