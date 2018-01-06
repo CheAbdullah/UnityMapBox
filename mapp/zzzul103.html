@@ -1379,7 +1379,7 @@ function addLayer(name, id) {
 beforeMap.on('load', function() {
     
     // Insert the layer beneath any symbol layer.
-    var layers = map.getStyle().layers;
+    var layers = beforeMap.getStyle().layers;
 
     var labelLayerId;
     for (var i = 0; i < layers.length; i++) {
@@ -1389,7 +1389,7 @@ beforeMap.on('load', function() {
         }
     }
 
-    map.addLayer({
+    beforeMap.addLayer({
         'id': '3d-buildings',
         'source': 'composite',
         'source-layer': 'building',
