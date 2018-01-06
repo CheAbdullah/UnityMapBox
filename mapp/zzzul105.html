@@ -99,7 +99,7 @@
         color:#FFF;
         }
         .calculation-box {
-        height: 75px;
+        height: 15px;
         width: 150px;
         position: absolute;
         bottom: 40px;
@@ -280,10 +280,12 @@ body * {
     <label for='dark-v9'>dark</label>
     <input id='satellite-v9' type='radio' name='rtoggle' value='satellite-v9'>
     <label for='satellite-v9'>satellite</label>
+    <div>
     <input id='sarahmlevine/cihs248is00aa95lylu5a7x1d' type='radio' name='rtoggle' value='satellite' checked='checked'>
     <label for='satellite'>satellite layer</label>
     <input id='sarahmlevine/cihvjue4p00h095lyyyyv2347' type='radio' name='rtoggle' value='basic'>
     <label for='basic'>streets</label>
+</div>
 </div>
 <div id='map1'></div>
 <div id='map2'></div>
@@ -1721,7 +1723,7 @@ function updateArea(e) {
         var area = turf.area(data);
         // restrict to area to 2 decimal points
         var rounded_area = Math.round(area*100)/100;
-        answer.innerHTML = '<p><strong>' + rounded_area + '</strong></p><p>square meters</p>';
+        answer.innerHTML = ''; // <p><strong>' + rounded_area + '</strong></p><p>square meters</p>';
     } else {
         answer.innerHTML = '';
         if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
