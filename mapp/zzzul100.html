@@ -260,7 +260,6 @@ body * {
     <label for='dark-v9'>dark</label>
     <input id='satellite-v9' type='radio' name='rtoggle' value='satellite-v9'>
     <label for='satellite-v9'>satellite</label>
-    <label>---------------------</label>
     <input id='sarahmlevine/cihs248is00aa95lylu5a7x1d' type='radio' name='rtoggle' value='satellite' checked='checked'>
     <label for='satellite'>satellite layer</label>
     <input id='sarahmlevine/cihvjue4p00h095lyyyyv2347' type='radio' name='rtoggle' value='basic'>
@@ -1647,6 +1646,7 @@ var inputs = layerList.getElementsByTagName('input');
 function switchLayer(layer) {
     var layerId = layer.target.id;
     beforeMap.setStyle('mapbox://styles/mapbox/' + layerId);
+    afterMap.setStyle('mapbox://styles/mapbox/' + layerId);
 }
 
 for (var i = 0; i < inputs.length; i++) {
