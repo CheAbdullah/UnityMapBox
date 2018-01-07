@@ -1233,7 +1233,7 @@ beforeMap.addControl(new mapboxgl.Navigation());
 
 afterMap.on('load', function() {
     // Insert the layer beneath any symbol layer.
-    var layers = afterMap.getStyle().layers;
+    var layers = map.getStyle().layers;
 
     var labelLayerId;
     for (var i = 0; i < layers.length; i++) {
