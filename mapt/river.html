@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.2/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.2/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+    #inputContainer {
+        width: 20em;
+        padding: 0.5em 1em;
+        z-index: 5;
+        position: absolute; top: 0; bottom: 0; right: 0;
+        overflow: scroll;
+        font-family: 'Fira Sans';
+    }
+    .playground-input {
+        width: 90%;
+        background-color: #fff;
+        margin: 0.5em auto;
+        padding: 1em;
+        display: block;
+        border-radius: 0.1em;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    }
+
+    #remover {
+        width: 50%;
+        margin: 0 auto;
+        background-color: #fb5b3f;
+        color: #fff;
+        font-weight: bold;
+        padding: 0.5em;
+        border: 2px solid #fff;
+        border-radius: 0.5em;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+    #remover:hover {
+        background-color: salmon;
+    }
+
+    #colorizer {
+        list-style-type: none;
+        height: 5em;
+    }
+    #colorizer p { margin: 0 0 0.5em 0; }
+
+    .color-swatch {
+        height: 3em;
+        width: 20%;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        float: right;
+    }
+    #opacityForm {
+        z-index: 2;
+    }
+    .playground-input input {
+        width: 100%;
+    }
+    .playground-input p { margin: 0.5em 0 1em 0; }
+
+    #dasharrayForm div * {
+        display: inline-block;
+    }
+    #dasharrayForm input { width: 70%; float: right; }
+    #dasharrayForm p { width: 25%; margin: 0 0 0.5em 0; }
+    #dasharrayForm span { width: 3em; display: inline; }
+
+</style>
+<div id='map'></div>
+<div id="inputContainer">
+    <div class="playground-input">
+        <p>Layer visibility:</p>
+        <div id="remover" class="on">Remove trails</div>
+    </div>
+    <div id="colorizer" class="playground-input">
+        <p>Fill color:</p>
+        <div class="color-swatch" onclick="switchColor('#01665e', 'water')" style="background-color: #01665e"></div>
+        <div class="color-swatch" onclick="switchColor('#fee08b', 'water')" style="background-color: #fee08b"></div>
+        <div class="color-swatch" onclick="switchColor('#b2182b', 'water')" style="background-color: #b2182b"></div>
+        <div class="color-swatch" onclick="switchColor('#4575b4', 'water')" style="background-color: #4575b4"></div>
+        <div class="color-swatch" onclick="switchColor('#8c510a', 'water')" style="background-color: #8c510a"></div>
+    </div>
+    <form id="opacityForm" class="playground-input">
+      <p>Opacity:</p>
+      <input id="opacitizer" type="range" name="points" min="0" max="1" step="0.1">
+    </form>
+    <form id="lineWidthForm" class="playground-input">
+      <p>Line Width:</p>
+      <input id="widerizer" type="range" name="points" min="0" max="10" step="0.5">
+    </form>
+    <form id="dasharrayForm" class="playground-input">
+        <p>Dasharray:</p>
+        <div>
+            <p>Dash: <span id="dashValue"></span></p>
+            <input id="dasherizer" type="range" name="Dash" value="2" step="0.1" min="0" max="10">
+        </div>
+        <div>
+            <p>Gap: <span id="gapValue"></span></p>
+            <input id="gaperizer" type="range" name="Gap" value="1" step="0.1" min="0" max="5">
+        </div>
+    </form>
+</div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9', // mapbox://styles/danswick/cigjrqrqw000c9vm64ynx48k6
+    center: [-113.34, 48.652],
+    zoom: 8.4
+});
+
+var switchy = document.getElementById('remover');
+switchy.addEventListener("click", function(){
+    switchy = document.getElementById('remover');
+    if (switchy.className === 'on') {
+        switchy.setAttribute('class', 'off');
+        map.setPaintProperty('water', 'line-opacity', 0);
+        switchy.innerHTML = 'Add trails';
+    } else {
+        switchy.setAttribute('class', 'on');
+        map.setPaintProperty('water', 'line-opacity', 0.55);
+        switchy.innerHTML = 'Remove trails';
+    }
+});
+
+function switchColor(myColor, layer) {
+    map.setPaintProperty(layer, 'line-color', myColor);
+}
+
+var opacitizer = document.getElementById('opacitizer');
+opacitizer.oninput = function() {
+    var opacity = this.value;
+    map.setPaintProperty('water', 'line-opacity', opacity);
+}
+
+var widerizer = document.getElementById('widerizer');
+widerizer.oninput = function() {
+    var width = this.value;
+    map.setPaintProperty('water', 'line-width', width);
+}
+
+var dashSlide = document.getElementById('dasherizer'),
+    gapSlide = document.getElementById('gaperizer');
+
+dashSlide.oninput = function() {
+    dasharrayifier(dashSlide.value, gapSlide.value);
+}
+gapSlide.oninput = function() {
+    dasharrayifier(dashSlide.value, gapSlide.value);
+}
+
+function dasharrayifier(dash, gap) {
+    var dash = document.getElementById('dasherizer').value;
+    var gap = document.getElementById('gaperizer').value
+    map.setPaintProperty('water', 'line-dasharray', [parseFloat(dash), parseFloat(gap)]);
+    document.getElementById('dashValue').innerHTML = dash;
+    document.getElementById('gapValue').innerHTML = gap;
+}
+
+map.on('style.load', function() {
+    dasharrayifier(dashSlide.value, gapSlide.value);       
+});
+</script>
+</body>
+</html>
