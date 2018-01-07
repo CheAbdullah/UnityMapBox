@@ -151,8 +151,9 @@
     }
     #colorizer p { margin: 0 0 0.5em 0; }
     .color-swatch {
-        top:200px;
-        height: 2em;
+        top:250px;
+        right:10px;
+        height: 5px;
         width: 20%;
         cursor: pointer;
         display: inline-block;
@@ -1371,7 +1372,7 @@ widerizer.oninput = function() {
     afterMap.setPaintProperty('minor_roads', 'line-width', widths);
     afterMap.setPaintProperty('bridge', 'line-width', widths);
 }
-var widths=1;
+var widths=5;
 function switchWidths() {
     afterMap.setPaintProperty('major_roads', 'line-width', widths);
     afterMap.setPaintProperty('minor_roads', 'line-width', widths);
@@ -1379,6 +1380,9 @@ function switchWidths() {
     afterMap.setPaintProperty('water', 'line-width', widths);
 }
 function switchRoads(colour) {
+    afterMap.setPaintProperty('major_roads', 'fill-color', colour);
+    afterMap.setPaintProperty('minor_roads', 'fill-color', colour);
+    afterMap.setPaintProperty('bridge', 'fill-color', colour);
     afterMap.setPaintProperty('major_roads', 'line-color', colour);
     afterMap.setPaintProperty('minor_roads', 'line-color', colour);
     afterMap.setPaintProperty('bridge', 'line-color', colour);//line-width
