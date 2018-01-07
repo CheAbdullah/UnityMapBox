@@ -159,7 +159,7 @@
     <div class='map-overlay-inner'>
         <fieldset>
             <label>Select layer</label>
-            <select id='layer' name='layer'>
+            <select id='layerc' name='layerc'>
                 <option value='waterway'>waterway</option>
                 <option value='water'>water</option>
                 <option value='landcover'>landcover</option>
@@ -192,9 +192,10 @@
 
 <script src='traffic-layers.js'></script>
 <script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWhtbGV2aW5lIiwiYSI6IlAweXNYVEUifQ._dz0522LtBABUYyfqP503Q';
+//mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWhtbGV2aW5lIiwiYSI6IlAweXNYVEUifQ._dz0522LtBABUYyfqP503Q';
 
 //mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og'; // [-74.0066, 40.7135],
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWhtbGV2aW5lIiwiYSI6IlAweXNYVEUifQ._dz0522LtBABUYyfqP503Q';
 var beforeMap = new mapboxgl.Map({
     container: 'before',
     style: 'mapbox://styles/sarahmlevine/cihs248is00aa95lylu5a7x1d',
@@ -1308,7 +1309,7 @@ afterMap.on('load', function() {
 });
 
 var swatches = document.getElementById('swatches');
-var layer = document.getElementById('layer');
+var layerc = document.getElementById('layerc');
 var colors = [
     '#ffffcc',
     '#a1dab4',
@@ -1327,9 +1328,9 @@ colors.forEach(function(color) {
     swatch.style.backgroundColor = color;
     swatch.addEventListener('click', function() {
 
-        afterMap.setPaintProperty(layer.value, 'fill-color', color);
-        afterMap.setPaintProperty(layer.value, 'line-color', color);
-        afterMap.setPaintProperty(layer.value, 'line-width', widths);
+        afterMap.setPaintProperty(layerc.value, 'fill-color', color);
+        afterMap.setPaintProperty(layerc.value, 'line-color', color);
+        afterMap.setPaintProperty(layerc.value, 'line-width', widths);
     });
     swatches.appendChild(swatch);
 });
@@ -1338,6 +1339,28 @@ var widerizer = document.getElementById('widerizer');
 widerizer.oninput = function() {
     var width = this.value;
     afterMap.setPaintProperty('water', 'line-width', width);
+}
+
+
+function switchWaterColor(myColor, layer) {
+    afterMap.setPaintProperty(layer, 'fill-color', myColor);
+}
+
+function switchLineColor(myColor, layer) {
+    afterMap.setPaintProperty(layer, 'line-color', myColor);
+}
+/*
+*/
+
+function switchLandColor(myColor) {
+
+   document.getElementById("map").style.background = myColor;
+}
+
+function switchRoads(colour) {
+    afterMap.setPaintProperty('major_roads', 'line-color', colour);
+    afterMap.setPaintProperty('minor_roads', 'line-color', colour);
+    afterMap.setPaintProperty('bridge', 'line-color', colour);
 }
 
 </script>
