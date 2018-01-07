@@ -1392,6 +1392,9 @@ function switchRoads(colour) {
     afterMap.setPaintProperty('minor_roads', 'line-width', widths);
    afterMap.setPaintProperty('bridge', 'line-width', widths);
 }
+
+var Draw = mapboxgl.Draw();
+afterMap.addControl(Draw);
 </script>
 </body>
 </html>
