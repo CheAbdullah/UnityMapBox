@@ -141,6 +141,11 @@
         width: 100%;
     }
     .playground-input p { margin: 0.5em 0 1em 0; }
+    #colorizer {
+        list-style-type: none;
+        height: 5em;
+    }
+    #colorizer p { margin: 0 0 0.5em 0; }
 </style>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
@@ -186,6 +191,14 @@
           </form>
         </fieldset>
 
+    </div>
+    <div id="colorizer" class="playground-input">
+        <p>Fill color:</p>
+        <div class="color-swatch" onclick="switchRoads('#01665e')" style="background-color: #01665e"></div>
+        <div class="color-swatch" onclick="switchRoads('#fee08b')" style="background-color: #fee08b"></div>
+        <div class="color-swatch" onclick="switchRoads('#b2182b')" style="background-color: #b2182b"></div>
+        <div class="color-swatch" onclick="switchRoads('#4575b4')" style="background-color: #4575b4"></div>
+        <div class="color-swatch" onclick="switchRoads('#8c510a')" style="background-color: #8c510a"></div>
     </div>
 </div>
 
@@ -1349,6 +1362,14 @@ function switchWidths() {
     afterMap.setPaintProperty('minor_roads', 'line-width', widths);
     afterMap.setPaintProperty('bridge', 'line-width', widths);
     afterMap.setPaintProperty('water', 'line-width', widths);
+}
+function switchRoads(colour) {
+   map.setPaintProperty('major_roads', 'line-color', colour);
+   map.setPaintProperty('minor_roads', 'line-color', colour);
+   map.setPaintProperty('bridge', 'line-color', colour);//line-width
+   map.setPaintProperty('major_roads', 'line-width', widths);
+   map.setPaintProperty('minor_roads', 'line-width', widths);
+   map.setPaintProperty('bridge', 'line-width', widths);
 }
 </script>
 </body>
