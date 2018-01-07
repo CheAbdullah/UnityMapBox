@@ -161,7 +161,7 @@
             <label>Select layer</label>
             <select id='layer' name='layer'>
                 <option value='waterway'>waterway</option>
-                <option value='water'>water</option>
+                <option value='water'>water</option onclick="switchWidths()">
                 <option value='landcover'>landcover</option>
                 <option value='landuse'>landuse</option>
                 <option value='hillshade'>hillshade</option>
@@ -1343,7 +1343,12 @@ widerizer.oninput = function() {
     afterMap.setPaintProperty('minor_roads', 'line-width', widths);
     afterMap.setPaintProperty('bridge', 'line-width', widths);
 }
-
+function switchWidths() {
+    afterMap.setPaintProperty('major_roads', 'line-width', widths);
+    afterMap.setPaintProperty('minor_roads', 'line-width', widths);
+    afterMap.setPaintProperty('bridge', 'line-width', widths);
+    afterMap.setPaintProperty('water', 'line-width', widths);
+}
 </script>
 </body>
 </html>
