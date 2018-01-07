@@ -159,9 +159,9 @@
     <div class='map-overlay-inner'>
         <fieldset>
             <label>Select layer</label>
-            <select id='layer' name='layer'>
+            <select id='layer' name='layer' onchange="switchWidths()">
                 <option value='waterway'>waterway</option>
-                <option value='water'>water</option onclick="switchWidths()">
+                <option value='water'>water</option>
                 <option value='landcover'>landcover</option>
                 <option value='landuse'>landuse</option>
                 <option value='hillshade'>hillshade</option>
