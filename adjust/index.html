@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Messing with Mapbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel='stylesheet prefetch' href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.2/mapbox-gl.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel='stylesheet prefetch' href='https://code.getmdl.io/1.2.1/material.cyan-orange.min.css'>
+<link rel='stylesheet prefetch' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v0.1.0/mapbox-gl-geocoder.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <head>
+   <meta charset='utf-8' />
+   <title>Maps</title>
+
+</head>
+
+<body>
+   <p style="width:300px">
+  <input class="mdl-slider mdl-js-slider" id="bearingSlider" type="range" id="s1" min="0" max=359 value="180" step="1">
+</p>
+   <div id="controls">
+      <ul>
+         <li>get coordinates</li>
+         <li>my location</li>
+         <li>Portrait</li>
+         <li>Landscape</li>
+      </ul>
+     
+   </div>
+   <div id="left">
+      <ul id='colorSwitcherWater'>
+         <li>
+            <form action="" method="get">
+               <label title="Water" id="Water"><input type="checkbox" value="checkbox" onchange="statecheck('Water')" />Water</label>
+            </form>
+         </li>
+         <li class="color-swatch" onclick="switchWaterColor('#CFD8DC', 'water')" style="background-color: #CFD8DC"></li>
+         <li class="color-swatch" onclick="switchWaterColor('#2196F3', 'water')" style="background-color: #2196F3"></li>
+         <li class="color-swatch" onclick="switchWaterColor('#00BCD4', 'water')" style="background-color: #00BCD4"></li>
+         <li class="color-swatch" onclick="switchWaterColor('#009688', 'water')" style="background-color: #009688"></li>
+         <li class="color-swatch" onclick="switchWaterColor('#607D8B', 'water')" style="background-color: #607D8B"></li>
+      </ul>
+
+      <ul id='colorSwitcherRoads'>
+         <li>
+            <form action="" method="get"><label title="Roads" id="Roads"><input type="checkbox" value="checkbox" onchange="statecheck('Roads')" />Roads</label>
+            </form>
+         </li>
+         <li class="color-swatch" onclick="switchRoads('white')" style="background-color: #ECEFF1"></li>
+         <li class="color-swatch" onclick="switchRoads('#546E7A')" style="background-color: #546E7A"></li>
+         <li class="color-swatch" onclick="switchRoads('#263238')" style="background-color: #263238"></li>
+         <li class="color-swatch" onclick="switchRoads('#757575')" style="background-color: #757575"></li>
+         <li class="color-swatch" onclick="switchRoads('#212121')" style="background-color: #212121"></li>
+      </ul>
+
+      <ul id='colorSwitcherLand'>
+         <li>
+            <form action="" method="get">
+               <label title="Land" id="Land"><input type="checkbox" value="checkbox" onchange="statecheck('Land')" />Land</label></form>
+         </li>
+         <li class="color-swatch" onclick="switchLandColor('transparent')" style="background:url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/textured_paper.png')"></li>
+         <li class="color-swatch" onclick="switchLandColor('#795548')" style="background: #795548"></li>
+         <li class="color-swatch" onclick="switchLandColor('#3E2723')" style="background-color: #3E2723"></li>
+         <li class="color-swatch" onclick="switchLandColor('#757575')" style="background-color: #757575"></li>
+         <li class="color-swatch" onclick="switchLandColor('#263238')" style="background-color: #263238"></li>
+      </ul>
+
+   </div>
+
+   <div id="right">
+      <div id='map'></div>
+   </div>
+</body>
+  <script src='https://code.getmdl.io/1.2.1/material.min.js'></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.2/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v0.1.0/mapbox-gl-geocoder.js'></script>
+
+    <script  src="js/index.js"></script>
+
+</body>
+</html>
