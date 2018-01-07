@@ -157,15 +157,15 @@
         <fieldset>
             <label>Select layer</label>
             <select id='layer' name='layer'>
-                <option value='waterway'>Water</option>
-                <option value='water'>Buildings</option>
-                <option value='landcover'>Buildings</option>
-                <option value='landuse'>Buildings</option>
-                <option value='hillshade'>Buildings</option>
-                <option value='road'>Buildings</option>
-                <option value='bridge'>Buildings</option>
-                <option value='contour'>Buildings</option>
-                <option value='barrier_line'>Buildings</option>
+                <option value='waterway'>waterway</option>
+                <option value='water'>water</option>
+                <option value='landcover'>landcover</option>
+                <option value='landuse'>landuse</option>
+                <option value='hillshade'>hillshade</option>
+                <option value='road'>road</option>
+                <option value='bridge'>bridge</option>
+                <option value='contour'>contour</option>
+                <option value='barrier_line'>barrier_line</option>
 
             </select>
         </fieldset>
@@ -1269,6 +1269,33 @@ afterMap.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
+
+    var mapillarySource = {
+        type: 'vector',
+        tiles: ['http://d25uarhxywzl1j.cloudfront.net/v0.1/{z}/{x}/{y}.mvt'],
+        minzoom: 0,
+        maxzoom: 14
+    };
+    
+    afterMap.addSource('mapillary', mapillarySource);
+    afterMap.addLayer({
+        'id': 'mapillary',
+        'type': 'line',
+        'source': 'mapillary',
+        'source-layer': 'mapillary-sequences',
+        'filter': ['all',
+                   ['>=', 'captured_at', mindate],
+                   ['<=', 'captured_at', maxdate]],
+        'layout': {
+            'line-cap': 'round',
+            'line-join': 'round'
+        },
+        'paint': {
+            'line-opacity': 0.6,
+            'line-color':   'rgb(53, 175, 109)',
+            'line-width':   2
+        },
+    });
 });
 
 var swatches = document.getElementById('swatches');
