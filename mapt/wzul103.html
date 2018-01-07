@@ -165,7 +165,10 @@
                 <option value='road'>road</option>
                 <option value='bridge'>bridge</option>
                 <option value='contour'>contour</option>
+                <option value='building'>building</option>
+                <option value='landuse_overlay'>landuse_overlay</option>
                 <option value='barrier_line'>barrier_line</option>
+
 
             </select>
         </fieldset>
@@ -199,7 +202,7 @@ var afterMap = new mapboxgl.Map({
         "name": "Basic",
         "sources": {
             "mapbox": {
-                "url": "mapbox://mapbox.mapbox-streets-v7",
+                "url": "mapbox://styles/mapbox/light-v9",
                 "type": "vector"
             }, 
             "simple-tiles": {
