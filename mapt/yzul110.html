@@ -1346,7 +1346,7 @@ beforeMap.addControl(Draw);
         e.preventDefault();
         uploadFeatures();
     }
-    getData(datasetId);
+    //getData(datasetId);
 
     beforeMap.addLayer({
         "id": "terrain-data",
@@ -1394,7 +1394,7 @@ function uploadFeatures(){
         xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200 && i == drawnData.features.length) {
             alert('upload successful!');
-            getData(datasetId);
+            //getData(datasetId);
         } else if (xmlhttp.readyState == 4 && xmlhttp.status !== 200){
             alert('looks like something went wrong');
         }
