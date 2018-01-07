@@ -22,7 +22,7 @@
         right: 10px;
         border-radius: 3px;
         width: 120px;
-        height: 200px;
+        height: 250px;
         border: 1px solid rgba(0,0,0,0.4);
         font-family: 'Open Sans', sans-serif;
     }
@@ -172,6 +172,14 @@
     <input id='sarahmlevine/cihvjue4p00h095lyyyyv2347' type='radio' name='rtoggle' value='basic'>
     <label for='basic'>streets</label>
     <div id='trafficButton'>Add traffic</div>
+
+    <label>Road/River</label>
+        <div class="color-swatch" onclick="switchRoads('#01665e')" style="background-color: #01665e"></div>
+        <div class="color-swatch" onclick="switchRoads('#fee08b')" style="background-color: #fee08b"></div>
+        <div class="color-swatch" onclick="switchRoads('#b2182b')" style="background-color: #b2182b"></div>
+        <div class="color-swatch" onclick="switchRoads('#4575b4')" style="background-color: #4575b4"></div>
+        <div class="color-swatch" onclick="switchRoads('#8c510a')" style="background-color: #8c510a"></div>
+
 </div>
 <div class='map-overlay top'>
     <div class='map-overlay-inner'>
@@ -207,14 +215,7 @@
     </div>
 </div>
 
-<div id="colorizer" class="playground-input">
-    <p>Fill color:</p>
-    <div class="color-swatch" onclick="switchRoads('#01665e')" style="background-color: #01665e"></div>
-    <div class="color-swatch" onclick="switchRoads('#fee08b')" style="background-color: #fee08b"></div>
-    <div class="color-swatch" onclick="switchRoads('#b2182b')" style="background-color: #b2182b"></div>
-    <div class="color-swatch" onclick="switchRoads('#4575b4')" style="background-color: #4575b4"></div>
-    <div class="color-swatch" onclick="switchRoads('#8c510a')" style="background-color: #8c510a"></div>
-</div>
+
 
 <script src='traffic-layers.js'></script>
 <script>
