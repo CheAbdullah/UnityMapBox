@@ -84,15 +84,15 @@
 <div id="inputContainer">
     <div class="playground-input">
         <p>Layer visibility:</p>
-        <div id="remover" class="on">Remove trails</div>
+        <div id="remover" class="on">Remove water</div>
     </div>
     <div id="colorizer" class="playground-input">
         <p>Fill color:</p>
-        <div class="color-swatch" onclick="switchColor('#01665e', 'trails')" style="background-color: #01665e"></div>
-        <div class="color-swatch" onclick="switchColor('#fee08b', 'trails')" style="background-color: #fee08b"></div>
-        <div class="color-swatch" onclick="switchColor('#b2182b', 'trails')" style="background-color: #b2182b"></div>
-        <div class="color-swatch" onclick="switchColor('#4575b4', 'trails')" style="background-color: #4575b4"></div>
-        <div class="color-swatch" onclick="switchColor('#8c510a', 'trails')" style="background-color: #8c510a"></div>
+        <div class="color-swatch" onclick="switchColor('#01665e', 'water')" style="background-color: #01665e"></div>
+        <div class="color-swatch" onclick="switchColor('#fee08b', 'water')" style="background-color: #fee08b"></div>
+        <div class="color-swatch" onclick="switchColor('#b2182b', 'water')" style="background-color: #b2182b"></div>
+        <div class="color-swatch" onclick="switchColor('#4575b4', 'water')" style="background-color: #4575b4"></div>
+        <div class="color-swatch" onclick="switchColor('#8c510a', 'water')" style="background-color: #8c510a"></div>
     </div>
     <form id="opacityForm" class="playground-input">
       <p>Opacity:</p>
@@ -115,10 +115,10 @@
     </form>
 </div>
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og';
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWhtbGV2aW5lIiwiYSI6IlAweXNYVEUifQ._dz0522LtBABUYyfqP503Q';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/danswick/cigjrqrqw000c9vm64ynx48k6',
+    style: 'mapbox://styles/sarahmlevine/cihs248is00aa95lylu5a7x1d',
     center: [-113.34, 48.652],
     zoom: 8.4
 });
@@ -128,12 +128,12 @@ switchy.addEventListener("click", function(){
     switchy = document.getElementById('remover');
     if (switchy.className === 'on') {
         switchy.setAttribute('class', 'off');
-        map.setPaintProperty('trails', 'line-opacity', 0);
-        switchy.innerHTML = 'Add trails';
+        map.setPaintProperty('water', 'line-opacity', 0);
+        switchy.innerHTML = 'Add water';
     } else {
         switchy.setAttribute('class', 'on');
-        map.setPaintProperty('trails', 'line-opacity', 0.55);
-        switchy.innerHTML = 'Remove trails';
+        map.setPaintProperty('water', 'line-opacity', 0.55);
+        switchy.innerHTML = 'Remove water';
     }
 });
 
@@ -144,13 +144,13 @@ function switchColor(myColor, layer) {
 var opacitizer = document.getElementById('opacitizer');
 opacitizer.oninput = function() {
     var opacity = this.value;
-    map.setPaintProperty('trails', 'line-opacity', opacity);
+    map.setPaintProperty('water', 'line-opacity', opacity);
 }
 
 var widerizer = document.getElementById('widerizer');
 widerizer.oninput = function() {
     var width = this.value;
-    map.setPaintProperty('trails', 'line-width', width);
+    map.setPaintProperty('water', 'line-width', width);
 }
 
 var dashSlide = document.getElementById('dasherizer'),
@@ -166,7 +166,7 @@ gapSlide.oninput = function() {
 function dasharrayifier(dash, gap) {
     var dash = document.getElementById('dasherizer').value;
     var gap = document.getElementById('gaperizer').value
-    map.setPaintProperty('trails', 'line-dasharray', [parseFloat(dash), parseFloat(gap)]);
+    map.setPaintProperty('water', 'line-dasharray', [parseFloat(dash), parseFloat(gap)]);
     document.getElementById('dashValue').innerHTML = dash;
     document.getElementById('gapValue').innerHTML = gap;
 }
