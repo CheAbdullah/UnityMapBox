@@ -1282,7 +1282,7 @@ colors.forEach(function(color) {
     var swatch = document.createElement('button');
     swatch.style.backgroundColor = color;
     swatch.addEventListener('click', function() {
-        beforeMap.setPaintProperty(layer.value, 'fill-color', color);
+        afterMap.setPaintProperty(layer.value, 'fill-color', color);
     });
     swatches.appendChild(swatch);
 });
