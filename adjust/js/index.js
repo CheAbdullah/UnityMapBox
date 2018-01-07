@@ -31,7 +31,7 @@ function switchLandColor(myColor) {
 
    document.getElementById("map").style.background = myColor;
 }
-var widths=2;
+var widths=10;
 function switchRoads(colour) {
    map.setPaintProperty('major_roads', 'line-color', colour);
    map.setPaintProperty('minor_roads', 'line-color', colour);
