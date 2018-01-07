@@ -31,11 +31,14 @@ function switchLandColor(myColor) {
 
    document.getElementById("map").style.background = myColor;
 }
-
+var widths=2;
 function switchRoads(colour) {
    map.setPaintProperty('major_roads', 'line-color', colour);
    map.setPaintProperty('minor_roads', 'line-color', colour);
-   map.setPaintProperty('bridge', 'line-color', colour);
+   map.setPaintProperty('bridge', 'line-color', colour);//line-width
+   map.setPaintProperty('major_roads', 'line-width', widths);
+   map.setPaintProperty('minor_roads', 'line-width', widths);
+   map.setPaintProperty('bridge', 'line-width', widths);
 }
 
 // Switch things on and off
