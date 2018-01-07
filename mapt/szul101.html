@@ -2,8 +2,8 @@
 <head>
     <meta charset='utf-8' />
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css'
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.css' rel='stylesheet' />
     <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
     <style>
         body { margin:0; padding:0; }
@@ -1320,12 +1320,15 @@ var colors = [
     '#f03b20',
     '#bd0026'
 ];
-
+var widths=1;
 colors.forEach(function(color) {
     var swatch = document.createElement('button');
     swatch.style.backgroundColor = color;
     swatch.addEventListener('click', function() {
+
         afterMap.setPaintProperty(layer.value, 'fill-color', color);
+        afterMap.setPaintProperty(layer.value, 'line-color', color);
+        afterMap.setPaintProperty(layer.value, 'line-width', widths);
     });
     swatches.appendChild(swatch);
 });
