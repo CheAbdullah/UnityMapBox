@@ -21,6 +21,7 @@
         right: 10px;
         border-radius: 3px;
         width: 120px;
+        height: 200px;
         border: 1px solid rgba(0,0,0,0.4);
         font-family: 'Open Sans', sans-serif;
     }
@@ -96,8 +97,9 @@
     <label for='satellite'>satellite layer</label>
     <input id='sarahmlevine/cihvjue4p00h095lyyyyv2347' type='radio' name='rtoggle' value='basic'>
     <label for='basic'>streets</label>
+    <div id='trafficButton'>Add traffic</div>
 </div>
-<div id='trafficButton'>Add traffic</div>
+
 <script src='traffic-layers.js'></script>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWhtbGV2aW5lIiwiYSI6IlAweXNYVEUifQ._dz0522LtBABUYyfqP503Q';
@@ -121,7 +123,7 @@ var afterMap = new mapboxgl.Map({
         "name": "Basic",
         "sources": {
             "mapbox": {
-                "url": "mapbox://mapbox.mapbox-streets-v7",
+                "url": "mapbox://styles/mapbox/light-v9",
                 "type": "vector"
             }, 
             "simple-tiles": {
@@ -1172,6 +1174,7 @@ afterMap.on('load', function() {
         'filter': ['==', 'extrude', 'true'],
         'type': 'fill-extrusion',
         'minzoom': 15,
+        'z-index':200,
         'paint': {
             'fill-extrusion-color': '#aaa',
 
