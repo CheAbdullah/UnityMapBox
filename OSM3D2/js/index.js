@@ -44,13 +44,12 @@ var cities = L.layerGroup();
     //'Gain': L.tileLayer('http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png')
 	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
   var streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
-  var satellite  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
-  var terrain  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+  var satellite  = L.tileLayer(mbsat, {id: 'weather',   attribution: mbAttr});
+  var terrain  = L.tileLayer(mbter, {id: 'hansen',   attribution: mbAttr});
 //16.96/53.347268/-6.259142/-143.2/53 
 	var map = L.map('map', {
 		center: [-6.259142, 53.347268],
     zoom: 19,
-    pitch: 60,
 		layers: [grayscale, cities,satellite,terrain]
 	});
 
