@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="STC_CANALS_LOCKS" id="STC_CANALS_LOCKS">
+	<SimpleField name="Canal_Name" type="string"></SimpleField>
+	<SimpleField name="Lock_Numbe" type="string"></SimpleField>
+</Schema>
+<Folder><name>STC_CANALS_LOCKS</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Fourth Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.192750012795244,43.131058743589627</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Fourth Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.192560178057192,43.133839608506349</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Fourth Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.192413463854649,43.135988589703587</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Fourth Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.193644031175026,43.155665105102756</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Fourth Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.202290467031418,43.192852500380724</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Fourth Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.213231474655529,43.216974499506783</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.212753152518275,43.163212847289138</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.20896936711371,43.161251822787875</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">10</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.201026828134033,43.157171412334108</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.189615323252809,43.151192821175229</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">12</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.186816513457032,43.149191829033761</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">13</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.184721830981474,43.146763390715549</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">14</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.182532372356462,43.144434556123436</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">15</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.18048029960589,43.142141678392179</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">22</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.200370524752216,43.132680268564151</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">31</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.200982141819537,43.132845784455881</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">30</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.201734410007873,43.133940534927099</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">21</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.203026276655976,43.133837804329126</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">29</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.20230430898043,43.134761683993617</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">28</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.20281358272257,43.135360404274657</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">27</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.203969793526809,43.135682157012717</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">20</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.20555636415105,43.133975817486032</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">26</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.205452558948139,43.135606768640912</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.20689568365529,43.135317683093092</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">19</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.207669389578271,43.134148373341496</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">24</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.209062597607584,43.134867624201306</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">18</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.210054618239809,43.134284236656349</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">23</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.211491789295891,43.134963086209005</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.212101978199371,43.134406499250616</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">16</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.214316887550126,43.134547808699089</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">22</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.212792116061877,43.135336186860194</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">15</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.216104901594605,43.135520885227749</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">21</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.214072405476074,43.136047098462974</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">20</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.215334602684862,43.137732240350658</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">14</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.21692563353723,43.137363216469105</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">19</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.216265837980032,43.139117031650571</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">13</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.217802695915339,43.139637362584061</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">18</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.217383504737072,43.140834588576041</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">12</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.218512298341921,43.14144581948284</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.217901532998638,43.142014580591052</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.219308651016775,43.143371335609331</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">16</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.218704215152698,43.144052106981974</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">15</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.219497828459353,43.145124840922009</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">10</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.220609937160646,43.145423050022515</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">14</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.220770437945205,43.146325784543592</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">13</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.221923360198431,43.147965603911445</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.222661442153125,43.148201329173553</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">12</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.222261054799404,43.149046014532047</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.223053573726574,43.150542330060098</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.223725348140889,43.150425340270232</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.226089332736152,43.15278968851139</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">10</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.225295361646062,43.152853636421376</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.227011089234665,43.154308985763926</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.228629177038385,43.155810517010849</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.229479971959492,43.155802903639191</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.243200036707108,43.153026103751301</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.243560183095937,43.153322199086844</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.241723320763782,43.157773133537297</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.238848212957777,43.158104292867776</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.230529615961402,43.158273644873042</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.230006101464369,43.159857718939151</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.236121110100243,43.160055745764247</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.256492680302458,43.158751825690175</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.259670694414353,43.159845376549299</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.236606553268089,43.17612781777099</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.271552472502705,43.17697815901942</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.241419401811143,43.178712984778734</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.255129977569069,43.185913024711297</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.259229049561085,43.187990396915843</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.263057378281545,43.189915667618301</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.267184681887983,43.193463270203168</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Third Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.264962800011844,43.199116417977002</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">Second Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.265506845033428,43.20156349197584</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#STC_CANALS_LOCKS">
+		<SimpleData name="Canal_Name">First Canal</SimpleData>
+		<SimpleData name="Lock_Numbe">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.267712841506636,43.203814055530593</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>
