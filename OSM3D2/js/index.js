@@ -35,7 +35,7 @@ var cities = L.layerGroup();
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		//mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
   var mbUrl = 'https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png';
-  var mbsat = 'https://tileserver.maptiler.com/weather/{z}/{x}/{y}.png"';
+  var mbsat = 'https://tileserver.maptiler.com/weather/{z}/{x}/{y}.png';
   var mbter = 'http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png';
 //http://d25uarhxywzl1j.cloudfront.net/v0.1/{z}/{x}/{y}.mvt
     //'% Forest Cover 2010': L.tileLayer('http://earthengine.google.org/static/hansen_2013/tree_alpha/{z}/{x}/{y}.png').addTo(map),
