@@ -1,5 +1,7 @@
-var map = new L.Map('map');
-map.setView([52.52111, 13.40988], 16, false);
+
+
+var map = L.mapbox.map('map')
+.setView([37.7711,-482.4424], 14);
 
 new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
   attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
