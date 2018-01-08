@@ -1333,6 +1333,24 @@ afterMap.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     }, labelLayerId);
+    afterMapmap.addLayer({
+            "id": "terrain-data",
+            "type": "fill-extrusion",
+            "source": {
+                type: 'vector',
+                url: 'mapbox://mapbox.mapbox-terrain-v2'
+            },
+            "source-layer": "contour",
+            'minzoom': 8,
+            'paint': {
+                'fill-extrusion-color': '#eee',
+                'fill-extrusion-height': {
+                    'type': 'identity',
+                    'property': 'ele'
+                },
+                'fill-extrusion-opacity':.6
+            }
+        });
 
 });
 
