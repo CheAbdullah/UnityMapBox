@@ -7,7 +7,21 @@ var osm=new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{
   maxNativeZoom: 20
 });
 
-map.addLayer(osm);
+var satt=new L.TileLayer('bobbysud.map-l4i2m7nd', {
+  attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
+  maxZoom: 18,
+  maxNativeZoom: 20
+});
+
+var terr=new L.TileLayer('bobbysud.i2pfp2lb', {
+  attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
+  maxZoom: 18,
+  maxNativeZoom: 20
+});
+
+
+map.addLayer(osm,satt,terr);
+
 var osmb = new OSMBuildings(map).load();
 
 //********************************************************
