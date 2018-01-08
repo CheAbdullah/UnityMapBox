@@ -54,13 +54,13 @@
 
     <script>
         var map = L.mapbox.map('map')
-            .setView([-6.25898,53.34698], 14);
+            .setView([53.34698,-6.25898], 14);
         // Add layers to the map
         L.control.layers({
-            'Satellite Map': L.mapbox.tileLayer('bobbysud.map-l4i2m7nd', {
+            'Satellite Map': L.mapbox.tileLayer('mapbox://styles/mapbox/light-v9', {
                 detectRetina: true
             }).addTo(map),
-            'Terrain Map': L.mapbox.tileLayer('bobbysud.i2pfp2lb', {
+            'Terrain Map': L.mapbox.tileLayer('mapbox://mapbox.terrain-rgb', {
                 detectRetina: true
             })
         }).addTo(map);
