@@ -33,20 +33,32 @@ var cities = L.layerGroup();
 	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-		mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-
+		//mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+  var mbUrl = 'https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png';
+  var mbsat = 'https://tileserver.maptiler.com/weather/{z}/{x}/{y}.png"';
+  var mbter = 'http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png';
+//http://d25uarhxywzl1j.cloudfront.net/v0.1/{z}/{x}/{y}.mvt
+    //'% Forest Cover 2010': L.tileLayer('http://earthengine.google.org/static/hansen_2013/tree_alpha/{z}/{x}/{y}.png').addTo(map),
+    //'Loss/Extent/Gain (Red/Green/Blue)': L.tileLayer('http://earthengine.google.org/static/hansen_2013/loss_forest_gain/{z}/{x}/{y}.png'),
+    //'Loss': L.tileLayer('http://earthengine.google.org/static/hansen_2013/loss/{z}/{x}/{y}.png'),
+    //'Gain': L.tileLayer('http://earthengine.google.org/static/hansen_2013/gain/{z}/{x}/{y}.png')
 	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
-
+  var streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+  var satellite  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+  var terrain  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+//16.96/53.347268/-6.259142/-143.2/53 
 	var map = L.map('map', {
-		center: [39.73, -104.99],
-		zoom: 10,
-		layers: [grayscale, cities]
+		center: [-6.259142, 53.347268],
+    zoom: 19,
+    pitch: 60,
+		layers: [grayscale, cities,satellite,terrain]
 	});
 
 	var baseLayers = {
 		"Grayscale": grayscale,
-		"Streets": streets
+    "Streets": streets,
+    "satellite": satellite,
+    "terrain": terrain
 	};
 
 	var overlays = {
@@ -60,7 +72,7 @@ var cities = L.layerGroup();
 
 
 var osmb = new OSMBuildings(map).load();
-
+osmb.addGeoJSONTiles('http://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
 //********************************************************
 
 var
