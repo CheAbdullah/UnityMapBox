@@ -52,18 +52,19 @@
     <div id='delete'>Delete Features</div>
     <a href='#' id='export'>Export Features</a>
 
+
+    
+
+
     <script>
         var map = L.mapbox.map('map')
             .setView([53.34698,-6.25898], 14);
         // Add layers to the map
         L.control.layers({
-            'Satellite Map': L.mapbox.tileLayer('bobbysud.map-l4i2m7nd', {
-                detectRetina: true
-            }).addTo(map),
             'Terrain Map': L.mapbox.tileLayer('bobbysud.i2pfp2lb', {
-                detectRetina: true
-            })
-        }).addTo(map);
+                detectRetina: true}).addTo(map),
+            'Satellite Map': L.mapbox.tileLayer('bobbysud.map-l4i2m7nd', {
+                detectRetina: true})}).addTo(map);
         var featureGroup = L.featureGroup().addTo(map);
         var drawControl = new L.Control.Draw({
             edit: {
