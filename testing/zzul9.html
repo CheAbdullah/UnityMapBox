@@ -176,9 +176,6 @@ body * {
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
 
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
-
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
 
@@ -512,12 +509,7 @@ beforeMap.on('mousemove', function (e) {
         JSON.stringify(e.lngLat);
 });
 
-beforeMap.addControl(new MapboxDirections({
-    accessToken: mapboxgl.accessToken
-}), 'top-left');
-beforeMap.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken
-}), 'top-right');
+
 // Add zoom and rotation controls to the map.
 beforeMap.addControl(new mapboxgl.NavigationControl());
 
