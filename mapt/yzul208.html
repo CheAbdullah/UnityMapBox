@@ -1,0 +1,1448 @@
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+    
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        height: 300px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+    }
+    #menu a:last-child {
+        border: none;
+    }
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+    #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+    }
+    #menu a.active:hover {
+        background: #3074a4;
+    }
+
+    body {
+    overflow: hidden;
+    }
+
+    body * {
+    -webkit-touch-callout: none;
+     -webkit-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+    }
+
+    .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;}
+
+
+        .map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 200px;
+    height:200px;
+    top: 0;
+    left: 0;
+    padding: 10px;
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: #fff;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.10);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.map-overlay-inner fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 10px;
+}
+
+.map-overlay-inner fieldset:last-child {
+    margin: 0;
+}
+
+.map-overlay-inner select {
+    width: 100%;
+}
+
+.map-overlay-inner label {
+    display: block;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+
+.map-overlay-inner button {
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.map-overlay-inner button:focus {
+    outline: none;
+}
+
+.map-overlay-inner button:hover {
+    box-shadow:inset 0 0 0 3px rgba(0, 0, 0, 0.10);
+}
+.playground-input input {
+    width: 100%;
+}
+.playground-input p { margin: 0.5em 0 1em 0; }
+#colorizer {
+    z-index: 1;
+    list-style-type: none;
+    height: 5em;
+    top:150px;
+    width:50px;
+}
+#colorizer p { margin: 0 0 0.5em 0; }
+.color-swatch {
+    top:250px;
+    left:10px;
+    height: 5px;
+    width: 5px;
+    cursor: pointer;
+    margin: 2;
+    padding: 2;
+}
+</style>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+
+<script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.1.0/eon.js"></script>
+<link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.1.0/eon.css"/>
+
+<div id='before' class='map'></div>
+<div id='after' class='map'></div>
+<div id='menu'>
+    <input id='sarahmlevine/cihs248is00aa95lylu5a7x1d' type='radio' name='rtoggle' value='satellite' checked='checked'>
+    <label for='satellite'>satellite layer</label>
+    <input id='sarahmlevine/cihvjue4p00h095lyyyyv2347' type='radio' name='rtoggle' value='basic'>
+    <label for='basic'>streets</label>
+
+
+    <div class="color-swatch" onclick="switchRoads('#01665e')" style="background-color: #01665e"></div>
+    <div class="color-swatch" onclick="switchRoads('#fee08b')" style="background-color: #fee08b"></div>
+    <div class="color-swatch" onclick="switchRoads('#b2182b')" style="background-color: #b2182b"></div>
+    <div class="color-swatch" onclick="switchRoads('#4575b4')" style="background-color: #4575b4"></div>
+    <div class="color-swatch" onclick="switchRoads('#8c510a')" style="background-color: #8c510a"></div>
+
+</div>
+<div class='map-overlay top'>
+    <div class='map-overlay-inner'>
+        <fieldset>
+            <label>Select layer</label>
+            <select id='layer' name='layer' onchange="switchWidths()">
+                <option value='waterway'>waterway</option>
+                <option value='water'>water</option>
+                <option value='landcover'>landcover</option>
+                <option value='landuse'>landuse</option>
+                <option value='hillshade'>hillshade</option>
+                <option value='road'>road</option>
+                <option value='bridge'>bridge</option>
+                <option value='contour'>contour</option>
+                <option value='building'>building</option>
+                <option value='landuse_overlay'>landuse_overlay</option>
+                <option value='barrier_line'>barrier_line</option>
+
+
+            </select>
+        </fieldset>
+        <fieldset>
+            <label>Choose a color</label>
+            <div id='swatches'></div>
+        </fieldset>
+        <fieldset>
+        <form id="lineWidthForm" class="playground-input">
+            <p>Line Width:</p>
+            <input id="widerizer" type="range" name="points" min="0" max="30" step="0.5">
+          </form>
+        </fieldset>
+
+    </div>
+</div>
+
+
+
+
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYWhtbGV2aW5lIiwiYSI6IlAweXNYVEUifQ._dz0522LtBABUYyfqP503Q';
+
+//mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og'; // [-74.0066, 40.7135],
+var beforeMap = new mapboxgl.Map({
+    container: 'before',
+    style: 'mapbox://styles/sarahmlevine/cihs248is00aa95lylu5a7x1d',
+    //style: 'mapbox://styles/danswick/cilnegnzr00439gkf7urxz0xk',
+    center: [-6.25898,53.34698],
+    zoom: 18,
+    pitch: 58.7,
+    bearing: 0,
+    hash: true,
+});
+
+var afterMap = new mapboxgl.Map({
+    container: 'after',
+    style: {
+        "version": 8,
+        "name": "Basic",
+        "sources": {
+            "mapbox": {
+                "url": "mapbox://mapbox.mapbox-streets-v7",
+                "type": "vector"
+            }, 
+            "simple-tiles": {
+                "type": "raster",
+                "tiles": [
+                    "https://tileserver.maptiler.com/weather/{z}/{x}/{y}.png"
+                    
+                ],
+                "tileSize": 256
+            }
+        },
+        "sprite": "mapbox://sprites/danswick/ciljv8aim00459dm3hht07ite",
+        "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+        "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "paint": {
+                "background-color": "#dedede"
+            },
+            "interactive": true
+        },
+        {
+            "id": "landuse_overlay_national_park",
+            "type": "fill",
+            "source": "mapbox",
+            "source-layer": "landuse_overlay",
+            "filter": [
+                "==",
+                "class",
+                "national_park"
+            ],
+            "paint": {
+                "fill-color": "#d2edae",
+                "fill-opacity": 0.75
+            },
+            "interactive": true
+        },
+        {
+            "id": "landuse_park",
+            "type": "fill",
+            "source": "mapbox",
+            "source-layer": "landuse",
+            "filter": [
+                "==",
+                "class",
+                "park"
+            ],
+            "paint": {
+                "fill-color": "#d2edae"
+            },
+            "interactive": true
+        },
+        {
+            "id": "waterway",
+            "type": "line",
+            "source": "mapbox",
+            "source-layer": "waterway",
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "in",
+                    "class",
+                    "river",
+                    "canal"
+                ]
+            ],
+            "paint": {
+                "line-color": "#a0cfdf",
+                "line-width": {
+                    "base": 1.4,
+                    "stops": [
+                        [
+                            8,
+                            0.5
+                        ],
+                        [
+                            20,
+                            15
+                        ]
+                    ]
+                }
+            },
+            "interactive": true
+        },
+        {
+            "id": "water",
+            "type": "fill",
+            "source": "mapbox",
+            "source-layer": "water",
+            "paint": {
+                "fill-color": "#a0cfdf"
+            },
+            "interactive": true
+        },
+        {
+            "id": "building",
+            "type": "fill",
+            "source": "mapbox",
+            "source-layer": "building",
+            "paint": {
+                "fill-color": "#d6d6d6"
+            },
+            "interactive": true
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "butt",
+                "line-join": "miter"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway_link",
+                        "street",
+                        "street_limited",
+                        "service",
+                        "track",
+                        "pedestrian",
+                        "path",
+                        "link"
+                    ],
+                    [
+                        "==",
+                        "structure",
+                        "tunnel"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "tunnel_minor",
+            "paint": {
+                "line-color": "#efefef",
+                "line-width": {
+                    "base": 1.55,
+                    "stops": [
+                        [
+                            4,
+                            0.25
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                },
+                "line-dasharray": [
+                    0.36,
+                    0.18
+                ]
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "butt",
+                "line-join": "miter"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway",
+                        "primary",
+                        "secondary",
+                        "tertiary",
+                        "trunk"
+                    ],
+                    [
+                        "==",
+                        "structure",
+                        "tunnel"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "tunnel_major",
+            "paint": {
+                "line-color": "#fff",
+                "line-width": {
+                    "base": 1.4,
+                    "stops": [
+                        [
+                            6,
+                            0.5
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                },
+                "line-dasharray": [
+                    0.28,
+                    0.14
+                ]
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway_link",
+                        "street",
+                        "street_limited",
+                        "service",
+                        "track",
+                        "pedestrian",
+                        "path",
+                        "link"
+                    ],
+                    [
+                        "in",
+                        "structure",
+                        "none",
+                        "ford"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "road_minor",
+            "paint": {
+                "line-color": "#efefef",
+                "line-width": {
+                    "base": 1.55,
+                    "stops": [
+                        [
+                            4,
+                            0.25
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway",
+                        "primary",
+                        "secondary",
+                        "tertiary",
+                        "trunk"
+                    ],
+                    [
+                        "in",
+                        "structure",
+                        "none",
+                        "ford"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "road_major",
+            "paint": {
+                "line-color": "#fff",
+                "line-width": {
+                    "base": 1.4,
+                    "stops": [
+                        [
+                            6,
+                            0.5
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "butt",
+                "line-join": "miter"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway_link",
+                        "street",
+                        "street_limited",
+                        "service",
+                        "track",
+                        "pedestrian",
+                        "path",
+                        "link"
+                    ],
+                    [
+                        "==",
+                        "structure",
+                        "bridge"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "bridge_minor case",
+            "paint": {
+                "line-color": "#dedede",
+                "line-width": {
+                    "base": 1.6,
+                    "stops": [
+                        [
+                            12,
+                            0.5
+                        ],
+                        [
+                            20,
+                            10
+                        ]
+                    ]
+                },
+                "line-gap-width": {
+                    "base": 1.55,
+                    "stops": [
+                        [
+                            4,
+                            0.25
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "butt",
+                "line-join": "miter"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway",
+                        "primary",
+                        "secondary",
+                        "tertiary",
+                        "trunk"
+                    ],
+                    [
+                        "==",
+                        "structure",
+                        "bridge"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "bridge_major case",
+            "paint": {
+                "line-color": "#dedede",
+                "line-width": {
+                    "base": 1.6,
+                    "stops": [
+                        [
+                            12,
+                            0.5
+                        ],
+                        [
+                            20,
+                            10
+                        ]
+                    ]
+                },
+                "line-gap-width": {
+                    "base": 1.55,
+                    "stops": [
+                        [
+                            4,
+                            0.25
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway_link",
+                        "street",
+                        "street_limited",
+                        "service",
+                        "track",
+                        "pedestrian",
+                        "path",
+                        "link"
+                    ],
+                    [
+                        "==",
+                        "structure",
+                        "bridge"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "bridge_minor",
+            "paint": {
+                "line-color": "#efefef",
+                "line-width": {
+                    "base": 1.55,
+                    "stops": [
+                        [
+                            4,
+                            0.25
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "in",
+                        "class",
+                        "motorway",
+                        "primary",
+                        "secondary",
+                        "tertiary",
+                        "trunk"
+                    ],
+                    [
+                        "==",
+                        "structure",
+                        "bridge"
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "bridge_major",
+            "paint": {
+                "line-color": "#fff",
+                "line-width": {
+                    "base": 1.4,
+                    "stops": [
+                        [
+                            6,
+                            0.5
+                        ],
+                        [
+                            20,
+                            30
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "road"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "<=",
+                        "admin_level",
+                        2
+                    ],
+                    [
+                        "==",
+                        "maritime",
+                        0
+                    ]
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "admin_country",
+            "paint": {
+                "line-color": "#8b8a8a",
+                "line-width": {
+                    "base": 1.3,
+                    "stops": [
+                        [
+                            3,
+                            0.5
+                        ],
+                        [
+                            22,
+                            15
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "admin"
+        },
+        {
+            "id": "simple-tiles",
+            "type": "raster",
+            "source": "simple-tiles",
+            "minzoom": 0,
+            "maxzoom": 22
+        },
+        {
+            "interactive": true,
+            "minzoom": 5,
+            "layout": {
+                "icon-image": "{maki}-11",
+                "text-offset": [
+                    0,
+                    0.5
+                ],
+                "text-field": "{name_en}",
+                "text-font": [
+                    "Open Sans Semibold",
+                    "Arial Unicode MS Bold"
+                ],
+                "text-max-width": 8,
+                "text-anchor": "top",
+                "text-size": 11,
+                "icon-size": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Point"
+                ],
+                [
+                    "all",
+                    [
+                        "==",
+                        "scalerank",
+                        1
+                    ],
+                    [
+                        "==",
+                        "localrank",
+                        1
+                    ]
+                ]
+            ],
+            "type": "symbol",
+            "source": "mapbox",
+            "id": "poi_label",
+            "paint": {
+                "text-color": "#666",
+                "text-halo-width": 1.5,
+                "text-halo-color": "rgba(255,255,255,0.95)",
+                "text-halo-blur": 1
+            },
+            "source-layer": "poi_label"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "symbol-placement": "line",
+                "text-field": "{name_en}",
+                "text-font": [
+                    "Open Sans Semibold",
+                    "Arial Unicode MS Bold"
+                ],
+                "text-transform": "uppercase",
+                "text-letter-spacing": 0.1,
+                "text-size": {
+                    "base": 1.4,
+                    "stops": [
+                        [
+                            10,
+                            8
+                        ],
+                        [
+                            20,
+                            14
+                        ]
+                    ]
+                }
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "in",
+                    "class",
+                    "motorway",
+                    "primary",
+                    "secondary",
+                    "tertiary",
+                    "trunk"
+                ]
+            ],
+            "type": "symbol",
+            "source": "mapbox",
+            "id": "road_major_label",
+            "paint": {
+                "text-color": "#666",
+                "text-halo-color": "rgba(255,255,255,0.95)",
+                "text-halo-width": 2
+            },
+            "source-layer": "road_label"
+        },
+        {
+            "interactive": true,
+            "minzoom": 8,
+            "layout": {
+                "text-field": "{name_en}",
+                "text-font": [
+                    "Open Sans Semibold",
+                    "Arial Unicode MS Bold"
+                ],
+                "text-max-width": 6,
+                "text-size": {
+                    "stops": [
+                        [
+                            6,
+                            12
+                        ],
+                        [
+                            12,
+                            16
+                        ]
+                    ]
+                }
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Point"
+                ],
+                [
+                    "in",
+                    "type",
+                    "town",
+                    "village",
+                    "hamlet",
+                    "suburb",
+                    "neighbourhood",
+                    "island"
+                ]
+            ],
+            "type": "symbol",
+            "source": "mapbox",
+            "id": "place_label_other",
+            "paint": {
+                "text-color": "#666",
+                "text-halo-color": "rgba(255,255,255,0.95)",
+                "text-halo-width": 1.5,
+                "text-halo-blur": 1
+            },
+            "source-layer": "place_label"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "text-field": "{name_en}",
+                "text-font": [
+                    "Open Sans Bold",
+                    "Arial Unicode MS Bold"
+                ],
+                "text-max-width": 10,
+                "text-size": {
+                    "stops": [
+                        [
+                            3,
+                            12
+                        ],
+                        [
+                            8,
+                            16
+                        ]
+                    ]
+                }
+            },
+            "maxzoom": 16,
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Point"
+                ],
+                [
+                    "==",
+                    "type",
+                    "city"
+                ]
+            ],
+            "type": "symbol",
+            "source": "mapbox",
+            "id": "place_label_city",
+            "paint": {
+                "text-color": "#666",
+                "text-halo-color": "rgba(255,255,255,0.95)",
+                "text-halo-width": 1.5,
+                "text-halo-blur": 1
+            },
+            "source-layer": "place_label"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "text-field": "{name_en}",
+                "text-font": [
+                    "Open Sans Regular",
+                    "Arial Unicode MS Regular"
+                ],
+                "text-max-width": 10,
+                "text-size": {
+                    "stops": [
+                        [
+                            3,
+                            14
+                        ],
+                        [
+                            8,
+                            22
+                        ]
+                    ]
+                }
+            },
+            "maxzoom": 12,
+            "filter": [
+                "==",
+                "$type",
+                "Point"
+            ],
+            "type": "symbol",
+            "source": "mapbox",
+            "id": "country_label",
+            "paint": {
+                "text-color": "#666",
+                "text-halo-color": "rgba(255,255,255,0.95)",
+                "text-halo-width": 1.5,
+                "text-halo-blur": 1
+            },
+            "source-layer": "country_label"
+        }
+    ],
+        
+        "created": "2016-03-08T20:24:55.187Z",
+        "id": "ciljv8aim00459dm3hht07ite",
+        "modified": "2016-03-08T20:24:55.187Z",
+        "owner": "danswick",
+        "draft": false
+    },
+    center: [-6.25898,53.34698],
+    zoom: 18,
+    pitch: 58.7,
+    bearing: 0,
+    hash: true,
+});
+
+var pubnub = new PubNub({
+  publishKey: 'demo',
+  subscribeKey: 'demo'
+});
+var map = eon.map({
+  id: 'map',
+  mbId: 'YOUR_MAPBOX_ID',
+  mbToken: 'YOUR_MAPBOX_TOKEN',
+  pubnub: pubnub,
+  channels: ['sfo-flight-data'],
+  rotate: true,
+  history: true,
+  marker: function (latlng, data) {
+
+    var marker = new L.RotatedMarker(latlng, {
+      icon: L.icon({
+        iconUrl: '/wp-content/uploads/2016/05/airplane.png',
+        iconSize: [24, 24]
+      })
+    });
+
+    var popup = '';
+    if(data[13]) {
+      popup = 'Flight ' + data[13] + '';
+    }
+    if(data[11]) {
+      if(!popup.length) {
+        popup = 'Flight from ' + data[11];
+      } else {
+        popup += ' from ' + data[11];
+      }
+    }
+    if(data[12]) {
+      if(!popup.length) {
+        popup = 'Flight to ' + data[12];
+      } else {
+        popup += ' to ' + data[12];
+      }
+    }
+    if(!popup.length) {
+      var popup = 'No data available';
+    }
+
+    marker.bindPopup(popup);
+
+    return marker;
+  }
+});
+
+
+var map = new mapboxgl.Compare(beforeMap, afterMap, {
+    // Set this to enable comparing two maps by mouse movement:
+    // mousemove: true
+});
+
+var mindate = new Date("10/01/2017").getTime()
+var maxdate = new Date("01/04/2018").getTime()
+
+
+
+
+var layerList = document.getElementById('menu');
+var inputs = layerList.getElementsByTagName('input');
+function switchLayer(layer) {
+    var layerId = layer.target.id;
+    beforeMap.setStyle('mapbox://styles/' + layerId);
+}
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+}
+beforeMap.on('style.load', function () {
+    
+    beforeMap.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    beforeMap.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    });
+    beforeMap.addSource('hillshade', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    beforeMap.addLayer({
+        'id': 'hillshade',
+        'type': 'line',
+        'source': 'hillshade',
+        'source-layer': 'hillshade',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color:': '#877b59',
+            'line-width': 1,
+            'line-opacity': 0.6,
+        }
+    });
+
+    // Insert the layer beneath any symbol layer.
+    var layers = beforeMap.getStyle().layers;
+
+    var labelLayerId;
+    for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+            labelLayerId = layers[i].id;
+            break;
+        }
+    }
+
+    beforeMap.addLayer({
+        'id': '3d-buildings',
+        'source': 'composite',
+        'source-layer': 'building',
+        'filter': ['==', 'extrude', 'true'],
+        'type': 'fill-extrusion',
+        'minzoom': 15,
+        'paint': {
+            'fill-extrusion-color': '#aaa',
+
+            // use an 'interpolate' expression to add a smooth transition effect to the
+            // buildings as the user zooms in
+            'fill-extrusion-height': [
+                "interpolate", ["linear"], ["zoom"],
+                15, 0,
+                15.05, ["get", "height"]
+            ],
+            'fill-extrusion-base': [
+                "interpolate", ["linear"], ["zoom"],
+                15, 0,
+                15.05, ["get", "min_height"]
+            ],
+            'fill-extrusion-opacity': .6
+        }
+    }, labelLayerId);
+
+
+
+
+});
+
+
+
+
+addLayer('Contours', 'contours');
+addLayer('Hillshade', 'hillshade');
+function addLayer(name, id) {
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = name;
+    link.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var visibility = beforeMap.getLayoutProperty(id, 'visibility');
+        if (visibility === 'visible') {
+            beforeMap.setLayoutProperty(id, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            beforeMap.setLayoutProperty(id, 'visibility', 'visible');
+        }
+    };
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+}
+// Add zoom and rotation controls to the map.
+beforeMap.addControl(new mapboxgl.Navigation());
+
+afterMap.on('load', function() {
+    // Insert the layer beneath any symbol layer.
+    var layers = afterMap.getStyle().layers;
+
+    var labelLayerId;
+    for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+            labelLayerId = layers[i].id;
+            break;
+        }
+    }
+
+    afterMap.addLayer({
+        'id': '3d-buildings',
+        'source': 'composite',
+        'source-layer': 'building',
+        'filter': ['==', 'extrude', 'true'],
+        'type': 'fill-extrusion',
+        'minzoom': 15,
+        'z-index':200,
+        'paint': {
+            'fill-extrusion-color': '#aaa',
+
+            // use an 'interpolate' expression to add a smooth transition effect to the
+            // buildings as the user zooms in
+            'fill-extrusion-height': [
+                "interpolate", ["linear"], ["zoom"],
+                15, 0,
+                15.05, ["get", "height"]
+            ],
+            'fill-extrusion-base': [
+                "interpolate", ["linear"], ["zoom"],
+                15, 0,
+                15.05, ["get", "min_height"]
+            ],
+            'fill-extrusion-opacity': .6
+        }
+    }, labelLayerId);
+
+});
+
+var swatches = document.getElementById('swatches');
+var layer = document.getElementById('layer');
+var colors = [
+    '#ffffcc',
+    '#a1dab4',
+    '#41b6c4',
+    '#2c7fb8',
+    '#253494',
+    '#fed976',
+    '#feb24c',
+    '#fd8d3c',
+    '#f03b20',
+    '#bd0026'
+];
+
+colors.forEach(function(color) {
+    var swatch = document.createElement('button');
+    swatch.style.backgroundColor = color;
+    swatch.addEventListener('click', function() {
+        afterMap.setPaintProperty(layer.value, 'fill-color', color);
+    });
+    swatches.appendChild(swatch);
+});
+
+var widerizer = document.getElementById('widerizer');
+widerizer.oninput = function() {
+    var widths = this.value;
+    afterMap.setPaintProperty('water', 'line-width', widths);
+    afterMap.setPaintProperty('major_roads', 'line-width', widths);
+    afterMap.setPaintProperty('minor_roads', 'line-width', widths);
+    afterMap.setPaintProperty('bridge', 'line-width', widths);
+}
+var widths=5;
+function switchWidths() {
+    afterMap.setPaintProperty('major_roads', 'line-width', widths);
+    afterMap.setPaintProperty('minor_roads', 'line-width', widths);
+    afterMap.setPaintProperty('bridge', 'line-width', widths);
+    afterMap.setPaintProperty('water', 'line-width', widths);
+}
+function switchRoads(colour) {
+    afterMap.setPaintProperty('major_roads', 'fill-color', colour);
+    afterMap.setPaintProperty('minor_roads', 'fill-color', colour);
+    afterMap.setPaintProperty('bridge', 'fill-color', colour);
+    afterMap.setPaintProperty('major_roads', 'line-color', colour);
+    afterMap.setPaintProperty('minor_roads', 'line-color', colour);
+    afterMap.setPaintProperty('bridge', 'line-color', colour);//line-width
+    afterMap.setPaintProperty('major_roads', 'line-width', widths);
+    afterMap.setPaintProperty('minor_roads', 'line-width', widths);
+   afterMap.setPaintProperty('bridge', 'line-width', widths);
+}
+</script>
+
+<script>
+    function getNonZeroRandomNumber(){
+      var random = Math.floor(Math.random()*199) - 99;
+      if(random==0) return getNonZeroRandomNumber();
+      return random;
+    }
+  </script>
+
+<script>
+    
+          var pubnub = new PubNub({
+            publishKey: 'demo',
+            subscribeKey: 'demo'
+          });
+    
+          var channel = 'pubnub-mapbox' + getNonZeroRandomNumber();
+    
+          eon.map({
+            pubnub: pubnub,
+            id: 'map',
+            mbToken: 'pk.eyJ1IjoiaWFuamVubmluZ3MiLCJhIjoiZExwb0p5WSJ9.XLi48h-NOyJOCJuu1-h-Jg',
+            mbId: 'ianjennings.l896mh2e',
+            channels: [channel],
+            connect: connect,
+            options: {
+              zoomAnimation: false,
+            },
+          });
+    
+          function connect() {
+    
+            var point = {
+              latlng: [37.370375, -97.756138]
+            };
+    
+            setInterval(function(){
+    
+              var new_point = JSON.parse(JSON.stringify(point));
+    
+              new_point.latlng = [
+                new_point.latlng[0] + (getNonZeroRandomNumber() * 0.1),
+                new_point.latlng[1] + (getNonZeroRandomNumber() * 0.2)
+              ];
+    
+              pubnub.publish({
+                channel: channel,
+                message: [new_point]
+              });
+    
+            }, 1000);
+    
+          };
+    
+        </script>
+
+
+</body>
+</html>
