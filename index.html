@@ -9,7 +9,7 @@
     <script src="TemplateData/UnityProgress.js"></script>  
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Flood.json", {onProgress: UnityProgress});
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Flood/Build/Flood.json", {onProgress: UnityProgress});
     </script>
   </head>
   <body>
@@ -19,19 +19,7 @@
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
         <div class="title">HexGrid</div>
-        <div></div>
-        <div><iframe src="demo_iframe.htm" height="300" width="500"></iframe></div>
-        <div><p><a href="https://niagaraopendata.ca/dataset/city-of-niagara-falls-tourism-district" target="iframe_a">NiagaraFalls</a></p>
-          </div>
       </div>
     </div>
-  
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script>
-      $(window).on('load', function () {
-        window.focus();
-      })
-      document.onmousedown = function () { window.focus(); };
-    </script>
   </body>
 </html>
