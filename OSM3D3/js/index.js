@@ -21,9 +21,9 @@ var cities = L.layerGroup();
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		//mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-    mbUrl='https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png';
+  var mbUrl='https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png';
 	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+	var streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 
 	// var map = L.map('map', {
 	// 	center: [39.73, -104.99],
@@ -31,7 +31,7 @@ var cities = L.layerGroup();
 	// 	layers: [grayscale, cities]
   // });
   
-    var map = new L.Map('map');
+    var map = new L.Map('map',{layers: [grayscale, cities]});
     map.setView([52.52111, 13.40988], 16, false);
 
 	var baseLayers = {
