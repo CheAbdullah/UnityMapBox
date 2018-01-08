@@ -50,14 +50,14 @@ var cities = L.layerGroup();
 	var map = L.map('map', {
 		center: [-6.259142, 53.347268],
     zoom: 19,
-		layers: [grayscale, cities,satellite,terrain]
+		layers: [grayscale, cities]
 	});
 
 	var baseLayers = {
 		"Grayscale": grayscale,
     "Streets": streets,
-    "satellite": satellite,
-    "terrain": terrain
+    //"satellite": satellite,
+    //"terrain": terrain
 	};
 
 	var overlays = {
