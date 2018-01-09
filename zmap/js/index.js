@@ -18,7 +18,7 @@ var osm = new OpenLayers.Layer.OSM();
 map.addLayer(osm);
 
 map.setCenter(
-  new OpenLayers.LonLat(13.37570, 52.52020)
+  new OpenLayers.LonLat(52.52111, 13.40988)
     .transform(
       new OpenLayers.Projection('EPSG:4326'),
       map.getProjectionObject()
