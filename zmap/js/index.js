@@ -1,6 +1,7 @@
-var map = new L.Map('map');
-map.setView([52.52111, 13.40988], 16, false);
+// var map = new L.Map('map');
+// map.setView([52.52111, 13.40988], 16, false);
 
+var map = L.map('map').setView([39.74739, -105], 13);
 
 var someFeatures = [{
   "type": "Feature",
@@ -30,7 +31,14 @@ L.geoJSON(someFeatures, {
   }
 }).addTo(map);
 
-
+var coorsLayer = L.geoJSON(coorsField, {
+  
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {icon: baseballIcon});
+      },
+  
+      onEachFeature: onEachFeature
+    }).addTo(map);
 
 new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
   attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
