@@ -1,11 +1,34 @@
-var map = new L.Map('map');
-map.setView([52.52111, 13.40988], 16, false);
+var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+var cities = L.layerGroup([littleton, denver, aurora, golden]);
+
+//var map = new L.Map('map');
+var map = L.map('map', {
+  center: [39.73, -104.99],
+  zoom: 16,
+  layers: [grayscale, cities]
+});
+
+var overlayMaps = {
+  "Cities": cities
+};
+
+L.control.layers(map, overlayMaps).addTo(map);
+
+//map.setView([39.73, -104.99], 16, false);
 
 var osm=new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
   attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
   maxZoom: 18,
   maxNativeZoom: 20
 });
+
+var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),
+var streets   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
+var baseMaps = {"Grayscale": grayscale,"Streets": streets};
 
 var satt=new L.TileLayer('bobbysud.map-l4i2m7nd', {
   attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
