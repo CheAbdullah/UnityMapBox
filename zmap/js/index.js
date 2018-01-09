@@ -7,7 +7,7 @@ new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{
   maxNativeZoom: 20
 }).addTo(map);
 
-var osmb = new OSMBuildings(map).load();
+var osm = new OSMBuildings(map).load();
 
 //********************************************************
 
@@ -26,7 +26,7 @@ map.setCenter(
   17
 );
 
-var osmc = new OSMBuildings(map).load();
+var osmb = new OSMBuildings(map).load();
 //********************************************************
 
 var
