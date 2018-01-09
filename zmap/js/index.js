@@ -1,5 +1,5 @@
 var map = new L.Map('map');
-map.setView([52.52111, 13.40988], 16, false);
+map.setView([13.37356, 52.52064], 16, false);
 
 new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
   attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
@@ -8,6 +8,32 @@ new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{
 }).addTo(map);
 
 var osmb = new OSMBuildings(map).load();
+
+var geoJSON = {
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "id": 134,
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [13.37356, 52.52064],
+        [13.37350, 52.51971],
+        [13.37664, 52.51973],
+        [13.37594, 52.52062],
+        [13.37356, 52.52064]
+      ]]
+    },
+    "properties": {
+      "wallColor": "rgb(255,0,0)",
+      "roofColor": "rgb(255,128,0)",
+      "height": 500,
+      "minHeight": 0
+    }
+  }]
+};
+
+new OSMBuildings(map).set(geoJSON);
 
 //********************************************************
 
