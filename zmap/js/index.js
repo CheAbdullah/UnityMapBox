@@ -9,7 +9,7 @@ new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{
   maxNativeZoom: 20
 }).addTo(map);
 
-var osmb = new OSMBuildings(map).load();
+
 
 var geoJSON = {
   "type": "FeatureCollection",
@@ -36,6 +36,7 @@ var geoJSON = {
 };
 
 new OSMBuildings(map).set(geoJSON);
+var osmb = new OSMBuildings(map).load();
 
 //********************************************************
 
