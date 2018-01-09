@@ -1,7 +1,11 @@
 var map = new L.Map('map');
 map.setView([52.52111, 13.40988], 16, false);
 
-
+new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
+  attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
+  maxZoom: 18,
+  maxNativeZoom: 20
+}).addTo(map);
 
 var osmb = new OSMBuildings(map).load();
 
