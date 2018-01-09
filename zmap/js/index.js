@@ -1,6 +1,37 @@
 var map = new L.Map('map');
 map.setView([52.52111, 13.40988], 16, false);
 
+
+var someFeatures = [{
+  "type": "Feature",
+  "properties": {
+      "name": "Coors Field",
+      "show_on_map": true
+  },
+  "geometry": {
+      "type": "Point",
+      "coordinates": [52.52111, 13.40988]
+  }
+}, {
+  "type": "Feature",
+  "properties": {
+      "name": "Busch Field",
+      "show_on_map": false
+  },
+  "geometry": {
+      "type": "Point",
+      "coordinates": [52.521112, 13.409882]
+  }
+}];
+
+L.geoJSON(someFeatures, {
+  filter: function(feature, layer) {
+      return feature.properties.show_on_map;
+  }
+}).addTo(map);
+
+
+
 new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
   attribution: '© Map <a href="https://mapbox.com">Mapbox</a>',
   maxZoom: 18,
