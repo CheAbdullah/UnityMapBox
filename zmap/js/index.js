@@ -11,6 +11,24 @@ var osmb = new OSMBuildings(map).load();
 
 //********************************************************
 
+var map = new OpenLayers.Map('map');
+map.addControl(new OpenLayers.Control.LayerSwitcher());
+
+var osm = new OpenLayers.Layer.OSM();
+map.addLayer(osm);
+
+map.setCenter(
+  new OpenLayers.LonLat(13.37570, 52.52020)
+    .transform(
+      new OpenLayers.Projection('EPSG:4326'),
+      map.getProjectionObject()
+    ),
+  17
+);
+
+new OSMBuildings(map).load();
+//********************************************************
+
 var
   now,
   date, time,
