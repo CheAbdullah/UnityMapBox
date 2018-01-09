@@ -7,26 +7,26 @@ new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{
   maxNativeZoom: 20
 }).addTo(map);
 
-var osm = new OSMBuildings(map).load();
+var osmb = new OSMBuildings(map).load();
 
 //********************************************************
 
-var map = new OpenLayers.Map('map');
-map.addControl(new OpenLayers.Control.LayerSwitcher());
+// var map = new OpenLayers.Map('map');
+// map.addControl(new OpenLayers.Control.LayerSwitcher());
 
-var osm = new OpenLayers.Layer.OSM();
-map.addLayer(osm);
+// var osm = new OpenLayers.Layer.OSM();
+// map.addLayer(osm);
 
-map.setCenter(
-  new OpenLayers.LonLat(52.52111, 13.40988)
-    .transform(
-      new OpenLayers.Projection('EPSG:4326'),
-      map.getProjectionObject()
-    ),
-  17
-);
+// map.setCenter(
+//   new OpenLayers.LonLat(52.52111, 13.40988)
+//     .transform(
+//       new OpenLayers.Projection('EPSG:4326'),
+//       map.getProjectionObject()
+//     ),
+//   17
+// );
 
-var osmb = new OSMBuildings(map).load();
+// var osmb = new OSMBuildings(map).load();
 //********************************************************
 
 var
