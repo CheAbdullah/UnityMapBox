@@ -1,5 +1,5 @@
 var map = new L.Map('map');
-map.setView([50.7192, 1.8808], 16, false);
+map.setView([53.350140, -6.266155], 16, false);
 
 // var map = new L.Map('map').setView([52.52020, 13.37570], 17);
 
