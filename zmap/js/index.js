@@ -1,7 +1,7 @@
-// var map = new L.Map('map');
-// map.setView([52.52111, 13.40988], 16, false);
+var map = new L.Map('map');
+map.setView([52.52111, 13.40988], 16, false);
 
-var map = L.Map('map').setView([39.74739, -105], 13);
+//var map = L.Map('map').setView([39.74739, -105], 13);
 
 var someFeatures = [{
   "type": "Feature",
