@@ -10,6 +10,13 @@ new L.TileLayer('https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{
 }).addTo(map);
 
 
+L.TileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+  layers: 'nexrad-n0r-900913',
+    format: 'image/png',
+    transparent: true,
+    attribution: "Weather data © 2012 IEM Nexrad"
+}).addTo(map);
+
 
 // var geoJSON = {
 //   "type": "FeatureCollection",
