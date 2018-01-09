@@ -26,7 +26,7 @@ map.setCenter(
   17
 );
 
-new OSMBuildings(map).load();
+var osmc = new OSMBuildings(map).load();
 //********************************************************
 
 var
