@@ -1,5 +1,5 @@
 const center = [34.4668,31.5017]; // Bengaluru
-const zoom = 5;
+const zoom =10;
 
 // Before Map URL
 const map1URL = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
