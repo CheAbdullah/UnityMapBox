@@ -1,0 +1,22 @@
+// Connect to Overpass API - you can also use a (small) .osm file as data source
+var overpassFrontend = new OverpassFrontend('//overpass-api.de/api/interpreter')
+
+// Create the layer
+var layer = new OverpassLayer({
+  overpassFrontend: overpassFrontend,
+  query: 'nwr[building]',
+  minZoom: 16,
+  feature: {
+    title: '{{ tags.name }}',
+    style: { width: 1, color: 'black' }
+  }
+})
+
+// Create a LeafletJS map
+var map = L.map('map').setView([ 51.5, 0.0 ], 16)
+
+// Add the layer to the map
+layer.addTo(map)
+// ... or use a control
+//var layerControl = L.control({}, { 'Buildings': layer })
+//layerControl.addTo(map)
