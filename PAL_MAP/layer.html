@@ -97,7 +97,22 @@ var opl = new L.OverPassLayer({
 
 map.addLayer(opl);
 
+async function getRoads() {
+    let geoJson = await json('./hospital.geojson')
+    return geoJson;
+}
+onMount(async () => {
+    roads = await getRoads();
+    leaflet = await import('leaflet');
+    map = leaflet.map('map' ,{ scrollWheelZoom: false, touchZoom: false, dragging: false} ).setView({lat: 52.453269, lng: -1.67}, 11);
 
+    leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+                attribution: '© OpenStreetMap contributors, © CartoDB'
+            }).addTo(map);
+    map.attributionControl.setPosition('bottomleft');
+    let roadsLayer = leaflet.geoJSON().addTo(map);
+    roadsLayer.addData(roads);
+})
 
 
 </script>
