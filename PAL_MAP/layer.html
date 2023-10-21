@@ -82,16 +82,17 @@ layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
 layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
 
 var opl = new L.OverPassLayer({
-            debug: true,
-            endPoint: 'https://lz4.overpass-api.de/api/',
-            query: 'node({{bbox}})["amenity"="hospital"];out;',
-            minZoomIndicatorOptions: {
-                position: 'topright',
-                minZoomMessage: 'Current zoom level: CURRENTZOOM - All data at level: MINZOOMLEVEL'
-            }
-        });
-layerControl.addOverlay(opl, 'opl');
 
+    'query': '(node({{bbox}})[organic];node({{bbox}})[second_hand];);out qt;',
+});
+
+map.addLayer(opl);
+
+
+var opl2 = new L.OverPassLayer({
+query: "node[amenity=drinking_water]({{bbox}});out;",
+});
+layerControl.addOverlay(opl2, 'opl2');
 
 </script>
 
