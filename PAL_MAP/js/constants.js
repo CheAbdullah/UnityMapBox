@@ -1,5 +1,5 @@
 const center = [34.4668,31.5017]; // Bengaluru
-const zoom = 12;
+const zoom = 5;
 
 // Before Map URL
 const map1URL = 'https://{s}.tiles.mapbox.com/v3/spatial.map-qgihrqg5/{z}/{x}/{y}.png';
