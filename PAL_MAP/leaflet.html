@@ -101,6 +101,34 @@ L.geoPackageTileLayer({
     geoPackageUrl: 'kontur_population_PS_20220630.gpkg',
     layerName: 'population'
 }).addTo(map);
+
+
+// GeoPackage読み込み
+L.geoPackageFeatureLayer([], {
+    // GeoPackageファイル指定
+    geoPackageUrl: 'kontur_population_PS_20220630.gpkg',
+    // レイヤ名指定
+    layerName: 'population',
+    pointToLayer: function (feature, layer) {
+        return L.circleMarker(layer, {
+            color: '#014c86',
+            radius: 3,
+            weight: 1,
+            opacity: 0.7,
+            fill: true,
+            fillColor: '#014c86',
+            fillOpacity: 0.7
+        });
+    },
+    onEachFeature: function (feature, layer) {
+        const field =
+            baseline population: ${feature.properties.full_id} <br>
+            geodata: ${feature.properties.osm_id} <br>
+            opt-israel-hostilities: ${feature.properties.name} <br>
+            population: ${feature.properties.shop}`;
+        layer.bindPopup(field);
+    }
+}).addTo(map);
 	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 <!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
