@@ -89,6 +89,17 @@ var opl = new OverpassLayer({
 layerControl.addOverlay(opl, 'opl');
 opl.addTo(map)
 
+	// Create the layer
+var opl2 = new OverpassLayer({
+  overpassFrontend: overpassFrontend,
+  query: 'nwr[building]',
+  minZoom: 16,
+  feature: {
+    title: '{{ tags.name }}',
+    style: { width: 1, color: 'black' }
+  }
+})
+opl2.addTo(map)
 
 </script>
 
