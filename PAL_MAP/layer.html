@@ -96,7 +96,7 @@ async function getRoad() {
 onMount(async () => {
     roads = await getRoad();
     leaflet = await import('leaflet');
-    map2 = leaflet.map('map' ,{ scrollWheelZoom: false, touchZoom: false, dragging: false} ).setView({lat: 52.453269, lng: -1.67}, 11);
+    map2 = leaflet.map('map2' ,{ scrollWheelZoom: false, touchZoom: false, dragging: false} ).setView({lat: 52.453269, lng: -1.67}, 11);
 
     leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
                 attribution: '© OpenStreetMap contributors, © CartoDB'
