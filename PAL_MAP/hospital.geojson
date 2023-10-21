@@ -1,0 +1,608 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-10-21T12:06:15Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/329170797",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "European Gaza Hospital - مستشفى غزة الأوروبي",
+        "name:ar": "European Gaza Hospital - مستشفى غزة الأوروبي",
+        "name:en": "European Gaza Hospital",
+        "name:pl": "Szpital Europejski Gaza",
+        "note": "(+970) 8- 2054495",
+        "source_ref": "http://www.egh.gov.ps/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.3196225,
+          31.3033829
+        ]
+      },
+      "id": "node/329170797"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/504255998",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Al-Salam Health Center",
+        "name:ar": "عيادة السلام"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4471014,
+          31.5087918
+        ]
+      },
+      "id": "node/504255998"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/504272104",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Sabra Health Center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4512441,
+          31.5066573
+        ]
+      },
+      "id": "node/504272104"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/504295248",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Al-Salah Clinic Center",
+        "name:ar": "مستوصف الصلاح الخيري"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4462412,
+          31.5058102
+        ]
+      },
+      "id": "node/504295248"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/505089630",
+        "amenity": "hospital",
+        "emergency": "yes",
+        "name": "مجمع ناصر الطبى",
+        "name:ar": "مجمع ناصر الطبى",
+        "name:en": "Nasir Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.2932298,
+          31.3478294
+        ]
+      },
+      "id": "node/505089630"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/505119662",
+        "amenity": "hospital",
+        "name": "Alawda health center",
+        "name:ar": "مركز العودة الصحي"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.251342,
+          31.2845256
+        ]
+      },
+      "id": "node/505119662"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/505122999",
+        "amenity": "hospital",
+        "name": "مستشفى مبارك للولادة",
+        "name:ar": "مستشفى مبارك للولادة",
+        "name:en": "Mopark Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.2924742,
+          31.346608
+        ]
+      },
+      "id": "node/505122999"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/505123001",
+        "amenity": "hospital",
+        "name": "Alwafa' Hospital",
+        "name:ar": "مستشفى الوفاء الطبي",
+        "name:he": "בית החולים אלוואפא"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.2495163,
+          31.283775
+        ]
+      },
+      "id": "node/505123001"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/505136313",
+        "amenity": "hospital",
+        "name": "Red Crescent Society Hospital",
+        "name:ar": "جمعية الهلال الاحمر الفلسطيني"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.267961,
+          31.2865155
+        ]
+      },
+      "id": "node/505136313"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1705954187",
+        "amenity": "hospital",
+        "name": "د. سميح شاكر",
+        "name:ar": "د. سميح شاكر",
+        "name:en": "Dr. Sameeh Shakir Clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.2518166,
+          31.2844079
+        ]
+      },
+      "id": "node/1705954187"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4266706790",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "العيادة الخارجية مشفى الشفاء",
+        "name:ar": "العيادة الخارجية مشفى الشفاء"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4434727,
+          31.5230875
+        ]
+      },
+      "id": "node/4266706790"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4357173351",
+        "addr:street": "General Beit Lahiya",
+        "amenity": "hospital",
+        "name": "المستشفى الاندونيسي",
+        "name:ar": "المستشفى الاندونيسي",
+        "name:en": "Indonesian hospital",
+        "opening_hours": "24/7",
+        "wikidata": "Q79273297"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.5093096,
+          31.5353697
+        ]
+      },
+      "id": "node/4357173351"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4357173646",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مستشفى بيت حانون",
+        "name:ar": "مستشفى بيت حانون",
+        "name:en": "Beit Hanon hospital",
+        "name:ja": "ベイトハヌーン病院",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.537446,
+          31.5391896
+        ]
+      },
+      "id": "node/4357173646"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4486068989",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مستشفى الأطراف الصناعية",
+        "name:ar": "مستشفى الأطراف الصناعية",
+        "name:pt": "Hospital de Próteses"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4575707,
+          31.5473547
+        ]
+      },
+      "id": "node/4486068989"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4639297591",
+        "addr:street": "شارع الوحدة",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مستشفى الخدمة العامة (وحدة القلب)",
+        "name:ar": "عيادة الخدمة العامة (وحدة القلب)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4585173,
+          31.5102562
+        ]
+      },
+      "id": "node/4639297591"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4679361798",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مستشفى اليمن السعيد",
+        "name:ar": "مستشفى اليمن السعيد"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4962551,
+          31.536356
+        ]
+      },
+      "id": "node/4679361798"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4711969419",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مستشفى الصداقة التركي الفلسطيني",
+        "name:ar": "مستشفى الصداقة التركي",
+        "name:en": "Turkey -Palestine friendship hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.411707,
+          31.4794776
+        ]
+      },
+      "id": "node/4711969419"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4722959289",
+        "addr:postcode": "99999",
+        "addr:street": "Akka Street",
+        "amenity": "hospital",
+        "email": "bexecutive@elwafa.ps",
+        "healthcare": "hospital",
+        "internet_access": "wlan",
+        "name": "El Wafa Elderly Care Center",
+        "name:ar": "El Wafa Elderly Care Center",
+        "opening_hours": "24/7",
+        "phone": "972082625003",
+        "website": "http://www.elwafa.ps"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4048538,
+          31.4733218
+        ]
+      },
+      "id": "node/4722959289"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4729217994",
+        "addr:postcode": "99999",
+        "addr:street": "Al-Yarmok Street",
+        "amenity": "hospital",
+        "email": "bmedhat@gmail.com",
+        "healthcare": "hospital",
+        "internet_access": "wlan",
+        "name": "مستشفى الوفاء للتأهيل الطبي والجراحة التخصصية",
+        "name:ar": "مستشفى الوفاء للتأهيل الطبي والجراحة التخصصية",
+        "name:en": "El Wafa Medical Rehab and specialized Surgery Hospital",
+        "phone": "+970598877011",
+        "website": "http://www.elwafa.ps"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4528214,
+          31.5134844
+        ]
+      },
+      "id": "node/4729217994"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5185970921",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "السلطان للعلاج الطبيعي",
+        "name:ar": "السلطان للعلاج الطبيعي"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.482395,
+          31.5275081
+        ]
+      },
+      "id": "node/5185970921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5359858021",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مجمع الشفاء الطبي",
+        "name:ar": "مجمع الشفاء الطبي",
+        "name:en": "Al-Shifa Hospital Compound",
+        "name:pt": "Complexo Hospitalar Al-Shifa",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4435024,
+          31.524103
+        ]
+      },
+      "id": "node/5359858021"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5591150621",
+        "addr:street": "النصر",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مستشفى مهدي للولادة",
+        "name:ar": "مستشفى مهدي للولادة"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4510466,
+          31.5256192
+        ]
+      },
+      "id": "node/5591150621"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5837946591",
+        "amenity": "hospital",
+        "name": "تتتتت",
+        "name:ar": "تتتتت"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.302572,
+          31.3256436
+        ]
+      },
+      "id": "node/5837946591"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6006909387",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مختبر شاكر للتحاليل الطبية",
+        "name:ar": "مختبر شاكر للتحاليل الطبية",
+        "name:en": "Shaker Laboratory for Medical Analysis",
+        "opening_hours": "Sa-Th 09:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.444832,
+          31.5236314
+        ]
+      },
+      "id": "node/6006909387"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6779805685",
+        "addr:street": "Ezdin Alqasam Street - شارع عز الدين القسام",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "عيادة الدكتور-محمود صالح",
+        "name:ar": "عيادة الدكتور-محمود صالح",
+        "opening_hours": "Sa-Th 09:00-22:00",
+        "phone": "0598991185"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4512559,
+          31.5292833
+        ]
+      },
+      "id": "node/6779805685"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6804962685",
+        "amenity": "hospital",
+        "name": "عيادة خزاعة",
+        "name:ar": "عيادة خزاعة"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.3581483,
+          31.3024868
+        ]
+      },
+      "id": "node/6804962685"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6805031185",
+        "amenity": "hospital",
+        "name": "عيادة عبسان الصغيرة",
+        "name:ar": "عيادة عبسان الصغيرة"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.345451,
+          31.3370741
+        ]
+      },
+      "id": "node/6805031185"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8303316611",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "NICU عناية مركزة لحديثي الولادة"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4423881,
+          31.5240518
+        ]
+      },
+      "id": "node/8303316611"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8307802855",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "NICU"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4421223,
+          31.5241018
+        ]
+      },
+      "id": "node/8307802855"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9882340517",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4525777,
+          31.5274547
+        ]
+      },
+      "id": "node/9882340517"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9898893817",
+        "amenity": "hospital",
+        "name": "عيادة اللىيج القديمة (المركزية)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4045074,
+          31.4418793
+        ]
+      },
+      "id": "node/9898893817"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10706283405",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "مخبز العائلات"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4696396,
+          31.5375155
+        ]
+      },
+      "id": "node/10706283405"
+    }
+  ]
+}
