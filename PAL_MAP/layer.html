@@ -78,6 +78,10 @@ const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.pn
 	maxZoom: 19,
 	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 });
+var opl2 = new L.OverPassLayer({
+query: "node[amenity=drinking_water]({{bbox}});out;",
+});
+layerControl.addOverlay(opl2, 'opl2');
 layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
 layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
 
@@ -89,10 +93,7 @@ var opl = new L.OverPassLayer({
 map.addLayer(opl);
 
 
-var opl2 = new L.OverPassLayer({
-query: "node[amenity=drinking_water]({{bbox}});out;",
-});
-layerControl.addOverlay(opl2, 'opl2');
+
 
 </script>
 
