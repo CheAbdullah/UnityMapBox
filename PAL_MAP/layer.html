@@ -87,6 +87,7 @@ var opl = new OverpassLayer({
   query: "node[amenity=hospital]({{bbox}});out;",
 });
 layerControl.addOverlay(opl, 'opl');
+opl.addTo(map)
 
 
 </script>
