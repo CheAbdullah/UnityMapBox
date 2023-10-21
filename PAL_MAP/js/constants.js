@@ -1,4 +1,4 @@
-const center = [34.4668,31.5017]; // Bengaluru
+const center =[31.416665 34.333332];// [34.4668,31.5017]; // Bengaluru
 const zoom =10;
 
 // Before Map URL
