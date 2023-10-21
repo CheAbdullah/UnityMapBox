@@ -92,7 +92,7 @@ layerControl.addOverlay(opl);
 async function getRoad() {
     let geoJson = await json('./hospital.geojson')
     return geoJson;
-}
+} 
 onMount(async () => {
     roads = await getRoad();
     leaflet = await import('leaflet');
