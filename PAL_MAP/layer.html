@@ -80,32 +80,14 @@ const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.pn
 layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
 layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
 
-var attr_osm = 'Map data &copy; <a href="http://openstreetmap.org/">OpenStreetMap</a> contributors',
-attr_overpass = 'POI via <a href="http://www.overpass-api.de/">Overpass API</a>';
-var osm2 = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {opacity: 0.7, attribution: [attr_osm, attr_overpass].join(', ')});
-
-var opl = new L.OverPassLayer({
-query: "node[amenity=hospital]({{bbox}});out;",
+var overpassFrontend = new OverpassFrontend('//overpass-api.de/api/interpreter')
+// Create the layer
+var opl = new OverpassLayer({
+  overpassFrontend: overpassFrontend,
+  query: "node[amenity=hospital]({{bbox}});out;",
 });
-layerControl.addOverlay(opl); 
+layerControl.addOverlay(opl, 'opl');
 
-async function getRoad() {
-    let geoJson = await json('./hospital.geojson')
-    return geoJson;
-} 
-onMount(async () => {
-    roads = await getRoad();
-    leaflet = await import('leaflet');
-    map2 = leaflet.map('map2' ,{ scrollWheelZoom: false, touchZoom: false, dragging: false} ).setView({lat: 52.453269, lng: -1.67}, 11);
-
-    leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
-                attribution: '© OpenStreetMap contributors, © CartoDB'
-            }).addTo(map2);
-    map2.attributionControl.setPosition('bottomleft');
-    let roadsLayer = leaflet.geoJSON().addTo(map2);
-    roadsLayer.addData(roads);
-})
-layerControl.addOverlay(roadsLayer); 	
 
 </script>
 
