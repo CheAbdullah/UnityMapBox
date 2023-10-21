@@ -30,8 +30,9 @@
 <body>
 
 <div id='map'></div>
-
+<script src="dist/OverPassLayer.bundle.js"></script>
 <script>
+	
 const airStrike = L.layerGroup();
 const a1 = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius 19 October 2023, CO.').addTo(airStrike);
 const a2 = L.marker([31.5049, 34.4615]).bindPopup('Al-Ahli Arab Hospital 17 October 2023, CO.').addTo(airStrike);
@@ -80,26 +81,18 @@ const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.pn
 layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
 layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
 
-var overpassFrontend = new OverpassFrontend('//overpass-api.de/api/interpreter')
-// Create the layer
-var opl = new OverpassLayer({
-  overpassFrontend: overpassFrontend,
-  query: "node[amenity=hospital]({{bbox}});out;",
-});
-layerControl.addOverlay(opl, 'opl');
-opl.addTo(map)
+var opl = new L.OverPassLayer({
+            debug: true,
+            endPoint: 'https://lz4.overpass-api.de/api/',
+            query: 'node({{bbox}})["amenity"="hospital"];out;',
+            minZoomIndicatorOptions: {
+                position: 'topright',
+                minZoomMessage: 'Current zoom level: CURRENTZOOM - All data at level: MINZOOMLEVEL'
+            }
+        });
+map.addLayer(opl);
 
-	// Create the layer
-var opl2 = new OverpassLayer({
-  overpassFrontend: overpassFrontend,
-  query: 'nwr[building]',
-  minZoom: 16,
-  feature: {
-    title: '{{ tags.name }}',
-    style: { width: 1, color: 'black' }
-  }
-})
-opl2.addTo(map)
+
 
 </script>
 
