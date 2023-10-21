@@ -32,11 +32,11 @@
 <div id='map'></div>
 
 <script>
-const cities = L.layerGroup();
-const mLittleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(cities);
-const mDenver = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities);
-const mAurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities);
-const mGolden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
+const airStrike = L.layerGroup();
+const mLittleton = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius, CO.').addTo(airStrike);
+const mDenver = L.marker([31.5049 34.4615]).bindPopup('Al-Ahli Arab Hospital, CO.').addTo(airStrike);
+const mAurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(airStrike);
+const mGolden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(airStrike);
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -48,9 +48,9 @@ const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.pn
 });
 
 const map = L.map('map', {
-	center: [39.73, -104.99],
+	center: [34.4668,31.5017],
 	zoom: 10,
-	layers: [osm, cities]
+	layers: [osm, airStrike]
 });
 
 const baseLayers = {
@@ -59,7 +59,7 @@ const baseLayers = {
 };
 
 const overlays = {
-	'Cities': cities
+	'AirStrike': airStrike
 };
 
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
