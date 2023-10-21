@@ -95,23 +95,10 @@ const overlays = {
 	.addTo(map);
 	
 
-// map
-  function onEachFeature(feature, layer) {
-    layer.bindPopup(feature.properties.City + ", " + feature.properties.State + ", " + feature.properties.Country);
-  }
-
-  $.getJSON("cities.geoJSON", function (cities) { // pull data from external file
-    L.geoJson(cities, {
-      onEachFeature: onEachFeature,
-      pointToLayer: function (feature, latlng) {
-        switch (feature.properties.Remember) {
-          case '1': return L.marker(latlng, {icon: visitedIcon});
-          case '?': return L.marker(latlng, {icon: uncertainIcon});
-          case '0': return L.marker(latlng, {icon: uncertainIcon});
-        }
-      }
-    }).addTo(map);
-  })
+L.geoPackageTileLayer({
+    geoPackageUrl: 'https://github.com/CheAbdullah/UnityMapBox/tree/master/PAL_MAP/kontur_population_PS_20220630.gpkg',
+    layerName: 'population'
+}).addTo(map);
 	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 <!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
