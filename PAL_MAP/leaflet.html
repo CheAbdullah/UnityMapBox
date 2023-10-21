@@ -28,10 +28,10 @@
 <script>
 
 	var map = L.map('map', {
-			zoom: 16,
 			minZoom:8,
-			center: new L.latLng([31.349291, 34.293358]),
-			layers: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+			center: [31.4218, 34.3854],
+			zoom: 12,
+			layers: [osm, airStrike]
 		}),
 		loader = L.DomUtil.get('loader');
 
@@ -65,6 +65,65 @@
 	})
 	.addTo(map);
 
+
+
+	
+const airStrike = L.layerGroup();
+const a1 = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius 19 October 2023, CO.').addTo(airStrike);
+const a2 = L.marker([31.5049, 34.4615]).bindPopup('Al-Ahli Arab Hospital 17 October 2023, CO.').addTo(airStrike);
+
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 22,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
+const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 22,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+
+const baseLayers = {
+	'OpenStreetMap': osm,
+	'OpenStreetMap.HOT': osmHOT
+};
+
+const overlays = {
+	'AirStrike': airStrike
+};
+
+const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+<!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
+const AlMaghazi = L.marker([31.4218, 34.3854]).bindPopup('Al-Maghazi 33,255 Palestine Refugees');
+const Bureij = L.marker([31.4388, 34.4024]).bindPopup('Bureij 46,629 Palestinian Refugees');
+const DeirElBalah = L.marker([31.4272, 34.3414]).bindPopup('Deir El-Balah 26,674 Palestine Refugees');
+const Jabalia = L.marker([31.53639, 34.494541]).bindPopup('Jabalia 116,011 Palestine Refugees');
+const KhanYounis = L.marker([31.349291, 34.293358]).bindPopup('Khan Younis 88,854 Palestine Refugees');
+const Nuseirat = L.marker([31.448611, 34.3925]).bindPopup('Nuseirat 85,409 Palestine Refugees');	
+const Rafah = L.marker([31.28537, 34.251856]).bindPopup('Rafah 133,326 Palestine Refugees');	
+	
+const refugeeCamp = L.layerGroup([AlMaghazi, Bureij,DeirElBalah,Jabalia,KhanYounis,Nuseirat,Rafah]);
+
+const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var opl2 = new L.OverPassLayer({
+query: "node[amenity=drinking_water]({{bbox}});out;",
+});
+layerControl.addOverlay(opl2, 'opl2');
+layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
+layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
+
+var opl = new L.OverPassLayer({
+
+    'query': '(node({{bbox}})[organic];node({{bbox}})[second_hand];);out qt;',
+});
+
+map.addLayer(opl);
+	
 </script>
+
+
+	
 </body>
 </html>
