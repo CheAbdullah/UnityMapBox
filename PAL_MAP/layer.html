@@ -33,10 +33,9 @@
 
 <script>
 const airStrike = L.layerGroup();
-const mLittleton = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius, CO.').addTo(airStrike);
-const mDenver = L.marker([31.5049, 34.4615]).bindPopup('Al-Ahli Arab Hospital, CO.').addTo(airStrike);
-const mAurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(airStrike);
-const mGolden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(airStrike);
+const mLittleton = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius 19 October 2023, CO.').addTo(airStrike);
+const mDenver = L.marker([31.5049, 34.4615]).bindPopup('Al-Ahli Arab Hospital 17 October 2023, CO.').addTo(airStrike);
+
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -63,12 +62,16 @@ const overlays = {
 };
 
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
-
-const AlMaghazi = L.marker([31.4218, 34.3854]).bindPopup('Al-Maghazi');
-const Bureij = L.marker([31.4388, 34.4024]).bindPopup('Bureij');
-const DeirElBalah = L.marker([31.4272, 34.3414]).bindPopup('Deir El-Balah');
+<!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
+const AlMaghazi = L.marker([31.4218, 34.3854]).bindPopup('Al-Maghazi 33,255 Palestine Refugees');
+const Bureij = L.marker([31.4388, 34.4024]).bindPopup('Bureij 46,629 Palestinian Refugees');
+const DeirElBalah = L.marker([31.4272, 34.3414]).bindPopup('Deir El-Balah 26,674 Palestine Refugees');
+const Jabalia = L.marker([31.53639, 34.494541]).bindPopup('Jabalia 116,011 Palestine Refugees');
+const KhanYounis = L.marker([31.53639, 34.293358]).bindPopup('Khan Younis 88,854 Palestine Refugees');
+const Nuseirat = L.marker([31.448611, 34.3925]).bindPopup('Nuseirat 85,409 Palestine Refugees');	
+const Rafah = L.marker([31.28537, 34.251856]).bindPopup('Rafah 133,326 Palestine Refugees');	
 	
-const refugeeCamp = L.layerGroup([AlMaghazi, Bureij,DeirElBalah]);
+const refugeeCamp = L.layerGroup([AlMaghazi, Bureij,DeirElBalah,Jabalia,KhanYounis,Nuseirat,Rafah]);
 
 const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
