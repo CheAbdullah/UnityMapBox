@@ -93,36 +93,26 @@ const overlays = {
 		loader.style.display = 'none';
 	})
 	.addTo(map);
-L.layerJSON({
-		url: 'https://overpass-api.de/api/interpreter?data=[out:json];node({lat1},{lon1},{lat2},{lon2})[way[building];out;',
-		propertyItems: 'elements',
-		propertyTitle: 'tags.name',
-		propertyLoc: ['lat','lon'],
-		caching: true,
-		cacheId: function(data, latlng) {
-			return data.tags.name || latlng.toString();
-		},
-		buildIcon: function(data, title) {
-			
-			return new L.Icon({
-				iconUrl: 'x.jpg',
-				iconSize: new L.Point(32, 37),
-				iconAnchor: new L.Point(18, 37),
-				popupAnchor: new L.Point(0, -37)
-			});
-		},
-		buildPopup: function(data, marker) {
-			return data.tags.name || null;
-		}
-	})
-	.on('dataloading',function(e) {
-		loader.style.display = 'block';
-	})
-	.on('dataloaded',function(e) {
-		loader.style.display = 'none';
-	})
-	.addTo(map);
+	
 
+// map
+  function onEachFeature(feature, layer) {
+    layer.bindPopup(feature.properties.City + ", " + feature.properties.State + ", " + feature.properties.Country);
+  }
+
+  $.getJSON("cities.geoJSON", function (cities) { // pull data from external file
+    L.geoJson(cities, {
+      onEachFeature: onEachFeature,
+      pointToLayer: function (feature, latlng) {
+        switch (feature.properties.Remember) {
+          case '1': return L.marker(latlng, {icon: visitedIcon});
+          case '?': return L.marker(latlng, {icon: uncertainIcon});
+          case '0': return L.marker(latlng, {icon: uncertainIcon});
+        }
+      }
+    }).addTo(map);
+  })
+	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 <!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
 const AlMaghazi = L.marker([31.4218, 34.3854]).bindPopup('Al-Maghazi 33,255 Palestine Refugees');
