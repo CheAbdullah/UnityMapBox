@@ -96,13 +96,13 @@ async function getRoad() {
 onMount(async () => {
     roads = await getRoad();
     leaflet = await import('leaflet');
-    map = leaflet.map('map' ,{ scrollWheelZoom: false, touchZoom: false, dragging: false} ).setView({lat: 52.453269, lng: -1.67}, 11);
+    map2 = leaflet.map('map' ,{ scrollWheelZoom: false, touchZoom: false, dragging: false} ).setView({lat: 52.453269, lng: -1.67}, 11);
 
     leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
                 attribution: '© OpenStreetMap contributors, © CartoDB'
-            }).addTo(map);
-    map.attributionControl.setPosition('bottomleft');
-    let roadsLayer = leaflet.geoJSON().addTo(map);
+            }).addTo(map2);
+    map2.attributionControl.setPosition('bottomleft');
+    let roadsLayer = leaflet.geoJSON().addTo(map2);
     roadsLayer.addData(roads);
 })
 layerControl.addOverlay(roadsLayer); 	
