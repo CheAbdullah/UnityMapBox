@@ -48,8 +48,8 @@ const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.pn
 });
 
 const map = L.map('map', {
-	center: [34.4668,31.5017],
-	zoom: 10,
+	center: [31.4218, 34.3854],
+	zoom: 5,
 	layers: [osm, airStrike]
 });
 
@@ -66,8 +66,9 @@ const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 
 const AlMaghazi = L.marker([31.4218, 34.3854]).bindPopup('Al-Maghazi');
 const Bureij = L.marker([31.4388, 34.4024]).bindPopup('Bureij');
-
-const refugeeCamp = L.layerGroup([AlMaghazi, Bureij]);
+const DeirElBalah = L.marker([31.4272, 34.3414]).bindPopup('Deir El-Balah');
+	
+const refugeeCamp = L.layerGroup([AlMaghazi, Bureij,DeirElBalah]);
 
 const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
