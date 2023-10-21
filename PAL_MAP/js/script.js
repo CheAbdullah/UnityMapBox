@@ -1,11 +1,11 @@
 const before = L.map('before', {
     attributionControl: false,
-    minZoom: 15
+    minZoom: 5
 }).setView(center, zoom);
     
 const after = L.map('after', {
     attributionControl: false,
-    minZoom: 15
+    minZoom: 5
 }).setView(center, zoom);
 
 L.tileLayer(map1URL).addTo(before);
