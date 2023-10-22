@@ -122,8 +122,6 @@ L.geoPackageFeatureLayer([], {
     },
     onEachFeature: function (feature, layer) {
         const field =
-            geodata: ${feature.properties.osm_id} <br>
-            opt-israel-hostilities: ${feature.properties.name} <br>
             population: ${feature.properties.shop}`;
         layer.bindPopup(field);
     }
