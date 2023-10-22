@@ -189,7 +189,7 @@ layerControl.addOverlay(opl2, 'opl2');
 layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
 layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
 
-var opl = new L.OverPassLayer({
+var opl5 = new L.OverPassLayer({
 query: "node[amenity=drinking_water]({{bbox}});out;",
 onSuccess: function(data) {
     for(i=0;i<data.elements.length;i++) {
@@ -204,8 +204,8 @@ onSuccess: function(data) {
     }
   },
 });
-
-map.addLayer(opl); 
+layerControl.addOverlay(opl5, 'opl5');
+//map.addLayer(opl); 
 
 // Create the layer
 var overpassLayer = new OverpassLayer({
@@ -217,8 +217,9 @@ var overpassLayer = new OverpassLayer({
     style: { width: 1, color: 'black' }
   }
 })
-map.addLayer(overpassLayer); 	
-
+//map.addLayer(overpassLayer); 	
+layerControl.addOverlay(overpassLayer, 'overpassLayer');
+	
 var geo = L.geoJson({features:[]}, {
   onEachFeature: function popUp(f, l) {
     var out = [];
@@ -229,7 +230,8 @@ var geo = L.geoJson({features:[]}, {
       l.bindPopup(out.join("<br />"));
     }
   }
-}).addTo(map);
+})
+layerControl.addOverlay(geo, 'geo');
 
 //var base = 'palestiniancommunities_wb_gs/PalestinianCommunities_WB_GS.shp';
 //shp(base).then(function(data){
