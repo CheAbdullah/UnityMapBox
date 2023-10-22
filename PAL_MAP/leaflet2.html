@@ -176,11 +176,9 @@ layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
 layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
 
 var opl = new L.OverPassLayer({
-
-    'query': '(node({{bbox}})[organic];node({{bbox}})[second_hand];);out qt;',
+query: "node[amenity=drinking_water]({{bbox}});out;",
 });
-
-map.addLayer(opl);
+map.addLayer(opl); 
 	
 </script>
 
