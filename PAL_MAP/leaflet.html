@@ -122,11 +122,9 @@ const Population = L.geoPackageFeatureLayer([], {
             fillOpacity: 0.7
         });
     },
-    onEachFeature: function (feature, layer) {
-        const field =
-            'h3: ${feature.properties.h3}';
-	layer.bindPopup(field);
-    }
+    onEachFeature: function (f, l) {
+   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+ }
 })//.addTo(map);
 layerControl.addOverlay(Population, 'Population');
 	
