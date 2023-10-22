@@ -35,7 +35,7 @@ https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/src/OverPassLayer.min.
 
 <script>
 
-	const airStrike = L.layerGroup();
+const airStrike = L.layerGroup();
 const a1 = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius 19 October 2023, CO.').addTo(airStrike);
 const a2 = L.marker([31.5049, 34.4615]).bindPopup('Al-Ahli Arab Hospital 17 October 2023, CO.').addTo(airStrike);
 
@@ -96,7 +96,7 @@ const overlays = {
 	})
 	.addTo(map);
 	
-
+const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
 const Population = L.geoPackageTileLayer({
     geoPackageUrl: 'Palestine_places.gpkg',
     layerName: 'population'
@@ -128,11 +128,6 @@ L.geoPackageFeatureLayer([], {
     }
 }).addTo(map);
 
-
-
-	
-	
-const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 <!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
 const AlMaghazi = L.marker([31.4218, 34.3854]).bindPopup('Al-Maghazi 33,255 Palestine Refugees');
 const Bureij = L.marker([31.4388, 34.4024]).bindPopup('Bureij 46,629 Palestinian Refugees');
