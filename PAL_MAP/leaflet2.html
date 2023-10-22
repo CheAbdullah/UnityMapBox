@@ -101,7 +101,9 @@ const overlays = {
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
 
  // Instantiate KMZ layer (async)
-  var kmz = L.kmzLayer().addTo(map);
+  var kmz = L.kmzLayer();//.addTo(map);
+
+layerControl.addOverlay(kmz, 'UNOSAT code CE20231007PS UNOSAT's satellite-detected damage and destruction to buildings');
 
   kmz.on('load', function(e) {
     control.addOverlay(e.layer, e.name);
