@@ -194,6 +194,18 @@ query: "node[amenity=drinking_water]({{bbox}});out;",
 });
 map.addLayer(opl); 
 
+// Create the layer
+var overpassLayer = new OverpassLayer({
+  overpassFrontend: overpassFrontend,
+  query: 'nwr[building]',
+  minZoom: 16,
+  feature: {
+    title: '{{ tags.name }}',
+    style: { width: 1, color: 'black' }
+  }
+})
+map.addLayer(overpassLayer); 	
+
 var geo = L.geoJson({features:[]}, {
   onEachFeature: function popUp(f, l) {
     var out = [];
@@ -206,7 +218,7 @@ var geo = L.geoJson({features:[]}, {
   }
 }).addTo(map);
 
-var base = 'palestiniancommunities_wb_gs.zip';
+var base = 'palestiniancommunities_wb_gs\PalestinianCommunities_WB_GS.shp';
 shp(base).then(function(data){
   geo.addData(data);
 });
