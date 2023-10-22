@@ -122,7 +122,7 @@ L.geoPackageFeatureLayer([], {
     },
     onEachFeature: function (feature, layer) {
         const field =
-            population: ${feature.properties.shop}`;
+            population: ${feature.properties.population}`;
         layer.bindPopup(field);
     }
 }).addTo(map);
