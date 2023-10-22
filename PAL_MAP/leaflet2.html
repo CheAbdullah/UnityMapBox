@@ -191,7 +191,20 @@ layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
 
 var opl = new L.OverPassLayer({
 query: "node[amenity=drinking_water]({{bbox}});out;",
+onSuccess: function(data) {
+    for(i=0;i<data.elements.length;i++) {
+      e = data.elements[i];
+      var pos = new L.LatLng(e.lat, e.lon);
+      var color = 'green';
+      L.circle(pos, 5, {
+        color: color,
+        fillColor: '#fa3',
+        fillOpacity: 1,
+      }).addTo(map);     
+    }
+  },
 });
+
 map.addLayer(opl); 
 
 // Create the layer
