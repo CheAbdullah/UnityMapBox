@@ -103,7 +103,7 @@ const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
  // Instantiate KMZ layer (async)
   var kmz = L.kmzLayer();//.addTo(map);
 
-layerControl.addOverlay(kmz, 'UNOSAT code CE20231007PS UNOSAT satellite-detected damage and destruction to buildings');
+layerControl.addOverlay(kmz, 'UNOSAT satellite-detected damage and destruction');
 
   kmz.on('load', function(e) {
     control.addOverlay(e.layer, e.name);
