@@ -97,10 +97,11 @@ const overlays = {
 	.addTo(map);
 	
 
-L.geoPackageTileLayer({
+const Population = L.geoPackageTileLayer({
     geoPackageUrl: 'Palestine_places.gpkg',
     layerName: 'population'
-}).addTo(map);
+});
+layerControl.addOverlay(Population, 'Population');
 
 
 // GeoPackage読み込み
@@ -122,7 +123,7 @@ L.geoPackageFeatureLayer([], {
     },
     onEachFeature: function (feature, layer) {
         const field =
-            population: ${feature.properties.population}`;
+            population: ${feature.properties.population};
         layer.bindPopup(field);
     }
 }).addTo(map);
