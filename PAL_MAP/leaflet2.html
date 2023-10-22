@@ -233,10 +233,10 @@ var geo = L.geoJson({features:[]}, {
 })
 layerControl.addOverlay(geo, 'geo');
 
-//var base = 'palestiniancommunities_wb_gs/PalestinianCommunities_WB_GS.shp';
-//shp(base).then(function(data){
-//  geo.addData(data);
-//});
+var base = 'palestiniancommunities_wb_gs/PalestinianCommunities_WB_GS.shp';
+shp(base).then(function(data){
+  geo.addData(data);
+});
 	
 </script>
 
