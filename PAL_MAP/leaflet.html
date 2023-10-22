@@ -123,10 +123,14 @@ L.geoPackageFeatureLayer([], {
     },
     onEachFeature: function (feature, layer) {
         const field =
-            population: ${feature.properties.population};
-        layer.bindPopup(field);
+            'population: ${feature.properties.population}';
+	layer.bindPopup(field);
     }
 }).addTo(map);
+
+
+
+	
 	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 <!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
