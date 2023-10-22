@@ -25,6 +25,7 @@
 	</div>
 <script src="//unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
 <script src="leaflet-layerjson.js"></script>
+<script src="leaflet.fgdb.js"></script>
 <script src="
 https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/dist/OverPassLayer.bundle.min.js
 "></script>
@@ -98,6 +99,9 @@ const overlays = {
 	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
 
+const gdb1=L.fileGDB('UNOSAT_CE20231007PSE_Gaza_Governorate_DA_20231015_GDB.zip',options);
+layerControl.addOverlay(gdb1, 'gdb1');
+	
 //const Population = L.geoPackageTileLayer({
 //    geoPackageUrl: 'Palestine_places.gpkg',
 //    layerName: 'population'
