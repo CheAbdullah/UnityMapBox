@@ -99,7 +99,7 @@ const overlays = {
 	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
 
-	var options = {
+var options = {
   onEachFeature: function(feature, layer) {
     if (feature.properties) {
       layer.bindPopup(Object.keys(feature.properties).map(function(k) {
@@ -125,7 +125,7 @@ const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
     }
 };
    
-const gdb1=L.fileGDB('UNOSAT_CE20231007PSE_Gaza_Governorate_DA_20231015_GDB.zip',options).addTo(map);
+const gdb1=L.fileGDB('UNOSAT_CE20231007PSE_Gaza_Governorate_DA_20231010_GDB.zip',options).addTo(map);
 //layerControl.addOverlay(gdb1, 'gdb1');
 	
 //const Population = L.geoPackageTileLayer({
