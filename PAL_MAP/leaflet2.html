@@ -32,8 +32,8 @@ https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/dist/OverPassLayer.bun
 <link href="
 https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/src/OverPassLayer.min.css
 " rel="stylesheet">
-<script src="https://unpkg.com/@ngageoint/leaflet-geopackage@3.0.3/dist/leaflet-geopackage.min.js"></script>
-
+//<script src="https://unpkg.com/@ngageoint/leaflet-geopackage@3.0.3/dist/leaflet-geopackage.min.js"></script>
+<script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
 <script>
 
 const airStrike = L.layerGroup();
@@ -99,33 +99,19 @@ const overlays = {
 	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
 
-var options = {
-  onEachFeature: function(feature, layer) {
-    if (feature.properties) {
-      layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-        return k + ": " + feature.properties[k];
-      }).join("<br />"), {
-        maxHeight: 200
-      });
-    }
-  },
-  style:function(f){
-    return  {
-            opacity: 1,
-            fillOpacity: 0.7,
-            radius: 6,
-            color: color(f)
-        };
-  }, pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, {
-            opacity: 1,
-            fillOpacity: 0.7,
-            color: color(feature)
-        });
-    }
-};
-   
-const gdb1=L.fileGDB('fgdb.gdb.zip',options).addTo(map);
+ // Instantiate KMZ layer (async)
+  var kmz = L.kmzLayer().addTo(map);
+
+  kmz.on('load', function(e) {
+    control.addOverlay(e.layer, e.name);
+    // e.layer.addTo(map);
+  });
+
+  // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
+  kmz.load('CE20231007PSE_North_Gaza_Governorate_DA_20231015.kmz');
+
+
+  var control = L.control.layers(null, null, { collapsed:false }).addTo(map);
 //layerControl.addOverlay(gdb1, 'gdb1');
 	
 //const Population = L.geoPackageTileLayer({
