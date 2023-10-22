@@ -26,6 +26,11 @@
 <script src="//unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
 <script src="leaflet-layerjson.js"></script>
 <script src="leaflet.fgdb.js"></script> 
+<script src="overpass-layer.js"></script>
+require('leaflet-overpass-layer');
+
+var attr_osm = 'Map data &copy; <a href="http://openstreetmap.org/">OpenStreetMap</a> contributors';
+var attr_overpass = 'POI via <a href="http://www.overpass-api.de/">Overpass API</a>';
 <script src="
 https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/dist/OverPassLayer.bundle.min.js
 "></script>
@@ -100,6 +105,13 @@ const overlays = {
 	
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
 
+var overpassFrontend
+var overpassURL = '//overpass-api.de/api/interpreter'	
+overpassFrontend = new OverpassFrontend(overpassURL, {
+    timeGap: 10,
+    effortPerRequest: 100
+  })
+	
  // Instantiate KMZ layer (async)
   var kmz = L.kmzLayer();//.addTo(map);
 
