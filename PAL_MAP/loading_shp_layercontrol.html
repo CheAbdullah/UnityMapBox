@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset='utf-8' />
+	<title>
+		Preview
+	</title>
+<link rel="stylesheet" href="leaflet/leaflet.css" />
+<script src="leaflet/leaflet.js"></script>
+	<style>
+		html {
+			height: 100%
+		}
+
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		#map {
+			height: 100%
+		}
+	</style>
+	<link rel="stylesheet" href="gh-pages.css" />
+</head>
+
+<body>
+	<div class="github-fork-ribbon-wrapper right">
+		<div class="github-fork-ribbon">
+			<a href="https://github.com/calvinmetcalf/leaflet.shapefile">Fork me on GitHub</a>
+		</div>
+	</div>
+	<div id="map"></div>
+	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+	<script src="catiline.js"></script>
+	<script src="leaflet.shpfile.js"></script>
+	<script>
+		var m = L.map('map').setView([31.5033, 34.462], 8);
+
+		var shpfile = new L.Shapefile('palestiniancommunities_wb_gs.zip', {
+			onEachFeature: function(feature, layer) {
+				if (feature.properties) {
+					layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+						return k + ": " + feature.properties[k];
+					}).join("<br />"), {
+						maxHeight: 200
+					});
+				}
+			}
+		});
+		shpfile.addTo(m);
+		shpfile.once("data:loaded", function() {
+			console.log("finished loaded shapefile");
+		});
+	</script>
+</body>
+
+</html>
