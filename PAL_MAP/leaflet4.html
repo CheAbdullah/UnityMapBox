@@ -122,7 +122,7 @@ const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 	layerControl.addOverlay(shpfile, 'palestiniancommunities_wb_gs');
 		
   	var kmz = L.kmzLayer();//.addTo(map);
-	layerControl.addOverlay(kmz, 'COORDpalestine_hrp_political_violence_events_and_fatalities_by_month-year_as-of-18oct2023.csv.kmz');
+	layerControl.addOverlay(kmz, 'palestine_hrp_political_violence_events_and_fatalities_by_month-year_.kmz');
   	kmz.on('load', function(e) {
     control.addOverlay(e.layer, e.name);
   });
