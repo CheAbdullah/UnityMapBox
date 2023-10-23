@@ -98,7 +98,7 @@ https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/dist/OverPassLayer.bun
 		buildPopup: function(data, marker) {return data.tags.name || null;		}
 	})
 	.on('dataloading',function(e) {
-		loader.style.display = 'block';
+		loader.style.display = 'none';
 	})
 	.on('dataloaded',function(e) {
 		loader.style.display = 'none';
