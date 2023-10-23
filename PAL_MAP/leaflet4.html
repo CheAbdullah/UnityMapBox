@@ -126,16 +126,16 @@ const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
   	kmz.on('load', function(e) {
     control.addOverlay(e.layer, e.name);
   });
+kmz.load('palestine_hrp_political_violence_events_and_fatalities_by_month-year_.kmz');
 		
   	var kmz2 = L.kmzLayer();//.addTo(map);
 	layerControl.addOverlay(kmz2, 'CE20231007PSE_North_Gaza_Governorate_DA_20231015.kmz');
   	kmz2.on('load', function(e) {
     control.addOverlay(e.layer, e.name);
   });
-  	// Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
-  	//kmz.load('CE20231007PSE_North_Gaza_Governorate_DA_20231015.kmz');
+kmz.load('CE20231007PSE_North_Gaza_Governorate_DA_20231015.kmz');
 
-		
+	
 	</script>
 </body>
 
