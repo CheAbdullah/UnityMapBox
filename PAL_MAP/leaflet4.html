@@ -104,7 +104,7 @@ https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/dist/OverPassLayer.bun
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
 
 		
-		var m = L.map('map').setView([31.5033, 34.462], 8);
+		//var m = L.map('map').setView([31.5033, 34.462], 8);
 
 		var shpfile = new L.Shapefile('palestiniancommunities_wb_gs.zip', {
 			onEachFeature: function(feature, layer) {
@@ -117,7 +117,7 @@ const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 				}
 			}
 		});
-		shpfile.addTo(m);
+		shpfile.addTo(map);
 		shpfile.once("data:loaded", function() {
 			console.log("finished loaded shapefile");
 		});
