@@ -37,10 +37,7 @@
 	<script src="catiline.js"></script>
 	<script src="leaflet.shpfile.js"></script>
 	<script>
-		var m = L.map('map').setView([42.09618442380296, -71.5045166015625], 8);
-		var watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
-			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-		}).addTo(m);
+		var m = L.map('map').setView([31.5033, 34.462], 8);
 
 		var shpfile = new L.Shapefile('palestiniancommunities_wb_gs.zip', {
 			onEachFeature: function(feature, layer) {
