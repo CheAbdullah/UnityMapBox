@@ -36,6 +36,73 @@
 	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 	<script src="catiline.js"></script>
 	<script src="leaflet.shpfile.js"></script>
+
+const airStrike = L.layerGroup();
+const a1 = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius 19 October 2023, CO.').addTo(airStrike);
+const a2 = L.marker([31.5049, 34.4615]).bindPopup('Al-Ahli Arab Hospital 17 October 2023, CO.').addTo(airStrike);
+const a3 = L.marker([31.4218, 34.3854]).bindPopup('school in the Al-Maghazi refugee camp 17 October 2023, CO.').addTo(airStrike);
+	
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 22,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
+const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 22,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+
+const baseLayers = {
+	'OpenStreetMap': osm,
+	'OpenStreetMap.HOT': osmHOT
+};
+
+const overlays = {
+	'AirStrike': airStrike
+};
+
+	var map = L.map('map', {
+			minZoom:8,
+			center: [31.4218, 34.3854],
+			zoom: 12,
+			layers: [osm, airStrike]
+		}),
+		loader = L.DomUtil.get('loader');
+
+	L.layerJSON({
+		url: 'https://overpass-api.de/api/interpreter?data=[out:json];node({lat1},{lon1},{lat2},{lon2})[amenity=hospital];out;',
+		propertyItems: 'elements',
+		propertyTitle: 'tags.name',
+		propertyLoc: ['lat','lon'],
+		caching: true,
+		cacheId: function(data, latlng) {
+			return data.tags.name || latlng.toString();
+		},
+		buildIcon: function(data, title) {
+			
+			return new L.Icon({
+				iconUrl: 'hospital.jpg',
+				iconSize: new L.Point(32, 37),
+				iconAnchor: new L.Point(18, 37),
+				popupAnchor: new L.Point(0, -37)
+			});
+		},
+		buildPopup: function(data, marker) {
+			return data.tags.name || null;
+		}
+	})
+	.on('dataloading',function(e) {
+		loader.style.display = 'block';
+	})
+	.on('dataloaded',function(e) {
+		loader.style.display = 'none';
+	})
+	.addTo(map);
+	
+const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
+
+
+	
 	<script>
 		var m = L.map('map').setView([31.5033, 34.462], 8);
 
@@ -54,7 +121,8 @@
 		shpfile.once("data:loaded", function() {
 			console.log("finished loaded shapefile");
 		});
-	</script>
+	</script>.
+layerControl.addOverlay(m, 'palestiniancommunities_wb_gs');
 </body>
 
 </html>
