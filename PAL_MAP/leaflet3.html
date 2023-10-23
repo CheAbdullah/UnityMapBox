@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="https://www.w3.org/1999/xhtml"> 
+<head> 
+<title>Leaflet JSON Layer</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+//<link rel="stylesheet" href="//unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+
+<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="leaflet/leaflet.css" />
+  <script src="leaflet/leaflet.js"></script>
+  <script src="catiline.js"></script>
+	<script src="leaflet.shpfile.js"></script>
+<link rel="stylesheet" href="//unpkg.com/github-fork-ribbon-css@0.2.3/gh-fork-ribbon.css"></head>
+<body>
+	<h3><a href="../"><big>◄</big> Leaflet JSON Layer</a></h3>
+	<h4><em>Palestine</em></h4>
+	<div id="post-it">
+		Using: <b><a href="https://wiki.openstreetmap.org/wiki/Overpass_API">Overpass API</a></b>
+		<br /><br />
+		Service offer by <br />
+		<b><a href="https://overpass-api.de/">overpass-api.de</a></b>
+		<br /><br />
+		Data offer by <a href="https://osm.org">OpenStreetMap.org</a>
+	</div>
+	<div style="">
+		<div id="map"></div>
+		<div id="loader"></div>
+	</div>
+//<script src="//unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+<script src="leaflet-layerjson.js"></script>
+<script src="leaflet.fgdb.js"></script> 
+<script src="
+https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/dist/OverPassLayer.bundle.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/leaflet-overpass-layer@2.9.0/src/OverPassLayer.min.css
+" rel="stylesheet">
+//<script src="https://unpkg.com/@ngageoint/leaflet-geopackage@3.0.3/dist/leaflet-geopackage.min.js"></script>
+<script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
+<script>
+
+const airStrike = L.layerGroup();
+const a1 = L.marker([31.5033, 34.4623]).bindPopup('Church of Saint Porphyrius 19 October 2023, CO.').addTo(airStrike);
+const a2 = L.marker([31.5049, 34.4615]).bindPopup('Al-Ahli Arab Hospital 17 October 2023, CO.').addTo(airStrike);
+const a3 = L.marker([31.4218, 34.3854]).bindPopup('school in the Al-Maghazi refugee camp 17 October 2023, CO.').addTo(airStrike);
+	
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 22,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
+const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 22,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+
+const baseLayers = {
+	'OpenStreetMap': osm,
+	'OpenStreetMap.HOT': osmHOT
+};
+
+const overlays = {
+	'AirStrike': airStrike
+};
+
+	var map = L.map('map', {
+			minZoom:8,
+			center: [31.4218, 34.3854],
+			zoom: 12,
+			layers: [osm, airStrike]
+		}),
+		loader = L.DomUtil.get('loader');
+
+	L.layerJSON({
+		url: 'https://overpass-api.de/api/interpreter?data=[out:json];node({lat1},{lon1},{lat2},{lon2})[amenity=hospital];out;',
+		propertyItems: 'elements',
+		propertyTitle: 'tags.name',
+		propertyLoc: ['lat','lon'],
+		caching: true,
+		cacheId: function(data, latlng) {
+			return data.tags.name || latlng.toString();
+		},
+		buildIcon: function(data, title) {
+			
+			return new L.Icon({
+				iconUrl: 'hospital.jpg',
+				iconSize: new L.Point(32, 37),
+				iconAnchor: new L.Point(18, 37),
+				popupAnchor: new L.Point(0, -37)
+			});
+		},
+		buildPopup: function(data, marker) {
+			return data.tags.name || null;
+		}
+	})
+	.on('dataloading',function(e) {
+		loader.style.display = 'block';
+	})
+	.on('dataloaded',function(e) {
+		loader.style.display = 'none';
+	})
+	.addTo(map);
+	
+const layerControl = L.control.layers(baseLayers, overlays).addTo(map);	
+
+ // Instantiate KMZ layer (async)
+  var kmz = L.kmzLayer();//.addTo(map);
+
+layerControl.addOverlay(kmz, 'UNOSAT satellite-detected damage and destruction');
+
+  kmz.on('load', function(e) {
+    control.addOverlay(e.layer, e.name);
+    // e.layer.addTo(map);
+  });
+
+  // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
+  kmz.load('CE20231007PSE_North_Gaza_Governorate_DA_20231015.kmz');
+
+
+  var control = L.control.layers(null, null, { collapsed:false }).addTo(map);
+//layerControl.addOverlay(gdb1, 'gdb1');
+	
+//const Population = L.geoPackageTileLayer({
+//    geoPackageUrl: 'Palestine_places.gpkg',
+//    layerName: 'population'
+//});
+//layerControl.addOverlay(Population, 'Population');
+
+
+// GeoPackage読み込み
+const Population = L.geoPackageFeatureLayer([], {
+    // GeoPackageファイル指定
+    geoPackageUrl: 'kontur_population_PS_20220630.gpkg',
+    // レイヤ名指定
+    layerName: 'population',
+    pointToLayer: function (feature, layer) {
+        return L.circleMarker(layer, {
+            color: '#014c86',
+            radius: 3,
+            weight: 1,
+            opacity: 0.7,
+            fill: true,
+            fillColor: '#014c86',
+            fillOpacity: 0.7
+        });
+    },
+    onEachFeature: function (f, l) {
+   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+ }
+})//.addTo(map);
+layerControl.addOverlay(Population, 'Population');
+	
+<!--https://geographic.org/geographic_names/name.php?uni=-1153460&fid=2245&c=gaza_striphtm -->
+const AlMaghazi = L.marker([31.4218, 34.3854]).bindPopup('Al-Maghazi 33,255 Palestine Refugees');
+const Bureij = L.marker([31.4388, 34.4024]).bindPopup('Bureij 46,629 Palestinian Refugees');
+const DeirElBalah = L.marker([31.4272, 34.3414]).bindPopup('Deir El-Balah 26,674 Palestine Refugees');
+const Jabalia = L.marker([31.53639, 34.494541]).bindPopup('Jabalia 116,011 Palestine Refugees');
+const KhanYounis = L.marker([31.349291, 34.293358]).bindPopup('Khan Younis 88,854 Palestine Refugees');
+const Nuseirat = L.marker([31.448611, 34.3925]).bindPopup('Nuseirat 85,409 Palestine Refugees');	
+const Rafah = L.marker([31.28537, 34.251856]).bindPopup('Rafah 133,326 Palestine Refugees');	
+	
+const refugeeCamp = L.layerGroup([AlMaghazi, Bureij,DeirElBalah,Jabalia,KhanYounis,Nuseirat,Rafah]);
+
+const openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var opl2 = new L.OverPassLayer({
+            debug: true,
+            endPoint: 'https://lz4.overpass-api.de/api/',
+            query: 'node({{bbox}})["amenity"="post_box"];out;',
+            minZoomIndicatorOptions: {
+                position: 'topright',
+                minZoomMessage: 'Current zoom level: CURRENTZOOM - All data at level: MINZOOMLEVEL'
+            }
+        });
+layerControl.addOverlay(opl2, 'opl2');
+layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
+layerControl.addOverlay(refugeeCamp, 'RefugeeCamp');
+
+var opl = new L.OverPassLayer({
+
+    'query': '(node({{bbox}})[organic];node({{bbox}})[second_hand];);out qt;',
+});
+
+map.addLayer(opl);
+
+
+var shpfile = new L.Shapefile('palestiniancommunities_wb_gs.zip', {
+			onEachFeature: function(feature, layer) {
+				if (feature.properties) {
+					layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+						return k + ": " + feature.properties[k];
+					}).join("<br />"), {
+						maxHeight: 200
+					});
+				}
+			}
+		});
+		//shpfile.addTo(m);
+		shpfile.once("data:loaded", function() {
+			console.log("finished loaded shapefile");
+		});
+	layerControl.addOverlay(shpfile, 'shpfile');
+</script>
+
+
+	
+</body>
+</html>
