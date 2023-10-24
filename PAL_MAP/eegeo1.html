@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script src="https://cdn-webgl.eegeo.com/eegeojs/early_access/latest/eegeo.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
+  </head>
+  <body>
+  <div id="content" style="position: relative">
+    <div id="map" style="height: 400px"></div>
+    <script>
+      var map = L.eeGeo.map("map", "your_api_key_here", {
+        center: [31.4218, 34.3854],
+        zoom: 16
+      });
+    </script>
+
+  </div>
+  </body>
+</html>
