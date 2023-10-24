@@ -43,7 +43,7 @@
         content: '<div class="info-content"><video controls width="450" height="300" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video></div>'
       });
       point.openInfoWindow();
-
+context.lineWidth = 0.5;
 shapefile.open("https://cdn.rawgit.com/matplotlib/basemap/v1.1.0/lib/mpl_toolkits/basemap/data/UScounties.shp", null)
   .then(function(source) {
     return source.read().then(function next(result) {
