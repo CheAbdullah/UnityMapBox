@@ -54,7 +54,7 @@
       createChart(chartDom);
 
       var echartsUI = new maptalks.ui.UIMarker([31.5033, 34.4623], {
-        'draggable'     : true,
+        'draggable'     : false,
         'content'       : chartDom
       }).addTo(map).show();
 
@@ -72,7 +72,7 @@
           legend: {
             x : 'center',
             y : 'bottom',
-            data:['rose1', 'rose2', 'rose3', 'rose4', 'rose5', 'rose6', 'rose7', 'rose8']
+            data:['DeiralBalah', 'GazaCity', 'KhanYunis', 'NorthGaza', 'Rafah', 'Jerusalem', 'Bethlehem', 'Hebron', '-Jenin', 'Jericho', 'Nablus', 'Qalqilya', 'Ramallah', 'Salfit', 'Tubas', 'Tulkarm']
           },
           toolbox: {
             show : true,
@@ -96,14 +96,22 @@
               center : ['50%', '50%'],
               roseType : 'area',
               data:[
-                { value:10, name:'rose1' },
-                { value:5, name:'rose2' },
-                { value:15, name:'rose3' },
-                { value:25, name:'rose4' },
-                { value:20, name:'rose5' },
-                { value:35, name:'rose6' },
-                { value:30, name:'rose7' },
-                { value:40, name:'rose8' }
+                { value:10, name:'DeiralBalah' },
+                { value:5, name:'GazaCity' },
+                { value:15, name:'KhanYunis' },
+                { value:25, name:'NorthGaza' },
+                { value:20, name:'Rafah' },
+                { value:35, name:'Jerusalem' },
+                { value:30, name:'Bethlehem' },
+                { value:40, name:'Hebron' },
+                { value:10, name:'Jenin' },
+                { value:5, name:'Jericho' },
+                { value:15, name:'Nablus' },
+                { value:25, name:'Qalqilya' },
+                { value:20, name:'Ramallah' },
+                { value:35, name:'Salfit' },
+                { value:30, name:'Tubas' },
+                { value:40, name:'Tulkarm' }
               ]
             }
           ]
