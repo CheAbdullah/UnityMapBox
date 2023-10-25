@@ -34,6 +34,11 @@
         baseLayer: baseLayer
       });
 
+      var center = [[31.4218, 34.3854];
+
+// Create the map
+var map2 = L.map('map').setView(center, 5).addTo(map);;
+
 
 
       var layer = new maptalks.VectorLayer('layer', {
@@ -59,7 +64,63 @@ shapefile.open("palestiniancommunities_wb_gs/PalestinianCommunities_WB_GS.shp")
   .catch(error => console.error(error.stack));
 
 
-      // GeoPackage読み込み
+
+// Set up the OSM layer
+L.tileLayer(
+  'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map2);
+     
+var tileLayer = L.geoPackageFeatureLayer([], {
+      geoPackageUrl: 'https://ngageoint.github.io/GeoPackage/examples/rivers.gpkg',
+      layerName: 'rivers',
+      filter:function (feature,layer){
+      	 if (feature.properties.property_1 == 'Danube') {
+          return  'true'
+    		 }
+      },
+      style: function (feature) {
+        return {
+          color: "#F00",
+          weight: 2,
+          opacity: 1
+        };
+      },
+      onEachFeature: function (feature, layer) {
+        var string = '<span class="labelTitle">Filter just the Danube</span><br>';
+        for (var key in feature.properties) {
+          string += '<div class="item"><span class="label">' + key + ': </span><span class="value">' + feature.properties[key] + '</span></div>';
+        }
+        layer.bindPopup(string);
+      }
+  }).addTo(map2);
+  
+  var tileLayer2 = L.geoPackageFeatureLayer([], {
+      geoPackageUrl: 'https://ngageoint.github.io/GeoPackage/examples/rivers.gpkg',
+      layerName: 'rivers',
+      filter:function (feature,layer){
+      	 if (feature.properties.property_0 == '6') {
+          return  'true'
+    		 }
+      },
+      style: function (feature) {
+        return {
+          color: "#00f",
+          weight: 1.4,
+          opacity: 0.5
+        };
+      },
+      onEachFeature: function (feature, layer) {
+        var string = '<span class="labelTitle">Filter by type</span><br>';
+        for (var key in feature.properties) {
+          string += '<div class="item"><span class="label">' + key + ': </span><span class="value">' + feature.properties[key] + '</span></div>';
+        }
+        layer.bindPopup(string);
+      }
+  }).addTo(map2);
+
+      
+
 const Population = L.geoPackageFeatureLayer([], {
     // GeoPackageファイル指定
     geoPackageUrl: 'kontur_population_PS_20220630.gpkg',
@@ -79,7 +140,7 @@ const Population = L.geoPackageFeatureLayer([], {
     onEachFeature: function (f, l) {
    l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
  }
-}).addTo(map);
+}).addTo(map2);
 
     </script>
   </body>
