@@ -1,0 +1,21 @@
+<link href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet">
+
+<script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="https://cdn.osmbuildings.org/classic/0.2.2b/OSMBuildings-Leaflet.js"></script>
+
+<div id="map"></div>
+
+<script>
+
+var map = new L.Map('map');
+map.setView([52.51836, 13.40438], 16, false);
+
+new L.TileLayer('https://{s}.tiles.mapbox.com/v3/[YOUR_MAPBOX_KEY]/{z}/{x}/{y}.png', {
+  attribution: '© Map tiles <a href="https://mapbox.com">Mapbox</a>',
+  maxZoom: 18,
+  maxNativeZoom: 20
+}).addTo(map);
+
+var osmb = new OSMBuildings(map).load('https://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
+
+</script>
