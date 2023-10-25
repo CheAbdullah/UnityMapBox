@@ -137,6 +137,31 @@
                     }
                     map.removeLayer('osm');
                     var layer = new maptalks.VectorLayer('osm', geojson).addTo(map);
+                    map.on('click', function (e) {
+        //reset colors
+        layer.forEach(function (g) {
+          g.updateSymbol({
+            'markerFill' : '#0e595e'
+          });
+        });
+        //identify
+        map.identify(
+          {
+            'coordinate' : e.coordinate,
+            'layers' : [layer]
+          },
+          function (geos) {
+            if (geos.length === 0) {
+              return;
+            }
+            geos.forEach(function (g) {
+              g.updateSymbol({
+                'markerFill' : '#f00'
+              });
+            });
+          }
+        );
+      });
                     map.fitExtent(layer.getExtent());
                 });
             }
