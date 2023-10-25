@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formats demo</title>
+    <script src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
+    <script src="maptalk_format/dist/maptalks.formats.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
+    <style type="text/css">
+        html,body{
+            margin:0px;
+            height:100%;
+            width: 100%;
+         }
+    </style>
+</head>
+<body scroll="no">
+<div style="width:100%;height:80%;" id="map"></div>
+<textarea style="width:100%;height:20%;" id="console"></textarea>
+<script type="text/javascript" >
+
+  var map = new maptalks.Map('map', {
+        center: [13.415118329414781, 52.53001062340084],
+        zoom: 16,
+        pitch: 70,
+      //bearing: 180,
+        centerCross: true,
+        baseLayer: new maptalks.TileLayer('base', {
+          urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+          subdomains: ["a","b","c","d"],
+          attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>'
+        })
+      });
+
+    new maptalks.control.Toolbar({
+      'vertical' : false,
+      'position' : 'top-left',
+      'items'     : [
+        {
+            item: 'CSV',
+            click : function () {
+                maptalks.Formats.csv('COORDpalestine_hrp_political_violence_events_and_fatalities_by_month-year_as-of-18oct2023.csv', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('csv');
+                    var layer = new maptalks.VectorLayer('csv', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'GeoJSON',
+            click : function () {
+                maptalks.Formats.geojson('hospital.geojson', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('geojson');
+                    var layer = new maptalks.VectorLayer('geojson', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'GPX',
+            click : function () {
+                maptalks.Formats.gpx('maptalk_format/test/a.gpx', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('gpx');
+                    var layer = new maptalks.VectorLayer('gpx', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'KML',
+            click : function () {
+                maptalks.Formats.kml('COORDpalestine_hrp_political_violence_events_and_fatalities_by_month-year_as-of-18oct2023.csv.kml', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('kml');
+                    var layer = new maptalks.VectorLayer('kml', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'Polyline',
+            click : function () {
+                maptalks.Formats.polyline('maptalk_format//test/a.polyline', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('polyline');
+                    var layer = new maptalks.VectorLayer('polyline', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'TopoJSON',
+            click : function () {
+                maptalks.Formats.topojson('maptalk_format//test/a.topojson', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('topojson');
+                    var layer = new maptalks.VectorLayer('topojson', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'WKT',
+            click : function () {
+                maptalks.Formats.wkt('maptalk_format//test/a.wkt', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('wkt');
+                    var layer = new maptalks.VectorLayer('wkt', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'osm',
+            click : function () {
+                maptalks.Formats.osm('maptalk_format//test/osm.osm', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('osm');
+                    var layer = new maptalks.VectorLayer('osm', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        }
+    ]
+    }).addTo(map);
+
+
+    function info(info) {
+        document.getElementById('console').value = '<pre>' + info + '</pre>';
+    }
+</script>
+</body>
+</html>
