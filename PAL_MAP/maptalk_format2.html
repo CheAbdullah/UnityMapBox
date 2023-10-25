@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>formats demo</title>
     <script src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
-    <script src="maptalk_format/dist/maptalks.formats.js"></script>
+    <script src="maptalk_formats/dist/maptalks.formats.js"></script>
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
     <style type="text/css">
         html,body{
@@ -21,7 +21,7 @@
 <script type="text/javascript" >
 
   var map = new maptalks.Map('map', {
-        center: [13.415118329414781, 52.53001062340084],
+        center: [31.5033, 34.4623],
         zoom: 16,
         pitch: 70,
       //bearing: 180,
@@ -66,7 +66,7 @@
         {
             item: 'GPX',
             click : function () {
-                maptalks.Formats.gpx('maptalk_format/test/a.gpx', function (err, geojson) {
+                maptalks.Formats.gpx('maptalk_formats/test/a.gpx', function (err, geojson) {
                     if (err) {
                         throw err;
                     }
@@ -92,7 +92,7 @@
         {
             item: 'Polyline',
             click : function () {
-                maptalks.Formats.polyline('maptalk_format//test/a.polyline', function (err, geojson) {
+                maptalks.Formats.polyline('maptalk_formats//test/a.polyline', function (err, geojson) {
                     if (err) {
                         throw err;
                     }
@@ -105,7 +105,7 @@
         {
             item: 'TopoJSON',
             click : function () {
-                maptalks.Formats.topojson('maptalk_format//test/a.topojson', function (err, geojson) {
+                maptalks.Formats.topojson('maptalk_formats//test/a.topojson', function (err, geojson) {
                     if (err) {
                         throw err;
                     }
@@ -118,7 +118,7 @@
         {
             item: 'WKT',
             click : function () {
-                maptalks.Formats.wkt('maptalk_format//test/a.wkt', function (err, geojson) {
+                maptalks.Formats.wkt('maptalk_formats//test/a.wkt', function (err, geojson) {
                     if (err) {
                         throw err;
                     }
@@ -131,7 +131,7 @@
         {
             item: 'osm',
             click : function () {
-                maptalks.Formats.osm('maptalk_format//test/osm.osm', function (err, geojson) {
+                maptalks.Formats.osm('maptalk_formats//test/osm.osm', function (err, geojson) {
                     if (err) {
                         throw err;
                     }
