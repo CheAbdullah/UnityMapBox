@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3dtiles viewer</title>
+<script type="text/javascript" src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@maptalks/gl-layers/dist/maptalks-gl-layers.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@maptalks/transcoders.draco/dist/transcoders.draco.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@maptalks/transcoders.crn/dist/transcoders.crn.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@maptalks/transcoders.ktx2/dist/transcoders.ktx2.js"></script>
+<style>
+   #map { width: 100vw; height: 100vh; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+const map = new maptalks.Map("map", {
+    center: [0, 0],
+    zoom: 2
+});
+const layer = new maptalks.Geo3DTilesLayer('3dtiles', {
+    maxGPUMemory: 512, //最大缓存数，单位 M bytes
+    // loadingLimitOnInteracting : 1, //地图交互过程中瓦片请求最大数量
+    // loadingLimit : 0, //瓦片请求最大数量
+    services : [
+        {
+            url: 'path/to/tileset.json',
+            // maximumScreenSpaceError值越小，加载的模型越清晰，但加载的数据量会变大
+            // 清晰度可以接受的情况下，推荐把这个值设得越大越好，性能会越好
+            maximumScreenSpaceError: 24.0,
+            // 数据请求的额外参数
+            // urlParams: 'v=0.0',
+            // fetch请求的额外参数
+            // fetchOptions : { credentials : 'include' },
+            // 把模型降低指定高度，单位米
+            heightOffset: 0,
+            // 环境光照值，倾斜摄影可以设为[1.0, 1.0, 1.0]获得最清晰的效果，非倾斜摄影可以适当降低，例如设为 [0.2, 0.2, 0.2]
+            // 如果不设置，则采用地图上的默认光照值
+            ambientLight: [1.0, 1.0, 1.0],
+            // maxExtent: maxExtent
+        },
+        // 其他的3dtiles数据源
+    ]
+});
+// 添加到GroupGLLayer中
+// GroupGLLayer能实现抗锯齿等后处理，也能加入其他三维图层，让子图层都融合到同一个三维空间中
+const groupLayer = new maptalks.GroupGLLayer('group', [layer]);
+groupLayer.addTo(map);
+
+layer.once('loadtileset', e => {
+    const extent = layer.getExtent(e.index);
+    map.fitExtent(extent, 0, { animation: false });
+});
+</script>
+</body>
+</html>
