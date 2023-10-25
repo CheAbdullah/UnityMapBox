@@ -146,7 +146,7 @@
                     map.removeLayer('gpx');
                     var layer = new maptalks.VectorLayer('gpx', geojson).addTo(map);
 
-                    var point = new maptalks.Marker(map.getCenter());
+                    var point = new maptalks.Marker([31.4218, 34.3854]);
       layer.addGeometry(point);
       point.setInfoWindow({
         title: 'hello maptalks',
