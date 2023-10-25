@@ -137,6 +137,15 @@
                     }
                     map.removeLayer('gpx');
                     var layer = new maptalks.VectorLayer('gpx', geojson).addTo(map);
+
+                    var point = new maptalks.Marker(map.getCenter());
+      layer.addGeometry(point);
+      point.setInfoWindow({
+        title: 'hello maptalks',
+        content: '<div class="info-content"><video controls width="450" height="300" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video></div>'
+      });
+      point.openInfoWindow();
+                    
                     map.fitExtent(layer.getExtent());
                 });
             }
