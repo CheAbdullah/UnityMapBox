@@ -101,7 +101,7 @@ new maptalks.control.Toolbar({
         {
             item: 'KML',
             click : function () {
-                maptalks.Formats.kml('flooded_vec.kml', function (err, geojson) {
+                maptalks.Formats.kml('COORDpalestine_hrp_political_violence_events_and_fatalities_by_month-year_as-of-18oct2023.csv.kml', function (err, geojson) {
                     if (err) {
                         throw err;
                     }
@@ -109,8 +109,9 @@ new maptalks.control.Toolbar({
                     var layer = new maptalks.VectorLayer('kml', geojson).addTo(map);
                     map.fitExtent(layer.getExtent());
                 });
-            }]
-      }).addTo(map);
+            }
+       ]
+    }).addTo(map);
         
 
 
