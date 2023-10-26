@@ -93,6 +93,29 @@ var imageLayer = new maptalks.ImageLayer('images',
         ];
 
         document.getElementById('status').innerHTML = '<div>' + mapStatus.join('<br>') + '</div>';
+
+new maptalks.control.Toolbar({
+      'vertical' : false,
+      'position' : 'top-left',
+      'items'     : [
+        {
+            item: 'KML',
+            click : function () {
+                maptalks.Formats.kml('flooded_vec.kml', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('kml');
+                    var layer = new maptalks.VectorLayer('kml', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }]
+      }).addTo(map);
+        
+
+
+
+	      
       }
 	    
     </script>
