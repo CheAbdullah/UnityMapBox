@@ -99,9 +99,48 @@ new maptalks.control.Toolbar({
       'position' : 'top-left',
       'items'     : [
         {
+            item: 'CSV',
+            click : function () {
+                maptalks.Formats.csv('../test/a.csv', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('csv');
+                    var layer = new maptalks.VectorLayer('csv', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'GeoJSON',
+            click : function () {
+                maptalks.Formats.geojson('../test/a.geojson', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('geojson');
+                    var layer = new maptalks.VectorLayer('geojson', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'GPX',
+            click : function () {
+                maptalks.Formats.gpx('PAL_MAP/maptalks_formats/test/a.gpx', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('gpx');
+                    var layer = new maptalks.VectorLayer('gpx', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
             item: 'KML',
             click : function () {
-                maptalks.Formats.kml('COORDpalestine_hrp_political_violence_events_and_fatalities_by_month-year_as-of-18oct2023.csv.kml', function (err, geojson) {
+                maptalks.Formats.kml('flooded_vec.kml', function (err, geojson) {
                     if (err) {
                         throw err;
                     }
@@ -110,7 +149,60 @@ new maptalks.control.Toolbar({
                     map.fitExtent(layer.getExtent());
                 });
             }
-       ]
+        },
+        {
+            item: 'Polyline',
+            click : function () {
+                maptalks.Formats.polyline('PAL_MAP/maptalks_formats/test/a.polyline', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('polyline');
+                    var layer = new maptalks.VectorLayer('polyline', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'TopoJSON',
+            click : function () {
+                maptalks.Formats.topojson('PAL_MAP/maptalks_formats/test/a.topojson', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('topojson');
+                    var layer = new maptalks.VectorLayer('topojson', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'WKT',
+            click : function () {
+                maptalks.Formats.wkt('PAL_MAP/maptalks_formats/test/a.wkt', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('wkt');
+                    var layer = new maptalks.VectorLayer('wkt', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        },
+        {
+            item: 'osm',
+            click : function () {
+                maptalks.Formats.osm('PAL_MAP/maptalks_formats/test/osm.osm', function (err, geojson) {
+                    if (err) {
+                        throw err;
+                    }
+                    map.removeLayer('osm');
+                    var layer = new maptalks.VectorLayer('osm', geojson).addTo(map);
+                    map.fitExtent(layer.getExtent());
+                });
+            }
+        }
+    ]
     }).addTo(map);
         
 
