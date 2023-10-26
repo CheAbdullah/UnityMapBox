@@ -39,60 +39,23 @@
       'position' : 'top-left',
       'items'     : [
         {
-            item: 'CSV',
+            item: '2016',
             click : function () {
-                maptalks.Formats.csv('COORDpalestine_hrp_political_violence_events_and_fatalities_by_month-year_as-of-18oct2023.csv', function (err, geojson) {
-                    if (err) {
-                        throw err;
-                    }
-                    map.removeLayer('csv');
-                    var layer = new maptalks.VectorLayer('csv', geojson).addTo(map);
-
                     // 01
-                    var chartDom = document.createElement('div');
-      chartDom.style.cssText = 'width:650px; height:300px;';
-      createChart(chartDom);
-
-      var echartsUI = new maptalks.ui.UIMarker([31.5033, 34.4623], {
-        'draggable'     : false,
-        'content'       : chartDom
-      }).addTo(map).show();
-
-                    // ECharts's chart creation
+    var chartDom = document.createElement('div');
+    chartDom.style.cssText = 'width:650px; height:300px;';
+    createChart(chartDom);
+    var echartsUI = new maptalks.ui.UIMarker([31.5033, 34.4623], {
+        'draggable'     : false,        'content'       : chartDom      }).addTo(map).show();
+      // ECharts's chart creation
       function createChart(dom) {
         var myChart = echarts.init(dom);
-        var option = {
-          title : {
-            x:'center'
-          },
-          tooltip : {
-            trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
-          },
-          legend: {
-            x : 'center',
-            y : 'bottom',
-            data:['DeiralBalah', 'GazaCity', 'KhanYunis', 'NorthGaza', 'Rafah', 'Jerusalem', 'Bethlehem', 'Hebron', '-Jenin', 'Jericho', 'Nablus', 'Qalqilya', 'Ramallah', 'Salfit', 'Tubas', 'Tulkarm']
-          },
-          toolbox: {
-            show : true,
-            feature : {
-              mark : { show: true },
-              dataView : { show: true, readOnly: false },
-              magicType : {
-                show: true,
-                type: ['pie', 'funnel']
-              },
-              restore : { show: true },
-              saveAsImage : { show: true }
-            }
-          },
-          calculable : true,
+        var option = {  title : { x:'center' },  tooltip : {  trigger: 'item',  formatter: '{a} <br/>{b} : {c} ({d}%)'   },
+        legend: {  x : 'center',  y : 'bottom', data:['DeiralBalah', 'GazaCity', 'KhanYunis', 'NorthGaza', 'Rafah', 'Jerusalem', 'Bethlehem', 'Hebron', '-Jenin', 'Jericho', 'Nablus', 'Qalqilya', 'Ramallah', 'Salfit', 'Tubas', 'Tulkarm'] },
+        toolbox: { show : true, feature : {  mark : { show: true }, dataView : { show: true, readOnly: false }, magicType : {  show: true,  type: ['pie', 'funnel']  },
+        restore : { show: true },  saveAsImage : { show: true } } },  calculable : true,
           series : [
-            {
-              name:'Area mode',
-              type:'pie',
-              radius : [30, 110],
+            { name:'Area mode',  type:'pie',  radius : [10, 60],
               center : ['50%', '50%'],
               roseType : 'area',
               data:[
@@ -111,18 +74,11 @@
                 { value:20, name:'Ramallah' },
                 { value:35, name:'Salfit' },
                 { value:30, name:'Tubas' },
-                { value:40, name:'Tulkarm' }
-              ]
-            }
-          ]
-        };
-        myChart.setOption(option);
-      }
-                     // 01
-                    map.fitExtent(layer.getExtent());
-                });
-            }
-        },
+                { value:40, name:'Tulkarm' } ]  } ] };
+        myChart.setOption(option); }
+        map.fitExtent(layer.getExtent());  });            }
+        }, 
+       /////////////////////////////          //////////////////////////////
         {
             item: 'GeoJSON',
             click : function () {
